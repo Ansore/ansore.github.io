@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Ansore</title>
+  <title>MFC模拟门禁卡 | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+  <meta name="description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
 <meta name="keywords" content="Ansore">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ansore.github.io.git/2018/06/12/hello-world/index.html">
+<meta property="og:title" content="MFC模拟门禁卡">
+<meta property="og:url" content="http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-12T08:18:45.275Z">
+<meta property="og:updated_time" content="2018-06-29T13:49:07.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="MFC模拟门禁卡">
+<meta name="twitter:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -101,20 +101,27 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      Hello World
+      MFC模拟门禁卡
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-06-12
+          <i class="fa fa-calendar"></i>  2017-05-02
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -130,20 +137,20 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <h4 id="首先必须支持NFC，而且必须root，system有读写权限"><a href="#首先必须支持NFC，而且必须root，system有读写权限" class="headerlink" title="首先必须支持NFC，而且必须root，system有读写权限"></a>首先必须支持NFC，而且必须root，system有读写权限</h4><h4 id="测试机型：小米5"><a href="#测试机型：小米5" class="headerlink" title="测试机型：小米5"></a>测试机型：小米5</h4><p>先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：</p>
+<blockquote>
+<p> NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,          21, 01, 00,          28, 01, 00,          30, 01, 04,          31, 01, 00,          32, 01, 60,         33, 00,         50, 01, 02,          54, 01, 06,          5B, 01, 00,          60, 01, 0E,          80, 01, 01,          81, 01, 01,          82, 01, 0E         }</p>
+</blockquote>
+<p>将第一行括号里的第三个数修改加四，也就是27修改为2B，第八行的第二个00修改为04后面接上卡的ID，以逗号结束，即修改为：</p>
+<blockquote>
+<p> NXP_CORE_CONF={20, 02, 2B, 0E,         18, 01, 01,          21, 01, 00,          28, 01, 00,          30, 01, 04,          31, 01, 00,          32, 01, 60,         33, 04, 1f,ef,ff,4d,         50, 01, 02,          54, 01, 06,          5B, 01, 00,          60, 01, 0E,          80, 01, 01,          81, 01, 01,          82, 01, 0E         }</p>
+</blockquote>
+<p>保存文件，重启手机 如果手机重启后NFC能正常开启，一般情况下就是成功了。可代替门禁卡。</p>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月12日 16:18</p>
-        <p>原始链接： <a class="post-url" href="/2018/06/12/hello-world/" title="Hello World">http://ansore.github.io.git/2018/06/12/hello-world/</a></p>
+        <p>最后更新： 2018年06月29日 21:49</p>
+        <p>原始链接： <a class="post-url" href="/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/" title="MFC模拟门禁卡">http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/</a></p>
         <footer>
             <a href="http://ansore.github.io.git">
                 <img src="/images/logo.png" alt="Ansore">
@@ -200,7 +207,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/&title=《MFC模拟门禁卡》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -210,22 +217,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/&title=《MFC模拟门禁卡》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hello World》 — Ansore&url=http://ansore.github.io.git/2018/06/12/hello-world/&via=http://ansore.github.io.git" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MFC模拟门禁卡》 — Ansore&url=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/&via=http://ansore.github.io.git" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -235,7 +242,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2018/06/12/hello-world/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2017/05/02/mfc-e6-a8-a1-e6-8b-9f-e9-97-a8-e7-a6-81-e5-8d-a1/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -253,16 +260,26 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#首先必须支持NFC，而且必须root，system有读写权限"><span class="post-toc-text">首先必须支持NFC，而且必须root，system有读写权限</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#测试机型：小米5"><span class="post-toc-text">测试机型：小米5</span></a></li></ol>
         </nav>
     </aside>
     
 
 <nav id="article-nav">
   
+    <a href="/2017/11/12/bf-e4-b8-b2-e5-8c-b9-e9-85-8d-e7-ae-97-e6-b3-95/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          BF串匹配算法
+        
+      </span>
+    </a>
   
-    <a href="/2017/11/19/e9-80-89-e6-8b-a9-e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">选择排序算法</span>
+  
+    <a href="/2017/03/07/e5-88-9d-e8-af-86webservice/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">初识WebService</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

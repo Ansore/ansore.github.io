@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Ansore</title>
+  <title>策略模式(Strategy Pattern) | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="Ansore">
+  <meta name="description" content="策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是">
+<meta name="keywords" content="编程,JAVA,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ansore.github.io.git/2018/06/12/hello-world/index.html">
+<meta property="og:title" content="策略模式(Strategy Pattern)">
+<meta property="og:url" content="http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-12T08:18:45.275Z">
+<meta property="og:updated_time" content="2018-06-29T13:49:07.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="策略模式(Strategy Pattern)">
+<meta name="twitter:description" content="策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -101,20 +101,31 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      Hello World
+      策略模式(Strategy Pattern)
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+                      <a href="/categories/设计模式/">设计模式</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-06-12
+          <i class="fa fa-calendar"></i>  2016-10-31
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -130,20 +141,65 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <p>策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是我们要做的，也是学设计模式的目的。 策略模式JAVA语言实现：</p>
+<pre><code>package com.strategy;
 
+public class StrategyMode {
+
+    public static void main(String[] args) {
+        Context context;
+        context = new Context(new AlgonrithmA());
+        context.ContextInterface();
+
+        context = new Context(new AlgonrithmB());
+        context.ContextInterface();
+
+        context = new Context(new AlgonrithmC());
+        context.ContextInterface();
+    }
+}
+
+class Context {
+    private Strategy strategy;
+    public Context(Strategy strategy) {
+        this.strategy = strategy;
+    }
+
+    public void ContextInterface() {
+        strategy.AlgonrithmInterface();
+    }
+}
+
+abstract class Strategy {
+    public abstract void AlgonrithmInterface();
+}
+
+class AlgonrithmA extends Strategy {
+
+    @Override
+    public void AlgonrithmInterface() {
+        System.out.println(&quot;算法A实现&quot;);
+    }
+}
+
+class AlgonrithmB extends Strategy {
+    @Override
+    public void AlgonrithmInterface() {
+    System.out.println(&quot;算法B实现&quot;);    
+    }
+}
+
+class AlgonrithmC extends Strategy {
+    @Override
+    public void AlgonrithmInterface() {
+        System.out.println(&quot;算法C实现&quot;);
+    }
+}
+</code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月12日 16:18</p>
-        <p>原始链接： <a class="post-url" href="/2018/06/12/hello-world/" title="Hello World">http://ansore.github.io.git/2018/06/12/hello-world/</a></p>
+        <p>最后更新： 2018年06月29日 21:49</p>
+        <p>原始链接： <a class="post-url" href="/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/" title="策略模式(Strategy Pattern)">http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/</a></p>
         <footer>
             <a href="http://ansore.github.io.git">
                 <img src="/images/logo.png" alt="Ansore">
@@ -200,7 +256,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/&title=《策略模式(Strategy Pattern)》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -210,22 +266,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/&title=《策略模式(Strategy Pattern)》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hello World》 — Ansore&url=http://ansore.github.io.git/2018/06/12/hello-world/&via=http://ansore.github.io.git" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《策略模式(Strategy Pattern)》 — Ansore&url=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/&via=http://ansore.github.io.git" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -235,7 +291,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2018/06/12/hello-world/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2016/10/31/e7-ad-96-e7-95-a5-e6-a8-a1-e5-bc-8fstrategy-pattern/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -244,6 +300,17 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/JAVA/" class="color5">JAVA</a>
+      
+    <a href="/tags/设计模式/" class="color5">设计模式</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -251,18 +318,22 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-        </nav>
-    </aside>
-    
 
 <nav id="article-nav">
   
+    <a href="/2016/11/14/e9-97-b2-e7-9c-8b-e8-8a-b1-e5-bc-80-ef-bc-8c-e9-9d-99-e5-be-85-e8-8a-b1-e8-90-bd/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          闲看花开，静待花落
+        
+      </span>
+    </a>
   
-    <a href="/2017/11/19/e9-80-89-e6-8b-a9-e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">选择排序算法</span>
+  
+    <a href="/2016/10/15/ip-e4-b8-8e-e5-9f-9f-e5-90-8d-e7-9a-84-e7-9b-b8-e4-ba-92-e8-bd-ac-e6-8d-a2/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">IP与域名的相互转换</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

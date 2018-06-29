@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hello World | Ansore</title>
+  <title>KMP算法 | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta name="keywords" content="Ansore">
+  <meta name="description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： #include&amp;lt;iostream&amp;gt; u">
+<meta name="keywords" content="编程,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://ansore.github.io.git/2018/06/12/hello-world/index.html">
+<meta property="og:title" content="KMP算法">
+<meta property="og:url" content="http://ansore.github.io.git/2017/11/18/460/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： #include&amp;lt;iostream&amp;gt; u">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-12T08:18:45.275Z">
+<meta property="og:updated_time" content="2018-06-29T13:49:07.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="KMP算法">
+<meta name="twitter:description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： #include&amp;lt;iostream&amp;gt; u">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -101,20 +101,31 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-460" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      Hello World
+      KMP算法
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/C/C++/">C/C++</a>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-06-12
+          <i class="fa fa-calendar"></i>  2017-11-18
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -130,20 +141,69 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+            <blockquote>
+<p>KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。</p>
+</blockquote>
+<p>KMP算法C++实现：</p>
+<pre><code>#include&lt;iostream&gt;
+using namespace std;
 
+void getNext(char T[], int next[]) {
+    int i,j,len;
+    next[0] = -1;
+    for(j = 1; T[j] != &apos;\0&apos;; j ++) {
+        for(len = j - 1; len &gt;= 1; len --) {
+            for(i = 0; i &lt; len; i ++) {
+                if(T[i] != T[j-len+i])
+                break;
+            }
+            if(i == len) {
+                next[j] = len;
+                break;
+            }
+
+            if(len &lt; 1) {
+                next[j] = 0;
+            }
+        }
+    }
+}
+
+int KMP(char S[], char T[]) {
+    int i = 0, j = 0;
+    int next[80];
+    getNext(T, next);
+    while(S[i] != &apos;\0&apos; &amp;&amp; T[j] != &apos;\0&apos;) {
+        if(S[i] == T[j]) {
+            i ++;
+            j ++;
+        } else {
+            j = next[j];
+            if(j == -1) {
+                i ++;
+                j ++;
+            }
+        }
+    }
+    if(T[j] == &apos;\0&apos;) {
+        return (i-j+1);
+    } else {
+        return 0;
+    }
+}
+
+    int main () {
+        char S[] = &quot;sdfasdfads&quot;;
+        char T[] = &quot;dfas&quot;;
+        int r = KMP(S,T);
+        cout &lt;&lt; &quot;result is &quot; &lt;&lt; r &lt;&lt; endl;
+        return 0;
+    }
+</code></pre>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月12日 16:18</p>
-        <p>原始链接： <a class="post-url" href="/2018/06/12/hello-world/" title="Hello World">http://ansore.github.io.git/2018/06/12/hello-world/</a></p>
+        <p>最后更新： 2018年06月29日 21:49</p>
+        <p>原始链接： <a class="post-url" href="/2017/11/18/460/" title="KMP算法">http://ansore.github.io.git/2017/11/18/460/</a></p>
         <footer>
             <a href="http://ansore.github.io.git">
                 <img src="/images/logo.png" alt="Ansore">
@@ -200,7 +260,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2017/11/18/460/&title=《KMP算法》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -210,22 +270,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2018/06/12/hello-world/&title=《Hello World》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2017/11/18/460/&title=《KMP算法》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2017/11/18/460/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Hello World》 — Ansore&url=http://ansore.github.io.git/2018/06/12/hello-world/&via=http://ansore.github.io.git" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《KMP算法》 — Ansore&url=http://ansore.github.io.git/2017/11/18/460/&via=http://ansore.github.io.git" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2018/06/12/hello-world/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2017/11/18/460/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -235,7 +295,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2018/06/12/hello-world/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2017/11/18/460/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -244,6 +304,15 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -251,18 +320,22 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Quick-Start"><span class="post-toc-text">Quick Start</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Create-a-new-post"><span class="post-toc-text">Create a new post</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Run-server"><span class="post-toc-text">Run server</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Generate-static-files"><span class="post-toc-text">Generate static files</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Deploy-to-remote-sites"><span class="post-toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
-        </nav>
-    </aside>
-    
 
 <nav id="article-nav">
   
+    <a href="/2017/11/19/492/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          冒泡排序算法
+        
+      </span>
+    </a>
   
-    <a href="/2017/11/19/e9-80-89-e6-8b-a9-e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">选择排序算法</span>
+  
+    <a href="/2017/11/12/bf-e4-b8-b2-e5-8c-b9-e9-85-8d-e7-ae-97-e6-b3-95/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">BF串匹配算法</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

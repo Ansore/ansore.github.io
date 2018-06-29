@@ -3,22 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档: 2018 | Ansore</title>
+  <title>冒泡排序算法 | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
-<meta name="keywords" content="Ansore">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ansore">
-<meta property="og:url" content="http://ansore.github.io.git/archives/2018/index.html">
+  <meta name="description" content="冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。  C++实现： #include&amp;lt;iostream&amp;gt;  using namespace std;  void BubbleSort(int r[], int n) {     in">
+<meta name="keywords" content="编程,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="冒泡排序算法">
+<meta property="og:url" content="http://ansore.github.io.git/2017/11/19/492/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta property="og:description" content="冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。  C++实现： #include&amp;lt;iostream&amp;gt;  using namespace std;  void BubbleSort(int r[], int n) {     in">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-06-29T13:49:07.275Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ansore">
-<meta name="twitter:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta name="twitter:title" content="冒泡排序算法">
+<meta name="twitter:description" content="冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。  C++实现： #include&amp;lt;iostream&amp;gt;  using namespace std;  void BubbleSort(int r[], int n) {     in">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -100,42 +101,221 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap">
-  
-  
+        <section id="main" class="body-wrap"><article id="post-492" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2018/06/12/hello-world/" class="archive-article-date">
-  <time datetime="2018-06-12T08:18:45.275Z" itemprop="datePublished">06-12</time>
-</a>
-      
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/12/hello-world/"  >Hello World</a>
+    <h1 class="post-title" itemprop="name">
+      冒泡排序算法
     </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+              </li>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2017-11-19
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
   
 
-    </header>
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
       
+            
+            <blockquote>
+<p>冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。</p>
+</blockquote>
+<p>C++实现：</p>
+<pre><code>#include&lt;iostream&gt;
+
+using namespace std;
+
+void BubbleSort(int r[], int n) {
+    int b, exchange = n-1;
+    while(exchange != 0) {
+        b = exchange;
+        exchange = 0;
+        for (int i = 0; i &lt; b; i++) {
+            if(r[i] &gt; r[i+1]) {
+                int temp = r[i];
+                r[i] = r[i + 1];
+                r[i + 1] = temp;
+                exchange = i;
+            }
+        }
+    }
+}
+
+int main () {
+    int a[10] = {3,1,8,6,53,3,4,6,7,0};
+    BubbleSort(a,10);
+    for(int i = 0; i &lt; 10; ++i) {
+        cout &lt;&lt; a[i] &lt;&lt; &quot;  &quot;;
+    }
+    return 0;
+}
+</code></pre>
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2018年06月29日 21:49</p>
+        <p>原始链接： <a class="post-url" href="/2017/11/19/492/" title="冒泡排序算法">http://ansore.github.io.git/2017/11/19/492/</a></p>
+        <footer>
+            <a href="http://ansore.github.io.git">
+                <img src="/images/logo.png" alt="Ansore">
+                Ansore
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢你请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://ansore.github.io.git/2017/11/19/492/&title=《冒泡排序算法》 — Ansore&pic=http://ansore.github.io.gitimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://ansore.github.io.git/2017/11/19/492/&title=《冒泡排序算法》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://ansore.github.io.git/2017/11/19/492/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《冒泡排序算法》 — Ansore&url=http://ansore.github.io.git/2017/11/19/492/&via=http://ansore.github.io.git" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://ansore.github.io.git/2017/11/19/492/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://ansore.github.io.git/2017/11/19/492/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
+      
+  </li>
+
+        </ul>
+        
+    </footer>
   </div>
 </article>
 
-  
-  
-    </div></section>
-  
 
+
+<nav id="article-nav">
+  
+    <a href="/2017/11/19/e9-80-89-e6-8b-a9-e6-8e-92-e5-ba-8f-e7-ae-97-e6-b3-95/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          选择排序算法
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2017/11/18/460/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">KMP算法</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
 </section>
         
       </div>
