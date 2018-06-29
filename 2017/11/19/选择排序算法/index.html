@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | Ansore</title>
+  <title>选择排序算法 | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
-<meta name="keywords" content="Ansore">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="/about/index.html">
+  <meta name="description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
+<meta name="keywords" content="编程,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="选择排序算法">
+<meta property="og:url" content="/2017/11/19/选择排序算法/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta property="og:description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T15:58:56.040Z">
+<meta property="og:updated_time" content="2018-06-29T15:54:11.670Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta name="twitter:title" content="选择排序算法">
+<meta name="twitter:description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -101,20 +101,29 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-选择排序算法" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      about
+      选择排序算法
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/算法/">算法</a>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-06-29
+          <i class="fa fa-calendar"></i>  2017-11-19
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -127,14 +136,18 @@
           
       </header>
     
-    <div class="article-entry " itemprop="articleBody">
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"><a href="#我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" class="headerlink" title="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"></a>我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶</h3>
+            <blockquote>
+<p>选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了</p>
+</blockquote>
+<p>C++语言实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, index;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n<span class="number">-1</span>; i ++) &#123;</span><br><span class="line">        index = i;</span><br><span class="line">        <span class="keyword">for</span>(j = i + <span class="number">1</span>; j &lt; n; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(r[index] &gt; r[j]) &#123;</span><br><span class="line">                index = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index &gt; i) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = r[index];</span><br><span class="line">            r[index] = r[i];</span><br><span class="line">            r[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">13</span>,<span class="number">2</span>,<span class="number">3212</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line">    selectSort(a, <span class="number">12</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">12</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="string">"   "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月29日 23:58</p>
-        <p>原始链接： <a class="post-url" href="/about/index.html" title="about">/about/index.html</a></p>
+        <p>最后更新： 2018年06月29日 23:54</p>
+        <p>原始链接： <a class="post-url" href="/2017/11/19/选择排序算法/" title="选择排序算法">/2017/11/19/选择排序算法/</a></p>
         <footer>
             <a href="">
                 <img src="/images/logo.png" alt="Ansore">
@@ -191,7 +204,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/about/&title=《about》 — Ansore&pic=images/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/11/19/选择排序算法/&title=《选择排序算法》 — Ansore&pic=images/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -201,22 +214,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/about/&title=《about》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/11/19/选择排序算法/&title=《选择排序算法》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/about/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/11/19/选择排序算法/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《about》 — Ansore&url=/about/&via=" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《选择排序算法》 — Ansore&url=/2017/11/19/选择排序算法/&via=" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/about/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/11/19/选择排序算法/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -226,7 +239,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=/about/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2017/11/19/选择排序算法/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -235,6 +248,15 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -242,12 +264,16 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"><span class="post-toc-text">我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶</span></a></li></ol>
-        </nav>
-    </aside>
-    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2017/11/19/冒泡排序算法/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">冒泡排序算法</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 

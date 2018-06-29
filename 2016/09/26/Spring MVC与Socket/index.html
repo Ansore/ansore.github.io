@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>about | Ansore</title>
+  <title>Spring MVC与Socket | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
-<meta name="keywords" content="Ansore">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="/about/index.html">
+  <meta name="description" content="前几天做一个项目，项目需求服务器端与手机APP用HTTP协议，与硬件用Socket协议。 服务器后端基于Spring MVC + MyBatis框架，实现与手机APP的通信没问题，但是业务需求中与硬件的交互需要用到Spring的service层的一些东西，首先创建ServerSocket监听某一端口，所以不能用Spring的IOC容器，而且Spring也没有提供这方面的IOC（控制反转），其次在S">
+<meta name="keywords" content="编程,JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring MVC与Socket">
+<meta property="og:url" content="/2016/09/26/Spring MVC与Socket/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta property="og:description" content="前几天做一个项目，项目需求服务器端与手机APP用HTTP协议，与硬件用Socket协议。 服务器后端基于Spring MVC + MyBatis框架，实现与手机APP的通信没问题，但是业务需求中与硬件的交互需要用到Spring的service层的一些东西，首先创建ServerSocket监听某一端口，所以不能用Spring的IOC容器，而且Spring也没有提供这方面的IOC（控制反转），其次在S">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T15:58:56.040Z">
+<meta property="og:updated_time" content="2018-06-29T15:51:19.399Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶">
+<meta name="twitter:title" content="Spring MVC与Socket">
+<meta name="twitter:description" content="前几天做一个项目，项目需求服务器端与手机APP用HTTP协议，与硬件用Socket协议。 服务器后端基于Spring MVC + MyBatis框架，实现与手机APP的通信没问题，但是业务需求中与硬件的交互需要用到Spring的service层的一些东西，首先创建ServerSocket监听某一端口，所以不能用Spring的IOC容器，而且Spring也没有提供这方面的IOC（控制反转），其次在S">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -101,20 +101,31 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-Spring MVC与Socket" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      about
+      Spring MVC与Socket
     </h1>
     <div class="post-title-bar">
       <ul>
           
+              <li>
+                  <i class="fa fa-book"></i>
+                  
+                      <a href="/categories/JAVA/">JAVA</a>
+                  
+                      <a href="/categories/Web/">Web</a>
+                  
+                      <a href="/categories/编程/">编程</a>
+                  
+              </li>
+          
         <li>
-          <i class="fa fa-calendar"></i>  2018-06-29
+          <i class="fa fa-calendar"></i>  2016-09-26
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -127,14 +138,21 @@
           
       </header>
     
-    <div class="article-entry " itemprop="articleBody">
+    <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h3 id="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"><a href="#我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" class="headerlink" title="我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"></a>我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶</h3>
+            <p>前几天做一个项目，项目需求服务器端与手机APP用HTTP协议，与硬件用Socket协议。 服务器后端基于Spring MVC + MyBatis框架，实现与手机APP的通信没问题，但是业务需求中与硬件的交互需要用到Spring的service层的一些东西，首先创建ServerSocket监听某一端口，所以不能用Spring的IOC容器，而且Spring也没有提供这方面的IOC（控制反转），其次在Socket线程中，直接DI（依赖注入）也是不可能的，，因为这个实例都不是IOC容器托管的。 具体解决方案如下： 首先实现一个监听类来创建ServerSocket线程： web.xml:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">!–注册ServerSocket监听器–</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">listener-class</span>&gt;</span>com.test.listener.SocketServiceLoader<span class="tag">&lt;/<span class="name">listener-class</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">listener</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>SocketServiceLoader:</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 监听类 启动ServerSocket 线程</span></span><br><span class="line"><span class="comment"> * Created by Ansore on 16-9-12.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SocketServiceLoader</span> <span class="keyword">implements</span> <span class="title">ServletContextListener</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Socket服务器线程</span></span><br><span class="line">    <span class="keyword">private</span> ServerSocketThread serverSocketThread;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextInitialized</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"进入监听器"</span>);</span><br><span class="line">        <span class="comment">//启动线程</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> == serverSocketThread) &#123;</span><br><span class="line">            serverSocketThread = <span class="keyword">new</span> ServerSocketThread();</span><br><span class="line">            serverSocketThread.start();</span><br><span class="line">            System.out.println(<span class="string">"启动线程"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">contextDestroyed</span><span class="params">(ServletContextEvent sce)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//结束后销毁线程</span></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">null</span> != serverSocketThread) &#123;</span><br><span class="line">            <span class="comment">//释放资源 , 结束线程</span></span><br><span class="line">            serverSocketThread.destroyedServerSocket();</span><br><span class="line">            serverSocketThread.interrupt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>创建线程后，实现了端口监听，此时要用到service层的东西，但是service实现类由IOC托管，直接new也显然不行，解决方案就是直接从Spring的IOC容器中直接获取service实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ApplicationContext applicationContext = <span class="keyword">new</span> FileSystemXmlApplicationContext(<span class="string">"classpath:spring/spring.xml"</span>);</span><br><span class="line">TestService testService = (TestService) applicationContext.getBean(<span class="string">"testServiceImpl"</span>);</span><br></pre></td></tr></table></figure>
+<p>加载配置service的xml文件，后面一定要跟service的实现类，不然也会出错 就这样即可得到一个service实例。 这样的方法也同样可以用在其他地方获取service实例。</p>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月29日 23:58</p>
-        <p>原始链接： <a class="post-url" href="/about/index.html" title="about">/about/index.html</a></p>
+        <p>最后更新： 2018年06月29日 23:51</p>
+        <p>原始链接： <a class="post-url" href="/2016/09/26/Spring MVC与Socket/" title="Spring MVC与Socket">/2016/09/26/Spring MVC与Socket/</a></p>
         <footer>
             <a href="">
                 <img src="/images/logo.png" alt="Ansore">
@@ -191,7 +209,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/about/&title=《about》 — Ansore&pic=images/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2016/09/26/Spring MVC与Socket/&title=《Spring MVC与Socket》 — Ansore&pic=images/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -201,22 +219,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/about/&title=《about》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2016/09/26/Spring MVC与Socket/&title=《Spring MVC与Socket》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/about/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2016/09/26/Spring MVC与Socket/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《about》 — Ansore&url=/about/&via=" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Spring MVC与Socket》 — Ansore&url=/2016/09/26/Spring MVC与Socket/&via=" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/about/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2016/09/26/Spring MVC与Socket/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -226,7 +244,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=/about/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2016/09/26/Spring MVC与Socket/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -235,6 +253,15 @@
         <ul class="article-footer-menu">
             
             
+  <li class="article-footer-tags">
+    <i class="fa fa-tags"></i>
+      
+    <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/JAVA/" class="color5">JAVA</a>
+      
+  </li>
+
         </ul>
         
     </footer>
@@ -242,12 +269,26 @@
 </article>
 
 
-    <aside class="post-toc-pos post-toc-top" id="post-toc">
-        <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶"><span class="post-toc-text">我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶</span></a></li></ol>
-        </nav>
-    </aside>
-    
+
+<nav id="article-nav">
+  
+    <a href="/2016/10/15/IP与域名的相互转换/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          IP与域名的相互转换
+        
+      </span>
+    </a>
+  
+  
+    <a href="/2016/09/19/Destiny（命运）/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">Destiny（命运）</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
 
 
 
