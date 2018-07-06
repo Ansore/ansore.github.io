@@ -9,14 +9,14 @@
     <meta name="keywords" content="Ansore" />
   
   <meta name="description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
-<meta name="keywords" content="算法,编程">
+<meta name="keywords" content="编程,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="选择排序算法">
 <meta property="og:url" content="/2017/11/19/选择排序算法/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T15:54:11.670Z">
+<meta property="og:updated_time" content="2018-06-30T12:25:32.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="选择排序算法">
 <meta name="twitter:description" content="选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了  C++语言实现： 12345678910111213141516171819202122232425262728#include&amp;lt;iostream&amp;gt;using namespace std;void selectS">
@@ -149,7 +149,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, index;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n<span class="number">-1</span>; i ++) &#123;</span><br><span class="line">        index = i;</span><br><span class="line">        <span class="keyword">for</span>(j = i + <span class="number">1</span>; j &lt; n; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(r[index] &gt; r[j]) &#123;</span><br><span class="line">                index = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(index &gt; i) &#123;</span><br><span class="line">            <span class="keyword">int</span> temp = r[index];</span><br><span class="line">            r[index] = r[i];</span><br><span class="line">            r[i] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[] = &#123;<span class="number">1</span>,<span class="number">4</span>,<span class="number">13</span>,<span class="number">2</span>,<span class="number">3212</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">1</span>,<span class="number">2</span>&#125;;</span><br><span class="line">    selectSort(a, <span class="number">12</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">12</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="string">"   "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月29日 23:54</p>
+        <p>最后更新： 2018年06月30日 20:25</p>
         <p>原始链接： <a class="post-url" href="/2017/11/19/选择排序算法/" title="选择排序算法">/2017/11/19/选择排序算法/</a></p>
         <footer>
             <a href="">
@@ -250,9 +250,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/算法/" class="color3">算法</a>
-      
     <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
       
   </li>
 
@@ -330,7 +330,7 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/C-C/">C/C++</a><a class="category-link" href="/categories/C-C/Linux/">Linux</a><a class="category-link" href="/categories/C-C/Linux/编程/">编程</a><a class="category-link" href="/categories/C-C/算法/">算法</a><a class="category-link" href="/categories/C-C/算法/编程/">编程</a><a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/JAVA/Web/">Web</a><a class="category-link" href="/categories/JAVA/Web/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/设计模式/">设计模式</a><a class="category-link" href="/categories/心情随记/">心情随记</a><a class="category-link" href="/categories/心情随记/我的大学/">我的大学</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/算法/编程/">编程</a><a class="category-link" href="/categories/编程/">编程</a>
+            <a class="category-link" href="/categories/C-C/">C/C++</a><a class="category-link" href="/categories/C-C/Linux/">Linux</a><a class="category-link" href="/categories/C-C/Linux/编程/">编程</a><a class="category-link" href="/categories/C-C/算法/">算法</a><a class="category-link" href="/categories/C-C/算法/编程/">编程</a><a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/JAVA/Web/">Web</a><a class="category-link" href="/categories/JAVA/Web/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/设计模式/">设计模式</a><a class="category-link" href="/categories/心情随记/">心情随记</a><a class="category-link" href="/categories/心情随记/我的大学/">我的大学</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/算法/编程/">编程</a><a class="category-link" href="/categories/编程/">编程</a><a class="category-link" href="/categories/编程/算法/">算法</a>
         </div>
         <div id="sidebar-menu-box-tags">
             <a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a> <a href="/tags/JAVA/" style="font-size: 15px;">JAVA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/WebService/" style="font-size: 10px;">WebService</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/心情/" style="font-size: 12.5px;">心情</a> <a href="/tags/算法/" style="font-size: 17.5px;">算法</a> <a href="/tags/编程/" style="font-size: 20px;">编程</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/隨记/" style="font-size: 10px;">隨记</a>

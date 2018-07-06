@@ -3,23 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>KMP算法 | Ansore</title>
+  <title>由两个栈组成的队列 | Ansore</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="Ansore" />
   
-  <meta name="description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： 12345678910111213141516171">
+  <meta name="description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入 如果弹出栈不为空，绝对不能向弹出栈中压入数据 如果两个栈都为空，则队列就为空  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575">
 <meta name="keywords" content="编程,算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP算法">
-<meta property="og:url" content="/2017/11/18/KMP算法/index.html">
+<meta property="og:title" content="由两个栈组成的队列">
+<meta property="og:url" content="/2017/07/07/由两个栈组成的队列/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： 12345678910111213141516171">
+<meta property="og:description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入 如果弹出栈不为空，绝对不能向弹出栈中压入数据 如果两个栈都为空，则队列就为空  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.737Z">
+<meta property="og:updated_time" content="2018-07-06T06:28:59.224Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP算法">
-<meta name="twitter:description" content="KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。  KMP算法C++实现： 12345678910111213141516171">
+<meta name="twitter:title" content="由两个栈组成的队列">
+<meta name="twitter:description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入 如果弹出栈不为空，绝对不能向弹出栈中压入数据 如果两个栈都为空，则队列就为空  1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -104,14 +104,14 @@
     </div>
 </header>
       <div class="outer">
-        <section id="main" class="body-wrap"><article id="post-KMP算法" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main" class="body-wrap"><article id="post-由两个栈组成的队列" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="post-title" itemprop="name">
-      KMP算法
+      由两个栈组成的队列
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -119,16 +119,14 @@
               <li>
                   <i class="fa fa-book"></i>
                   
-                      <a href="/categories/C/C++/">C/C++</a>
+                      <a href="/categories/编程/">编程</a>
                   
                       <a href="/categories/算法/">算法</a>
-                  
-                      <a href="/categories/编程/">编程</a>
                   
               </li>
           
         <li>
-          <i class="fa fa-calendar"></i>  2017-11-18
+          <i class="fa fa-calendar"></i>  2017-07-07
         </li>
         <li>
           <i class="fa fa-eye"></i>
@@ -144,16 +142,18 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <blockquote>
-<p>KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。</p>
-</blockquote>
-<p>KMP算法C++实现：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">char</span> T[], <span class="keyword">int</span> next[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,len;</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">1</span>; T[j] != <span class="string">'\0'</span>; j ++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(len = j - <span class="number">1</span>; len &gt;= <span class="number">1</span>; len --) &#123;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i ++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(T[i] != T[j-len+i])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i == len) &#123;</span><br><span class="line">                next[j] = len;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(len &lt; <span class="number">1</span>) &#123;</span><br><span class="line">                next[j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> T[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">80</span>];</span><br><span class="line">    getNext(T, next);</span><br><span class="line">    <span class="keyword">while</span>(S[i] != <span class="string">'\0'</span> &amp;&amp; T[j] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(S[i] == T[j]) &#123;</span><br><span class="line">            i ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span>) &#123;</span><br><span class="line">                i ++;</span><br><span class="line">                j ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(T[j] == <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (i-j+<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> S[] = <span class="string">"sdfasdfads"</span>;</span><br><span class="line">        <span class="keyword">char</span> T[] = <span class="string">"dfas"</span>;</span><br><span class="line">        <span class="keyword">int</span> r = KMP(S,T);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"result is "</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+            <p>思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。</p>
+<ul>
+<li>压入栈向弹出栈压入数据的时候，必须一次性全部压入</li>
+<li>如果弹出栈不为空，绝对不能向弹出栈中压入数据</li>
+<li>如果两个栈都为空，则队列就为空</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TwoStackQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackPush;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackPop;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TwoStackQueue twoStackQueue = <span class="keyword">new</span> TwoStackQueue();</span><br><span class="line">        twoStackQueue.add(<span class="number">1</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">2</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">3</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">4</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"--"</span>+twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span>+twoStackQueue.peek());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        twoStackQueue.add(<span class="number">7</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">8</span>);</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.peek());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TwoStackQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stackPop = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stackPush = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stackPush.push(<span class="keyword">new</span> Integer(a));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">poll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.stackPop.isEmpty() &amp;&amp; <span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"the queue is empty!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.stackPop.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!<span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.stackPop.push(<span class="keyword">this</span>.stackPush.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackPop.pop().intValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.stackPop.isEmpty() &amp;&amp; <span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"the queue is empty!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.stackPop.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!<span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.stackPop.push(<span class="keyword">this</span>.stackPush.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackPop.peek().intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月30日 20:25</p>
-        <p>原始链接： <a class="post-url" href="/2017/11/18/KMP算法/" title="KMP算法">/2017/11/18/KMP算法/</a></p>
+        <p>最后更新： 2018年07月06日 14:28</p>
+        <p>原始链接： <a class="post-url" href="/2017/07/07/由两个栈组成的队列/" title="由两个栈组成的队列">/2017/07/07/由两个栈组成的队列/</a></p>
         <footer>
             <a href="">
                 <img src="/images/logo.png" alt="Ansore">
@@ -206,7 +206,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/11/18/KMP算法/&title=《KMP算法》 — Ansore&pic=images/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=/2017/07/07/由两个栈组成的队列/&title=《由两个栈组成的队列》 — Ansore&pic=images/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -216,22 +216,22 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/11/18/KMP算法/&title=《KMP算法》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=/2017/07/07/由两个栈组成的队列/&title=《由两个栈组成的队列》 — Ansore&source=我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
           <li>
-            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/11/18/KMP算法/" data-title="Facebook">
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=/2017/07/07/由两个栈组成的队列/" data-title="Facebook">
               <i class="fa fa-facebook"></i>
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《KMP算法》 — Ansore&url=/2017/11/18/KMP算法/&via=" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《由两个栈组成的队列》 — Ansore&url=/2017/07/07/由两个栈组成的队列/&via=" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
           <li>
-            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/11/18/KMP算法/" data-title="Google+">
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=/2017/07/07/由两个栈组成的队列/" data-title="Google+">
               <i class="fa fa-google-plus"></i>
             </a>
           </li>
@@ -241,7 +241,7 @@
 <div class="post-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;" id="wxShare-close">×</a>
     <p>扫一扫，分享到微信</p>
-    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2017/11/18/KMP算法/" alt="微信分享二维码">
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=/2017/07/07/由两个栈组成的队列/" alt="微信分享二维码">
 </div>
 
 <div class="mask"></div>
@@ -269,19 +269,19 @@
 
 <nav id="article-nav">
   
-    <a href="/2017/11/19/冒泡排序算法/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/11/12/BF串匹配算法/" id="article-nav-newer" class="article-nav-link-wrap">
 
       <span class="article-nav-title">
         <i class="fa fa-hand-o-left" aria-hidden="true"></i>
         
-          冒泡排序算法
+          BF串匹配算法
         
       </span>
     </a>
   
   
-    <a href="/2017/11/12/BF串匹配算法/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">BF串匹配算法</span>
+    <a href="/2017/07/06/一个有getMin功能的栈/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">一个有getMin功能的栈</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   

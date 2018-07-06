@@ -9,14 +9,14 @@
     <meta name="keywords" content="Ansore" />
   
   <meta name="description" content="BF算法比较简单粗暴，属于蛮力法 原理也比较简单，将主串与模式从第一个字符依次开始匹配，知道完全匹配上或者主串结束，因此最坏情况下时间复杂度为O(m*n)  C++描述： 12345678910111213141516171819202122232425262728293031#include&amp;lt;iostream&amp;gt;using namespace std;int BF(char S[],">
-<meta name="keywords" content="算法,编程">
+<meta name="keywords" content="编程,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BF串匹配算法">
 <meta property="og:url" content="/2017/11/12/BF串匹配算法/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="BF算法比较简单粗暴，属于蛮力法 原理也比较简单，将主串与模式从第一个字符依次开始匹配，知道完全匹配上或者主串结束，因此最坏情况下时间复杂度为O(m*n)  C++描述： 12345678910111213141516171819202122232425262728293031#include&amp;lt;iostream&amp;gt;using namespace std;int BF(char S[],">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-06-29T15:57:59.876Z">
+<meta property="og:updated_time" content="2018-06-30T12:25:32.737Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BF串匹配算法">
 <meta name="twitter:description" content="BF算法比较简单粗暴，属于蛮力法 原理也比较简单，将主串与模式从第一个字符依次开始匹配，知道完全匹配上或者主串结束，因此最坏情况下时间复杂度为O(m*n)  C++描述： 12345678910111213141516171819202122232425262728293031#include&amp;lt;iostream&amp;gt;using namespace std;int BF(char S[],">
@@ -151,7 +151,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">BF</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> T[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> index = <span class="number">0</span>, i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//当主串或者模式都未到达最末尾时候循环</span></span><br><span class="line">    <span class="keyword">while</span>(S[i] != <span class="string">'\0'</span> &amp;&amp; T[j] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(S[i] == T[j]) &#123;</span><br><span class="line">            i ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            index ++;</span><br><span class="line">            i = index;</span><br><span class="line">            j = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(T[j] == <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> index + <span class="number">1</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> S[] = <span class="string">"sdasaaas"</span>;</span><br><span class="line">    <span class="keyword">char</span> T[] = <span class="string">"aaas"</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; BF(S, T) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2018年06月29日 23:57</p>
+        <p>最后更新： 2018年06月30日 20:25</p>
         <p>原始链接： <a class="post-url" href="/2017/11/12/BF串匹配算法/" title="BF串匹配算法">/2017/11/12/BF串匹配算法/</a></p>
         <footer>
             <a href="">
@@ -252,9 +252,9 @@
   <li class="article-footer-tags">
     <i class="fa fa-tags"></i>
       
-    <a href="/tags/算法/" class="color3">算法</a>
-      
     <a href="/tags/编程/" class="color3">编程</a>
+      
+    <a href="/tags/算法/" class="color3">算法</a>
       
   </li>
 
@@ -279,8 +279,8 @@
     </a>
   
   
-    <a href="/2017/05/02/NFC模拟门禁卡/" id="article-nav-older" class="article-nav-link-wrap">
-      <span class="article-nav-title">NFC模拟门禁卡</span>
+    <a href="/2017/07/07/由两个栈组成的队列/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">由两个栈组成的队列</span>
       <i class="fa fa-hand-o-right" aria-hidden="true"></i>
     </a>
   
@@ -342,7 +342,7 @@
 <div class="sidebar-menu-box" id="sidebar-menu-box">
     <div class="sidebar-menu-box-container">
         <div id="sidebar-menu-box-categories">
-            <a class="category-link" href="/categories/C-C/">C/C++</a><a class="category-link" href="/categories/C-C/Linux/">Linux</a><a class="category-link" href="/categories/C-C/Linux/编程/">编程</a><a class="category-link" href="/categories/C-C/算法/">算法</a><a class="category-link" href="/categories/C-C/算法/编程/">编程</a><a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/JAVA/Web/">Web</a><a class="category-link" href="/categories/JAVA/Web/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/设计模式/">设计模式</a><a class="category-link" href="/categories/心情随记/">心情随记</a><a class="category-link" href="/categories/心情随记/我的大学/">我的大学</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/算法/编程/">编程</a><a class="category-link" href="/categories/编程/">编程</a>
+            <a class="category-link" href="/categories/C-C/">C/C++</a><a class="category-link" href="/categories/C-C/Linux/">Linux</a><a class="category-link" href="/categories/C-C/Linux/编程/">编程</a><a class="category-link" href="/categories/C-C/算法/">算法</a><a class="category-link" href="/categories/C-C/算法/编程/">编程</a><a class="category-link" href="/categories/JAVA/">JAVA</a><a class="category-link" href="/categories/JAVA/Web/">Web</a><a class="category-link" href="/categories/JAVA/Web/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/">编程</a><a class="category-link" href="/categories/JAVA/编程/设计模式/">设计模式</a><a class="category-link" href="/categories/心情随记/">心情随记</a><a class="category-link" href="/categories/心情随记/我的大学/">我的大学</a><a class="category-link" href="/categories/算法/">算法</a><a class="category-link" href="/categories/算法/编程/">编程</a><a class="category-link" href="/categories/编程/">编程</a><a class="category-link" href="/categories/编程/算法/">算法</a>
         </div>
         <div id="sidebar-menu-box-tags">
             <a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a> <a href="/tags/JAVA/" style="font-size: 15px;">JAVA</a> <a href="/tags/Linux/" style="font-size: 10px;">Linux</a> <a href="/tags/WebService/" style="font-size: 10px;">WebService</a> <a href="/tags/大学/" style="font-size: 10px;">大学</a> <a href="/tags/心情/" style="font-size: 12.5px;">心情</a> <a href="/tags/算法/" style="font-size: 17.5px;">算法</a> <a href="/tags/编程/" style="font-size: 20px;">编程</a> <a href="/tags/设计模式/" style="font-size: 12.5px;">设计模式</a> <a href="/tags/隨记/" style="font-size: 10px;">隨记</a>
