@@ -5,10 +5,10 @@
 # Site
 title: Ansore
 subtitle: 我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶
-description: 我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶
+description: 纵然时光倒流，我还是想象不出一切最开始的模样
 keywords: Ansore
 author: Ansore
-language: zh-CN
+language: zh-Hans
 timezone: Asia/Shanghai
 
 # URL
@@ -83,7 +83,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: miho
+theme: next
 
 jsonContent:
   meta: false
@@ -103,6 +103,12 @@ jsonContent:
     excerpt: false
     categories: false
     tags: false
+
+search:
+  path: search.xml
+  field: post
+  format: html
+  limit: 10000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
