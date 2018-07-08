@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[决策树算法]]></title>
+    <url>%2F2018%2F07%2F07%2F%E5%86%B3%E7%AD%96%E6%A0%91%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[机器学习中的分类和预测算法的评估 准确率 速度 健壮性 可规模行 可解释性 什么是决策树/判定数（decision tree）决策时是一个类似流程图的树结构，其中，每个内部节点表示一个属性上的测试，每个分支代表一个属性的输出，而每个树叶节点代表类或类分布。输的最顶层是根节点。 熵（entropy）概念1948年，香农提出了“信息熵（entropy）”的概念 一条信息的信息量大小和它的不确定行是有直接的关系，要搞清楚一件非常不确定的事情，或者使我们一无所知的事情，需要大量的信息，信息的度量就等于不确定性的多少。 变量的不确定性越大，熵也就越大。]]></content>
+  </entry>
+  <entry>
+    <title><![CDATA[选择排序算法]]></title>
+    <url>%2F2017%2F11%2F19%2F%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[选择排序算法基本思想就是，先将整个序列分为有序区和无序区两个部分，有序区为空，每次从无序区查找最小元素与无序区的第一个记录进行交换，这样经过n-1次，整个序列就变成有序了 C++语言实现： 12345678910111213141516171819202122232425262728#include&lt;iostream&gt;using namespace std;void selectSort(int r[], int n) &#123; int i, j, index; for(i = 0; i &lt; n-1; i ++) &#123; index = i; for(j = i + 1; j &lt; n; j ++) &#123; if(r[index] &gt; r[j]) &#123; index = j; &#125; &#125; if(index &gt; i) &#123; int temp = r[index]; r[index] = r[i]; r[i] = temp; &#125; &#125; &#125;int main() &#123; int a[] = &#123;1,4,13,2,3212,3,4,1,2,4,1,2&#125;; selectSort(a, 12); for(int i = 0; i &lt; 12; i++) &#123; cout &lt;&lt; a[i] &lt;&lt; " "; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[冒泡排序算法]]></title>
+    <url>%2F2017%2F11%2F19%2F%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。 C++实现： 12345678910111213141516171819202122232425262728#include&lt;iostream&gt;using namespace std;void BubbleSort(int r[], int n) &#123; int b, exchange = n-1; while(exchange != 0) &#123; b = exchange; exchange = 0; for (int i = 0; i &lt; b; i++) &#123; if(r[i] &gt; r[i+1]) &#123; int temp = r[i]; r[i] = r[i + 1]; r[i + 1] = temp; exchange = i; &#125; &#125; &#125;&#125;int main () &#123; int a[10] = &#123;3,1,8,6,53,3,4,6,7,0&#125;; BubbleSort(a,10); for(int i = 0; i &lt; 10; ++i) &#123; cout &lt;&lt; a[i] &lt;&lt; " "; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>算法</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[KMP算法]]></title>
+    <url>%2F2017%2F11%2F18%2FKMP%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。 KMP算法C++实现： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include&lt;iostream&gt;using namespace std;void getNext(char T[], int next[]) &#123; int i,j,len; next[0] = -1; for(j = 1; T[j] != '\0'; j ++) &#123; for(len = j - 1; len &gt;= 1; len --) &#123; for(i = 0; i &lt; len; i ++) &#123; if(T[i] != T[j-len+i]) break; &#125; if(i == len) &#123; next[j] = len; break; &#125; if(len &lt; 1) &#123; next[j] = 0; &#125; &#125; &#125;&#125;int KMP(char S[], char T[]) &#123; int i = 0, j = 0; int next[80]; getNext(T, next); while(S[i] != '\0' &amp;&amp; T[j] != '\0') &#123; if(S[i] == T[j]) &#123; i ++; j ++; &#125; else &#123; j = next[j]; if(j == -1) &#123; i ++; j ++; &#125; &#125; &#125; if(T[j] == '\0') &#123; return (i-j+1); &#125; else &#123; return 0; &#125;&#125; int main () &#123; char S[] = "sdfasdfads"; char T[] = "dfas"; int r = KMP(S,T); cout &lt;&lt; "result is " &lt;&lt; r &lt;&lt; endl; return 0; &#125;]]></content>
+      <categories>
+        <category>C/C++</category>
+        <category>算法</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[BF串匹配算法]]></title>
+    <url>%2F2017%2F11%2F12%2FBF%E4%B8%B2%E5%8C%B9%E9%85%8D%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[BF算法比较简单粗暴，属于蛮力法 原理也比较简单，将主串与模式从第一个字符依次开始匹配，知道完全匹配上或者主串结束，因此最坏情况下时间复杂度为O(m*n) C++描述： 12345678910111213141516171819202122232425262728293031#include&lt;iostream&gt;using namespace std;int BF(char S[], char T[]) &#123; int index = 0, i = 0, j = 0; //当主串或者模式都未到达最末尾时候循环 while(S[i] != '\0' &amp;&amp; T[j] != '\0') &#123; if(S[i] == T[j]) &#123; i ++; j ++; &#125; else &#123; index ++; i = index; j = 0; &#125; &#125; if(T[j] == '\0') &#123; return index + 1; &#125; else &#123; return 0; &#125;&#125;int main () &#123; char S[] = "sdasaaas"; char T[] = "aaas"; cout &lt;&lt; BF(S, T) &lt;&lt; endl; return 0;&#125;]]></content>
+      <categories>
+        <category>C/C++</category>
+        <category>算法</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[由两个栈组成的队列]]></title>
+    <url>%2F2017%2F07%2F07%2F%E7%94%B1%E4%B8%A4%E4%B8%AA%E6%A0%88%E7%BB%84%E6%88%90%E7%9A%84%E9%98%9F%E5%88%97%2F</url>
+    <content type="text"><![CDATA[思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。 压入栈向弹出栈压入数据的时候，必须一次性全部压入 如果弹出栈不为空，绝对不能向弹出栈中压入数据 如果两个栈都为空，则队列就为空 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263import java.util.Stack;public class TwoStackQueue &#123; private Stack&lt;Integer&gt; stackPush; private Stack&lt;Integer&gt; stackPop; public static void main(String[] args) &#123; TwoStackQueue twoStackQueue = new TwoStackQueue(); twoStackQueue.add(1); twoStackQueue.add(2); twoStackQueue.add(3); twoStackQueue.add(4); twoStackQueue.add(5); System.out.println("--"+twoStackQueue.poll()); System.out.println("--"+twoStackQueue.peek()); System.out.println("--" + twoStackQueue.poll()); twoStackQueue.add(7); twoStackQueue.add(8); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.peek()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); System.out.println("--" + twoStackQueue.poll()); &#125; public TwoStackQueue() &#123; stackPop = new Stack&lt;&gt;(); stackPush = new Stack&lt;&gt;(); &#125; public void add(int a) &#123; this.stackPush.push(new Integer(a)); &#125; public int poll() &#123; if(this.stackPop.isEmpty() &amp;&amp; this.stackPush.isEmpty()) &#123; throw new RuntimeException("the queue is empty!"); &#125; else if(this.stackPop.isEmpty()) &#123; while(!this.stackPush.isEmpty()) &#123; this.stackPop.push(this.stackPush.pop()); &#125; &#125; return this.stackPop.pop().intValue(); &#125; public int peek() &#123; if (this.stackPop.isEmpty() &amp;&amp; this.stackPush.isEmpty()) &#123; throw new RuntimeException("the queue is empty!"); &#125; else if (this.stackPop.isEmpty()) &#123; while (!this.stackPush.isEmpty()) &#123; this.stackPop.push(this.stackPush.pop()); &#125; &#125; return this.stackPop.peek().intValue(); &#125;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[一个有getMin功能的栈]]></title>
+    <url>%2F2017%2F07%2F06%2F%E4%B8%80%E4%B8%AA%E6%9C%89getMin%E5%8A%9F%E8%83%BD%E7%9A%84%E6%A0%88%2F</url>
+    <content type="text"><![CDATA[思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162import java.util.Stack;public class MyStack1 &#123; private Stack&lt;Integer&gt; stackData; private Stack&lt;Integer&gt; stackMin; public MyStack1() &#123; stackData = new Stack&lt;&gt;(); stackMin = new Stack&lt;&gt;(); &#125; public static void main(String[] args) &#123; MyStack1 myStack1 = new MyStack1(); try &#123; myStack1.push(12); myStack1.push(5); myStack1.push(4); myStack1.push(11); myStack1.push(2); myStack1.push(5); myStack1.push(4); myStack1.push(11); myStack1.push(2); myStack1.push(5); myStack1.push(11); System.out.println(myStack1.getMin()); System.out.println(myStack1.pop()); System.out.println(myStack1.pop()); System.out.println(myStack1.pop()); System.out.println(myStack1.getMin()); &#125; catch (Exception e) &#123; e.printStackTrace(); &#125; &#125; public void push(Integer data) throws Exception &#123; if(this.stackMin.isEmpty()) &#123; this.stackMin.push(data); &#125; else if(data.intValue() &lt; getMin()) &#123; this.stackMin.push(data); &#125; else &#123; Integer newValue = new Integer(this.getMin()); this.stackMin.push(newValue); &#125; this.stackData.push(data); &#125; public int pop() &#123; if(this.stackData.isEmpty()) &#123; throw new RuntimeException("The Stack Is Empty!"); &#125; this.stackMin.pop(); return this.stackData.pop().intValue(); &#125; public int getMin() &#123; if(this.stackMin.isEmpty()) &#123; throw new RuntimeException("The Stack Is Empty!"); &#125; return this.stackMin.peek().intValue(); &#125;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+        <category>算法</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[NFC模拟门禁卡]]></title>
+    <url>%2F2017%2F05%2F02%2FNFC%E6%A8%A1%E6%8B%9F%E9%97%A8%E7%A6%81%E5%8D%A1%2F</url>
+    <content type="text"><![CDATA[首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段： NXP_CORE_CONF={20, 02, 27, 0E, 18, 01, 01, 21, 01, 00, 28, 01, 00, 30, 01, 04, 31, 01, 00, 32, 01, 60, 33, 00, 50, 01, 02, 54, 01, 06, 5B, 01, 00, 60, 01, 0E, 80, 01, 01, 81, 01, 01, 82, 01, 0E } 将第一行括号里的第三个数修改加四，也就是27修改为2B，第八行的第二个00修改为04后面接上卡的ID，以逗号结束，即修改为： NXP_CORE_CONF={20, 02, 2B, 0E, 18, 01, 01, 21, 01, 00, 28, 01, 00, 30, 01, 04, 31, 01, 00, 32, 01, 60, 33, 04, 1f,ef,ff,4d, 50, 01, 02, 54, 01, 06, 5B, 01, 00, 60, 01, 0E, 80, 01, 01, 81, 01, 01, 82, 01, 0E } 保存文件，重启手机 如果手机重启后NFC能正常开启，一般情况下就是成功了。可代替门禁卡。]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+  </entry>
+  <entry>
+    <title><![CDATA[初识WebService]]></title>
+    <url>%2F2017%2F03%2F07%2F%E5%88%9D%E8%AF%86WebService%2F</url>
+    <content type="text"><![CDATA[WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口 1234567891011package org.test.service;import javax.jws.WebService;@WebServicepublic interface TestService &#123; public int max(int a,int b); public int min(int a,int b);&#125; 创建它的实现类： 12345678910111213141516171819package org.test.service;import javax.jws.WebService;@WebService(endpointInterface = "org.test.service.TestService")public class TestServiceImpl implements TestService &#123; @Override public int max(int a, int b) &#123; System.out.println("max is "+(a&gt;b?a:b)); return a&gt;b?a:b; &#125; @Override public int min(int a, int b) &#123; System.out.println("min is "+(a&lt;b?a:b)); return a&lt;b?a:b; &#125;&#125; 创建服务： 123456789101112package org.test.service;import javax.xml.ws.Endpoint;public class MyService &#123; public static void main(String[] args) &#123; String address = "http://localhost:8888/ab"; Endpoint.publish(address, new TestServiceImpl()); &#125;&#125; 运行该程序，即可创建一个服务，浏览器访问”http://localhost:8888/ab?wsdl&quot;，即可访问该服务，这就是公开的服务接口。 然后写一个客户端测试类： 123456789101112131415161718192021222324252627package org.test.service;import java.net.MalformedURLException;import java.net.URL;import javax.xml.namespace.QName;import javax.xml.ws.Service;public class TestClient &#123; public static void main(String[] args) &#123; try &#123; URL url = new URL("http://localhost:8888/ab?wsdl"); QName sName = new QName("http://service.test.org/","TestServiceImplService"); Service service = Service.create(url,sName); TestService ms = service.getPort(TestService.class); System.out.println(ms.max(11, 123)); &#125; catch (MalformedURLException e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; &#125;&#125; 运行即可获得执行结果，但是这样做存在一些缺陷，这个客户端测试类依赖了一个TestService类，存在了很多局限性。 java下提供了wsimport这个工具可以实现java类的导入，切换到命令行下输入： wsimport -d d:/0001/ -keep -verbose http://localhost:8888/ns?wsdl 即可在d:/0001/目录下获得自动生成的java类，导入工程即可，但是生成的java类并不是服务端的接口类。 wsimport参数说明： -d 指定输出路径 -keep 指定是否生成.java的源文件 -verbose 显示生成的详细过程]]></content>
+      <categories>
+        <category>JAVA</category>
+        <category>Web</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>WebService</tag>
+        <tag>编程</tag>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[闲看花开，静待花落]]></title>
+    <url>%2F2016%2F11%2F14%2F%E9%97%B2%E7%9C%8B%E8%8A%B1%E5%BC%80%EF%BC%8C%E9%9D%99%E5%BE%85%E8%8A%B1%E8%90%BD%2F</url>
+    <content type="text"><![CDATA[有时候走着走着，发现自己离最初的那个自己已经越来越远了，受到干扰时，却连坚持下去的勇气都没有。久而久之，偶尔谈起，却只能说说自己曾经追逐过，把自己弄丢得太久，想找回来的时候，却发现已经忘了自己原来的模样了。 某天，无端想起一个人，她曾让你对明天有所期待，但是却完全没有出现在你的明天，也曾在某个瞬间，我以为自己长大了，终究还是发现，长大的含义除了欲望还有勇气和坚强，以及某些必须的牺牲。 人生若只如初见，这一生，谁曾与谁初见？是否只在记忆里？生命中真的有太多遗憾，初遇时一切都是那样惊喜，那样和谐自然，所有时光都是快乐的，对未来也充满了美好的憧憬，风雨过后，都道故人心易变，缘份聚聚散散，往事终究还是化作一缕青烟，随风而逝。 人生若只如初见，也许不见，也许见若不见。 破碎不是最残酷的事，最残酷的是踩着这些碎片还要假装不疼，固执的寻找着。 唯愿我今后能以花的姿态行走世间，任时光轮回，在无声中不颓废，不失色，花开成景，花落成诗。 闲看花开，静待花落，冷暖自知，干净如始。]]></content>
+      <categories>
+        <category>心情随记</category>
+        <category>我的大学</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+        <tag>大学</tag>
+        <tag>隨记</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[策略模式(Strategy Pattern)]]></title>
+    <url>%2F2016%2F10%2F31%2F%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F(Strategy%20Pattern)%2F</url>
+    <content type="text"><![CDATA[策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是我们要做的，也是学设计模式的目的。 策略模式JAVA语言实现： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253package com.strategy;public class StrategyMode &#123; public static void main(String[] args) &#123; Context context; context = new Context(new AlgonrithmA()); context.ContextInterface(); context = new Context(new AlgonrithmB()); context.ContextInterface(); context = new Context(new AlgonrithmC()); context.ContextInterface(); &#125;&#125;class Context &#123; private Strategy strategy; public Context(Strategy strategy) &#123; this.strategy = strategy; &#125; public void ContextInterface() &#123; strategy.AlgonrithmInterface(); &#125;&#125;abstract class Strategy &#123; public abstract void AlgonrithmInterface();&#125;class AlgonrithmA extends Strategy &#123; @Override public void AlgonrithmInterface() &#123; System.out.println("算法A实现"); &#125;&#125;class AlgonrithmB extends Strategy &#123; @Override public void AlgonrithmInterface() &#123; System.out.println("算法B实现"); &#125;&#125;class AlgonrithmC extends Strategy &#123; @Override public void AlgonrithmInterface() &#123; System.out.println("算法C实现"); &#125;&#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+        <category>编程</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>JAVA</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[IP与域名的相互转换]]></title>
+    <url>%2F2016%2F10%2F15%2FIP%E4%B8%8E%E5%9F%9F%E5%90%8D%E7%9A%84%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2%2F</url>
+    <content type="text"><![CDATA[在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;sys/socket.h&gt;#include &lt;netdb.h&gt;#include &lt;arpa/inet.h&gt;//根据域名返回IPvoid getIpByHostName(char *hostname);//根据IP返回域名void getHontNameByIp(char *ip);/*** 域名结构体*/// typedef struct hostent &#123;// char * h_name; //正式的主机名称// char ** h_aliases; //主机的别名// int h_addrtype; //主机名的类型// int h_length; //地址的长度// char ** h_addr_list; //从域名服务器获取的主机地址// &#125; hostent;void getIpByHostName(char *hostname) &#123; struct hostent * host; //定义hostent指针 struct in_addr in; struct sockaddr_in addr_in; extern int h_errno; if((host = gethostbyname(hostname))!=NULL) &#123; memcpy(&amp;addr_in.sin_addr.s_addr,host-&gt;h_addr,4); //复制主机地址、 in.s_addr=addr_in.sin_addr.s_addr; printf("host name is %s\n", hostname); printf("IP length: %d\n", host-&gt;h_length); printf("Type: %d\n", host-&gt;h_addrtype); printf("IP : %s\n", inet_ntoa(in)); &#125; else &#123; printf("host name is :%s\n",hostname); printf("error : %d\n",h_errno); printf("%s\n", hstrerror(h_errno)); &#125;&#125;void getHontNameByIp(char *ip) &#123; struct hostent *host; struct in_addr in; struct sockaddr_in addr_in; extern int h_errno; if((host=gethostbyaddr(ip, sizeof(ip), AF_INET))!=NULL)&#123; memcpy(&amp;addr_in.sin_addr.s_addr, host-&gt;h_addr, 4); in.s_addr = addr_in.sin_addr.s_addr; printf("Host Name is %s\n", host-&gt;h_name); printf("Ip length %d\n", host-&gt;h_length); printf("Type is %d\n", host-&gt;h_addrtype); printf("Ip is %s\n", inet_ntoa(in)); &#125; else &#123; printf("error %d\n", h_errno); printf("%s\n", hstrerror(h_errno)); &#125;&#125;int main(int argc, char const *argv[]) &#123; char hostname1[] = "www.ansore.net"; //定义一个存在的域名 char hostname2[] = "www.123qwdferwerfsdfataewfar.net"; //定义一个不存在的域名 char ip[] = "139.129.35.50"; getIpByHostName(hostname1); printf("--------------------------------------------------------\n"); getIpByHostName(hostname2); printf("--------------------------------------------------------\n"); getHontNameByIp(ip); return 0;&#125;]]></content>
+      <categories>
+        <category>C/C++</category>
+        <category>Linux</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>C/C++</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring MVC与Socket]]></title>
+    <url>%2F2016%2F09%2F26%2FSpring%20MVC%E4%B8%8ESocket%2F</url>
+    <content type="text"><![CDATA[前几天做一个项目，项目需求服务器端与手机APP用HTTP协议，与硬件用Socket协议。 服务器后端基于Spring MVC + MyBatis框架，实现与手机APP的通信没问题，但是业务需求中与硬件的交互需要用到Spring的service层的一些东西，首先创建ServerSocket监听某一端口，所以不能用Spring的IOC容器，而且Spring也没有提供这方面的IOC（控制反转），其次在Socket线程中，直接DI（依赖注入）也是不可能的，，因为这个实例都不是IOC容器托管的。 具体解决方案如下： 首先实现一个监听类来创建ServerSocket线程： web.xml: 1234&lt;!–注册ServerSocket监听器–&gt;&lt;listener&gt;&lt;listener-class&gt;com.test.listener.SocketServiceLoader&lt;/listener-class&gt;&lt;/listener&gt; SocketServiceLoader: 123456789101112131415161718192021222324252627282930/** * 监听类 启动ServerSocket 线程 * Created by Ansore on 16-9-12. */public class SocketServiceLoader implements ServletContextListener &#123; //Socket服务器线程 private ServerSocketThread serverSocketThread; @Override public void contextInitialized(ServletContextEvent sce) &#123; System.out.println("进入监听器"); //启动线程 if(null == serverSocketThread) &#123; serverSocketThread = new ServerSocketThread(); serverSocketThread.start(); System.out.println("启动线程"); &#125; &#125; @Override public void contextDestroyed(ServletContextEvent sce) &#123; //结束后销毁线程 if(null != serverSocketThread) &#123; //释放资源 , 结束线程 serverSocketThread.destroyedServerSocket(); serverSocketThread.interrupt(); &#125; &#125;&#125; 创建线程后，实现了端口监听，此时要用到service层的东西，但是service实现类由IOC托管，直接new也显然不行，解决方案就是直接从Spring的IOC容器中直接获取service实例： 12ApplicationContext applicationContext = new FileSystemXmlApplicationContext("classpath:spring/spring.xml");TestService testService = (TestService) applicationContext.getBean("testServiceImpl"); 加载配置service的xml文件，后面一定要跟service的实现类，不然也会出错 就这样即可得到一个service实例。 这样的方法也同样可以用在其他地方获取service实例。]]></content>
+      <categories>
+        <category>JAVA</category>
+        <category>Web</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>JAVA</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Destiny（命运）]]></title>
+    <url>%2F2016%2F09%2F19%2FDestiny%EF%BC%88%E5%91%BD%E8%BF%90%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[前几天刚发现了这首歌，一首纯音乐，真的很喜欢。 这首歌总是给人一种很平静的感觉，褪去喧哗，静静享受宁静。 命运，命运是什么，真的应该相信命运吗？ 从小到大，经历了不少，苦过，累过，哭过，笑过，流过血，流过泪，浮沉一世，谁去谁从。一生之中，有多少个明天，一生之中，又有多少个昨天？ 人说：越长大越孤独。谁说不是呢，长大意味着责任，再也没有人会挡在你前面了，也没有人会陪你一起走，只有自己，所有东西，只有自己。越长大，也越害怕，害怕失去，所以一直在逃避。真羡慕，也真希望我们都能像孩童般无忧无虑嬉戏玩耍。真的好想回到那段时光，但终究这些也只能留在那似水年间。 弹指流年，任时光逝尽韶华，韶华过后，谁又许我一世怅惘黯然，一路走走停停，如人饮水，冷暖自知。 繁华的城市万家灯火，其中又藏了多少拼搏和迷茫，又有多少心酸和泪水，如何才能一心不赘物，也许……不可能。 睡不醒的梦叫曾经，以前也很天真的以为遮住了眼睛，就可以看不见整个世界。现在看来却不过是自欺欺人，世间凡尘，终离不开熙熙攘攘。 琴棋书画诗酒花，注定不属于现实，生活只是柴米油盐酱醋茶，简简单单，平平淡淡，就是人生最好的答案。 且敬往事一杯酒，未来，我有故事，谁有酒？]]></content>
+      <categories>
+        <category>心情随记</category>
+        <category>我的大学</category>
+      </categories>
+      <tags>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[简单工厂模式（Simple Factory Pattern）]]></title>
+    <url>%2F2016%2F09%2F17%2F%E7%AE%80%E5%8D%95%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%EF%BC%88Simple%20Factory%20Pattern%EF%BC%89%2F</url>
+    <content type="text"><![CDATA[简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加一个产品（客户端），工厂类总是很被动，在工厂类中增加相应的业务逻辑，也违背了开闭原则（对扩展开放、对修改封闭）。 简单工厂模式java实现： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106/** * SimpleFactory * @author Ansore * */public class SimpleFactory &#123; public static void main(String[] args) &#123; try &#123; Operation operation; operation = OperationFactory.CreateOperation("*"); operation.setNumA(12); operation.setNumB(11); System.out.println(operation.getResult()); &#125; catch (Exception e) &#123; System.out.println(e); &#125; &#125;&#125;//Create Operationclass OperationFactory &#123; public static Operation CreateOperation (String operate) &#123; Operation operation = null; switch(operate) &#123; case "+": operation = new AddOpetarion(); break; case "-": operation = new SubOperation(); break; case "*": operation = new MulOperation(); break; case "/": operation = new DivOperation(); break; &#125; return operation; &#125;&#125;// Operation Classclass Operation &#123; double numA; double numB; public double getNumA() &#123; return numA; &#125; public void setNumA(double numA) &#123; this.numA = numA; &#125; public double getNumB() &#123; return numB; &#125; public void setNumB(double numB) &#123; this.numB = numB; &#125; public double getResult()&#123; return 0; &#125;&#125;//ADD Operationclass AddOpetarion extends Operation &#123; @Override public double getResult()&#123; return numA + numB; &#125;&#125;//Subtract Operationclass SubOperation extends Operation &#123; @Override public double getResult() &#123; return numA - numB; &#125;&#125;//Multiply Operationclass MulOperation extends Operation &#123; @Override public double getResult() &#123; return numA * numB; &#125;&#125;//Divide Operation class DivOperation extends Operation &#123; @Override public double getResult() &#123; if(numB==0) try &#123; throw new Exception("除数不能是0"); &#125; catch (Exception e) &#123; // TODO Auto-generated catch block e.printStackTrace(); &#125; return numA / numB; &#125;&#125;]]></content>
+      <categories>
+        <category>JAVA</category>
+        <category>编程</category>
+        <category>设计模式</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>JAVA</tag>
+        <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[身份证号码验证算法]]></title>
+    <url>%2F2016%2F09%2F14%2F%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E9%AA%8C%E8%AF%81%E7%AE%97%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[一、18位身份证号码结构身份证号码由前十七位本体码和最后一位校验码组成 排列次序一次依次是：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位校验码 二、校验值计算1.本体码加权求和 公式为：S = SUM(Ai*Bi); -Ai为身份证上第i个数字 -Bi为第i个加权因子（加权因子：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2） 2.计算模 mode = S % 11; 3.查找相应校验码 校验码：1 0 X 9 8 7 6 5 4 3 2 （第mode个） 三、C语言实现12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061#include &lt;stdio.h&gt;/*** 身份证验证算法*/int main(int argc, char const *argv[]) &#123; //获得校验码 char getValidateCode(char *idcard); //验证身份证 int getValidateResult(char * idcard,char validateCode); //存储身份证号码 char * idcard="122222190904057081"; char code = getValidateCode(idcard); int result = getValidateResult(idcard,code); printf("validatecode is %c\n",code); if(result==1)&#123; printf("身份证号码正确\n"); &#125; else &#123; printf("身份证号码不正确\n"); &#125; return 0;&#125;/*** 获取身份证校验码（最后一位）*/char getValidateCode(char *idcard)&#123; int weight[17] = &#123;7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2&#125;; char validate[11] = &#123;'1','0','X','9','8','7','6','5','4','3','2'&#125;; int i,sum=0,mode; for(i=0;i&lt;17;i++)&#123; sum = sum + (idcard[i] - '0') * weight[i]; &#125; //计算模 mode = sum%11; return validate[mode];&#125;//得到验证结果 0不正确 1正确int getValidateResult(char * idcard,char validateCode)&#123; int result = 0; if(idcard[17]==validateCode)&#123; result = 1; &#125; return result;&#125;]]></content>
+      <categories>
+        <category>C/C++</category>
+        <category>算法</category>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
+        <tag>算法</tag>
+        <tag>C/C++</tag>
+      </tags>
+  </entry>
+</search>
