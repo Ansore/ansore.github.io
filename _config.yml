@@ -5,7 +5,7 @@
 # Site
 title: Ansore
 subtitle: 我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶
-description: 纵然时光倒流，我还是想象不出一切最开始的模样
+description: 纵然时光倒流<br>我还是想象不出一切最开始的模样
 keywords: Ansore
 author: Ansore
 language: zh-Hans
@@ -83,6 +83,9 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
+# RSS plugins
+plugins: hexo-generate-feed
+
 theme: next
 
 jsonContent:
@@ -109,6 +112,36 @@ search:
   field: post
   format: html
   limit: 10000
+
+#live2d:
+# model: wanko
+#  bottom: -30
+## 看板娘
+# live2d:
+#   model: hijiki
+#   use: live2d-widget-model-hibiki
+#   position: left
+#   bottom: -30
+#   mobileShow: false  #手机端不显示
+live2d:
+  model:
+    use: live2d-widget-model-wanko # npm-module package name
+    scale: 1
+    hHeadPos: 0.5
+    vHeadPos: 0.618
+  display:
+    superSample: 2
+    width: 150
+    height: 200
+    position: right
+    hOffset: 0
+    vOffset: -20
+  mobile:
+    show: true
+    scale: 0.5
+  react:
+    opacityDefault: 0.7
+    opacityOnHover: 0.2
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

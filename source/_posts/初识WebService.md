@@ -4,16 +4,14 @@ tags:
   - JAVA
   - WebService
   - 编程
-url: 358.html
-id: 358
 categories:
-  - JAVA
-  - Web
   - 编程
 date: 2017-03-07 16:46:52
 ---
 
 WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口
+
+<!-- more -->
 
 ```java
 package org.test.service;

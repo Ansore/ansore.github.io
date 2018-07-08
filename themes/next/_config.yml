@@ -40,18 +40,18 @@ keywords: "Hexo, NexT"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: /atom.xml
 
 footer:
   # Specify the date when the site was setup.
   # If not defined, current year will be used.
-  #since: 2015
+  since: 2018
 
   # Icon between year and copyright info.
-  icon: user
+  icon: snowflake-o
 
   # If not defined, will be used `author` from Hexo main config.
-  copyright:
+  copyright: Ansore
   # -------------------------------------------------------------
   # Hexo link (Powered by Hexo).
   powered: true
@@ -93,10 +93,11 @@ index_with_subtitle: false
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, question icon will be loaded.
 menu:
   home: / || home
-  about: /about/ || user
-  #tags: /tags/ || tags
-  #categories: /categories/ || th
+  tags: /tags/ || tags
+  categories: /categories/ || th
   archives: /archives/ || archive
+  music: /music/ || music
+  about: /about/ || user
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -232,9 +233,9 @@ post_meta:
 # Dependencies: https://github.com/willin/hexo-wordcount
 post_wordcount:
   item_text: true
-  wordcount: false
-  min2read: false
-  totalcount: false
+  wordcount: true
+  min2read: true
+  totalcount: true
   separated_meta: true
 
 # Wechat Subscriber
@@ -402,7 +403,7 @@ valine:
 
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
-#livere_uid: your uid
+livere_uid: MTAyMC8zNzkwOC8xNDQzOA==
 
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
@@ -683,7 +684,7 @@ motion:
 fancybox: true
 
 # Progress bar in the top during page loading.
-pace: false
+pace: true
 # Themes list:
 #pace-theme-big-counter
 #pace-theme-bounce
@@ -700,10 +701,10 @@ pace: false
 #pace-theme-minimal
 # For example
 # pace_theme: pace-theme-center-simple
-pace_theme: pace-theme-minimal
+pace_theme: pace-theme-bounce
 
 # Canvas-nest
-canvas_nest: true
+canvas_nest: false
 
 # three_waves
 three_waves: true
@@ -811,6 +812,9 @@ vendors:
   # https://github.com/revir/need-more-share2
   needMoreShare2:
 
+# 文章末尾添加“本文结束”标记
+passage_end_tag:
+  enabled: true
 
 # Assets
 css: css

@@ -3,11 +3,7 @@ title: KMP算法
 tags:
   - 算法
   - 编程
-url: 460.html
-id: 460
 categories:
-  - C/C++
-  - 算法
   - 编程
 date: 2017-11-18 23:44:22
 ---

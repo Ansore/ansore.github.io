@@ -1,12 +1,10 @@
 ---
 title: Destiny（命运）
-tags:
+tags:  
+  - 大学
   - 心情
-url: 310.html
-id: 310
 categories:
-  - 心情随记
-  - 我的大学
+  - 心情
 date: 2016-09-19 01:38:37
 ---
 

@@ -3,11 +3,7 @@ title: Spring MVC与Socket
 tags:
   - JAVA
   - 编程
-url: 302.html
-id: 302
 categories:
-  - JAVA
-  - Web
   - 编程
 date: 2016-09-26 18:19:05
 ---

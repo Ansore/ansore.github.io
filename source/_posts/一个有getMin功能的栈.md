@@ -2,11 +2,11 @@
 title: 一个有getMin功能的栈
 date: 2017-07-06 14:16:15
 tags:
+  - java
   - 编程
   - 算法
 categories:
   - 编程
-  - 算法
 ---
 
 
@@ -14,6 +14,8 @@ categories:
 思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。
 
 java实现代码如下：
+
+<!-- more -->
 
 ```java
 import java.util.Stack;
