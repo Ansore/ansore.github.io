@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -87,7 +94,7 @@
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加一个产品（客户端），工厂类总是很被动，在工厂类中增加相应的业务逻辑，也违背了开闭原则（对扩展开放、对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.740Z">
+<meta property="og:updated_time" content="2018-07-08T17:12:53.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单工厂模式（Simple Factory Pattern）">
 <meta name="twitter:description" content="简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加一个产品（客户端），工厂类总是很被动，在工厂类中增加相应的业务逻辑，也违背了开闭原则（对扩展开放、对">
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -331,30 +368,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -379,6 +394,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  484
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -396,6 +442,7 @@
 
       
         <p>简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加一个产品（客户端），工厂类总是很被动，在工厂类中增加相应的业务逻辑，也违背了开闭原则（对扩展开放、对修改封闭）。 简单工厂模式java实现：</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * SimpleFactory</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> Ansore</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SimpleFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line"></span><br><span class="line">            Operation operation;</span><br><span class="line">            operation = OperationFactory.CreateOperation(<span class="string">"*"</span>);</span><br><span class="line">            operation.setNumA(<span class="number">12</span>);</span><br><span class="line">            operation.setNumB(<span class="number">11</span>);</span><br><span class="line">            System.out.println(operation.getResult());</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            System.out.println(e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Create Operation</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">OperationFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Operation <span class="title">CreateOperation</span> <span class="params">(String operate)</span> </span>&#123;</span><br><span class="line">        Operation operation = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">switch</span>(operate) &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"+"</span>:</span><br><span class="line">            operation = <span class="keyword">new</span> AddOpetarion();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"-"</span>:</span><br><span class="line">            operation = <span class="keyword">new</span> SubOperation();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"*"</span>:</span><br><span class="line">            operation = <span class="keyword">new</span> MulOperation();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">"/"</span>:</span><br><span class="line">            operation = <span class="keyword">new</span> DivOperation();</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> operation;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Operation Class</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">double</span> numA;</span><br><span class="line">    <span class="keyword">double</span> numB;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getNumA</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numA;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNumA</span><span class="params">(<span class="keyword">double</span> numA)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.numA = numA;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getNumB</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numB;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNumB</span><span class="params">(<span class="keyword">double</span> numB)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.numB = numB;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//ADD Operation</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AddOpetarion</span> <span class="keyword">extends</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numA + numB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Subtract Operation</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SubOperation</span> <span class="keyword">extends</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numA - numB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Multiply Operation</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MulOperation</span> <span class="keyword">extends</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> numA * numB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Divide Operation </span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DivOperation</span> <span class="keyword">extends</span> <span class="title">Operation</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getResult</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(numB==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> Exception(<span class="string">"除数不能是0"</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                <span class="comment">// TODO Auto-generated catch block</span></span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">return</span> numA / numB;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -483,6 +530,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -515,7 +567,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -535,10 +587,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -546,10 +598,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -603,13 +655,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -796,6 +854,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1169,7 +1238,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

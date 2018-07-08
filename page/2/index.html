@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -79,17 +86,17 @@
 
 
 
-<meta name="description" content="纵然时光倒流，我还是想象不出一切最开始的模样">
+<meta name="description" content="纵然时光倒流我还是想象不出一切最开始的模样">
 <meta name="keywords" content="Ansore">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Ansore">
 <meta property="og:url" content="/page/2/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="纵然时光倒流，我还是想象不出一切最开始的模样">
+<meta property="og:description" content="纵然时光倒流我还是想象不出一切最开始的模样">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Ansore">
-<meta name="twitter:description" content="纵然时光倒流，我还是想象不出一切最开始的模样">
+<meta name="twitter:description" content="纵然时光倒流我还是想象不出一切最开始的模样">
 
 
 
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -333,30 +370,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -376,6 +391,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  357
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -393,9 +439,7 @@
 
       
         
-          
-          策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式
-          ...
+          <p>策略模式是一种定义一系列算法的方法，从概念的角度来讲，算法所做的工作是相同的，只是实现不同而已，它可以用相同的方式调用所有算法，以减少算法类和算法调用类之间的耦合性。 策略模式的Strategy类层次为Context定义了一系列的可供重用的算法或行为。继承可以析取出这些算法中的公共的功能。 策略模式主要应用需要在不同时间应用不同的业务规则。 任何的需求变更都需要成本，花最小的代价或的最大的收益就是我们要做的，也是学设计模式的目的。 策略模式JAVA语言实现：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/10/31/策略模式(Strategy Pattern)/#more" rel="contents">
@@ -507,29 +551,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/Linux/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -550,6 +572,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  457
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -568,8 +621,9 @@
       
         
           
-          在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现
-12345678910111213141516171819202122232425262728293031323334353637383
+          在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现：
+id: 447
+12345678910111213141516171819202122232425262728293031323334
           ...
           <!--noindex-->
           <div class="post-button text-center">
@@ -682,29 +736,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/Web/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -724,6 +756,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  449
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -856,19 +919,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/心情随记/" itemprop="url" rel="index">
-                    <span itemprop="name">心情随记</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/心情随记/我的大学/" itemprop="url" rel="index">
-                    <span itemprop="name">我的大学</span>
+                  <a href="/categories/心情/" itemprop="url" rel="index">
+                    <span itemprop="name">心情</span>
                   </a>
                 </span>
 
@@ -887,6 +939,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  430
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -1025,30 +1108,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/编程/设计模式/" itemprop="url" rel="index">
-                    <span itemprop="name">设计模式</span>
                   </a>
                 </span>
 
@@ -1068,6 +1129,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  484
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1085,9 +1177,7 @@
 
       
         
-          
-          简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加
-          ...
+          <p>简单工厂模式又叫静态工厂方法模式。目的也很简单，就是提供一个创建对象的接口。 在编程中，我们一般遵循“高内聚低耦合”的原则，工厂模式在一定程度上降低了程序间的耦合性，增加了程序的灵活性、可扩展性。 但由于所有实例逻辑都是由工厂类所创建，所以一旦工厂类出现问题，会导致所有客户端都会受到影响，而且每增加一个产品（客户端），工厂类总是很被动，在工厂类中增加相应的业务逻辑，也违背了开闭原则（对扩展开放、对修改封闭）。 简单工厂模式java实现：</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/09/17/简单工厂模式（Simple Factory Pattern）/#more" rel="contents">
@@ -1199,29 +1289,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/算法/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -1241,6 +1309,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  424
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -1355,7 +1454,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -1375,10 +1474,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -1386,10 +1485,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -1443,13 +1542,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -2005,7 +2110,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

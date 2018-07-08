@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -66,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="编程,机器学习," />
 
 
 
@@ -80,14 +87,14 @@
 
 
 <meta name="description" content="机器学习中的分类和预测算法的评估 准确率 速度 健壮性 可规模行 可解释性  什么是决策树/判定数（decision tree）决策时是一个类似流程图的树结构，其中，每个内部节点表示一个属性上的测试，每个分支代表一个属性的输出，而每个树叶节点代表类或类分布。输的最顶层是根节点。 熵（entropy）概念1948年，香农提出了“信息熵（entropy）”的概念 一条信息的信息量大小和它的不确定行是有">
-<meta name="keywords" content="Ansore">
+<meta name="keywords" content="编程,机器学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树算法">
 <meta property="og:url" content="/2018/07/07/决策树算法/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="机器学习中的分类和预测算法的评估 准确率 速度 健壮性 可规模行 可解释性  什么是决策树/判定数（decision tree）决策时是一个类似流程图的树结构，其中，每个内部节点表示一个属性上的测试，每个分支代表一个属性的输出，而每个树叶节点代表类或类分布。输的最顶层是根节点。 熵（entropy）概念1948年，香农提出了“信息熵（entropy）”的概念 一条信息的信息量大小和它的不确定行是有">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-07T06:07:56.189Z">
+<meta property="og:updated_time" content="2018-07-08T17:15:28.003Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="决策树算法">
 <meta name="twitter:description" content="机器学习中的分类和预测算法的评估 准确率 速度 健壮性 可规模行 可解释性  什么是决策树/判定数（decision tree）决策时是一个类似流程图的树结构，其中，每个内部节点表示一个属性上的测试，每个分支代表一个属性的输出，而每个树叶节点代表类或类分布。输的最顶层是根节点。 熵（entropy）概念1948年，香农提出了“信息熵（entropy）”的概念 一条信息的信息量大小和它的不确定行是有">
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -319,6 +356,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
+                    <span itemprop="name">编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -334,6 +393,37 @@
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  216
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
           
 
           
@@ -388,6 +478,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/编程/" rel="tag"> <i class="fa fa-tag"></i> 编程</a>
+          
+            <a href="/tags/机器学习/" rel="tag"> <i class="fa fa-tag"></i> 机器学习</a>
+          
+        </div>
+      
 
       
       
@@ -435,6 +533,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -476,7 +579,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -496,10 +599,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -507,10 +610,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -580,13 +683,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -773,6 +882,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1146,7 +1266,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

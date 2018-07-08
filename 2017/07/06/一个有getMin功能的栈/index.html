@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -66,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="编程,算法," />
+  <meta name="keywords" content="编程,算法,java," />
 
 
 
@@ -79,18 +86,18 @@
 
 
 
-<meta name="description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162imp">
-<meta name="keywords" content="编程,算法">
+<meta name="description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下：">
+<meta name="keywords" content="编程,算法,java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个有getMin功能的栈">
 <meta property="og:url" content="/2017/07/06/一个有getMin功能的栈/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162imp">
+<meta property="og:description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-08T03:21:17.891Z">
+<meta property="og:updated_time" content="2018-07-08T17:10:57.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个有getMin功能的栈">
-<meta name="twitter:description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162imp">
+<meta name="twitter:description" content="思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。 java实现代码如下：">
 
 
 
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -338,17 +375,6 @@
 
                 
                 
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
               
             </span>
           
@@ -368,6 +394,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  308
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -386,6 +443,7 @@
       
         <p>思路：设计两个栈，一个和正常功能的栈没有区别，另一个保存每一步的最小值，每次弹出时，两个栈同时弹出，这样保证每步都保存了剩余元素的最小值。</p>
 <p>java实现代码如下：</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyStack1</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackData;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackMin;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">MyStack1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stackData = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stackMin = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        MyStack1 myStack1 = <span class="keyword">new</span> MyStack1();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            myStack1.push(<span class="number">12</span>);</span><br><span class="line">            myStack1.push(<span class="number">5</span>);</span><br><span class="line">            myStack1.push(<span class="number">4</span>);</span><br><span class="line">            myStack1.push(<span class="number">11</span>);</span><br><span class="line">            myStack1.push(<span class="number">2</span>);</span><br><span class="line">            myStack1.push(<span class="number">5</span>);</span><br><span class="line">            myStack1.push(<span class="number">4</span>);</span><br><span class="line">            myStack1.push(<span class="number">11</span>);</span><br><span class="line">            myStack1.push(<span class="number">2</span>);</span><br><span class="line">            myStack1.push(<span class="number">5</span>);</span><br><span class="line">            myStack1.push(<span class="number">11</span>);</span><br><span class="line">            System.out.println(myStack1.getMin());</span><br><span class="line">            System.out.println(myStack1.pop());</span><br><span class="line">            System.out.println(myStack1.pop());</span><br><span class="line">            System.out.println(myStack1.pop());</span><br><span class="line">            System.out.println(myStack1.getMin());</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Integer data)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.stackMin.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.stackMin.push(data);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(data.intValue() &lt; getMin()) &#123;</span><br><span class="line">            <span class="keyword">this</span>.stackMin.push(data);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            Integer newValue = <span class="keyword">new</span> Integer(<span class="keyword">this</span>.getMin());</span><br><span class="line">            <span class="keyword">this</span>.stackMin.push(newValue);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.stackData.push(data);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.stackData.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"The Stack Is Empty!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.stackMin.pop();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackData.pop().intValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.stackMin.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"The Stack Is Empty!"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackMin.peek().intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -418,6 +476,8 @@
             <a href="/tags/编程/" rel="tag"> <i class="fa fa-tag"></i> 编程</a>
           
             <a href="/tags/算法/" rel="tag"> <i class="fa fa-tag"></i> 算法</a>
+          
+            <a href="/tags/java/" rel="tag"> <i class="fa fa-tag"></i> java</a>
           
         </div>
       
@@ -472,6 +532,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -504,7 +569,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -524,10 +589,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -535,10 +600,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -592,13 +657,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -785,6 +856,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1158,7 +1240,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

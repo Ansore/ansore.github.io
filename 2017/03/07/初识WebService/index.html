@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -79,18 +86,18 @@
 
 
 
-<meta name="description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口 1234567891011package org.test.service;import javax.jws.WebSe">
+<meta name="description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口">
 <meta name="keywords" content="WebService,编程,JAVA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识WebService">
 <meta property="og:url" content="/2017/03/07/初识WebService/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口 1234567891011package org.test.service;import javax.jws.WebSe">
+<meta property="og:description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.740Z">
+<meta property="og:updated_time" content="2018-07-08T17:12:02.605Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识WebService">
-<meta name="twitter:description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口 1234567891011package org.test.service;import javax.jws.WebSe">
+<meta name="twitter:description" content="WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口">
 
 
 
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -331,29 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/" itemprop="url" rel="index">
-                    <span itemprop="name">JAVA</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/Web/" itemprop="url" rel="index">
-                    <span itemprop="name">Web</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/JAVA/Web/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -379,6 +394,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  557
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
 
           
 
@@ -396,6 +442,7 @@
 
       
         <p>WebService，一句话来说就是跨编程语言和操作系统的交互技术，实现了异构平台之间的交互，基于HTTP使用SOAP协议 JAVA自身也提供了一个WebService的实现：JAX-WS(Java API Xml For Web Service) 简单实例： 首先创建一个接口</p>
+<a id="more"></a>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.test.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.jws.WebService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebService</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>创建它的实现类：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.test.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.jws.WebService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WebService</span>(endpointInterface = <span class="string">"org.test.service.TestService"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestServiceImpl</span> <span class="keyword">implements</span> <span class="title">TestService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"max is "</span>+(a&gt;b?a:b));</span><br><span class="line">        <span class="keyword">return</span> a&gt;b?a:b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"min is "</span>+(a&lt;b?a:b));</span><br><span class="line">        <span class="keyword">return</span> a&lt;b?a:b;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -491,6 +538,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -523,7 +575,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -543,10 +595,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -554,10 +606,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -611,13 +663,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -804,6 +862,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1177,7 +1246,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

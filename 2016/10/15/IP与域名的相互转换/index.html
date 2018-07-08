@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -79,18 +86,18 @@
 
 
 
-<meta name="description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+<meta name="description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现： id: 447 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859">
 <meta name="keywords" content="编程,C&#x2F;C++,Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="IP与域名的相互转换">
 <meta property="og:url" content="/2016/10/15/IP与域名的相互转换/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+<meta property="og:description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现： id: 447 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.737Z">
+<meta property="og:updated_time" content="2018-07-08T17:09:54.474Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IP与域名的相互转换">
-<meta name="twitter:description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636">
+<meta name="twitter:description" content="在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现： id: 447 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859">
 
 
 
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -331,29 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/Linux/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -379,6 +394,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  457
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
+          
 
           
 
@@ -395,7 +441,8 @@
       
 
       
-        <p>在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现</p>
+        <p>在编程中，知道域名是不能直接访问主机，需要将其转换为IP地址。 但是在某些业务需求中需要将一个IP地址转换为域名。 Linux下，IP与域名的相互转换的C语言实现：</p>
+<p>id: 447</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">//根据域名返回IP</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getIpByHostName</span><span class="params">(<span class="keyword">char</span> *hostname)</span></span>;</span><br><span class="line"><span class="comment">//根据IP返回域名</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getHontNameByIp</span><span class="params">(<span class="keyword">char</span> *ip)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 域名结构体</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">// typedef struct hostent &#123;</span></span><br><span class="line"><span class="comment">//     char * h_name;        //正式的主机名称</span></span><br><span class="line"><span class="comment">//     char ** h_aliases;    //主机的别名</span></span><br><span class="line"><span class="comment">//     int h_addrtype;       //主机名的类型</span></span><br><span class="line"><span class="comment">//     int h_length;         //地址的长度</span></span><br><span class="line"><span class="comment">//     char ** h_addr_list;  //从域名服务器获取的主机地址</span></span><br><span class="line"><span class="comment">// &#125; hostent;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getIpByHostName</span><span class="params">(<span class="keyword">char</span> *hostname)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hostent</span> * <span class="title">host</span>;</span>                            <span class="comment">//定义hostent指针</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">in</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr_in</span>;</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> h_errno;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>((host = gethostbyname(hostname))!=<span class="literal">NULL</span>) &#123;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;addr_in.sin_addr.s_addr,host-&gt;h_addr,<span class="number">4</span>);  <span class="comment">//复制主机地址、</span></span><br><span class="line">        in.s_addr=addr_in.sin_addr.s_addr;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"host name is %s\n"</span>, hostname);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"IP length: %d\n"</span>, host-&gt;h_length);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Type: %d\n"</span>, host-&gt;h_addrtype);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"IP : %s\n"</span>, inet_ntoa(in));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"host name is :%s\n"</span>,hostname);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"error : %d\n"</span>,h_errno);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, hstrerror(h_errno));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getHontNameByIp</span><span class="params">(<span class="keyword">char</span> *ip)</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">hostent</span> *<span class="title">host</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">in_addr</span> <span class="title">in</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">addr_in</span>;</span></span><br><span class="line">    <span class="keyword">extern</span> <span class="keyword">int</span> h_errno;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>((host=gethostbyaddr(ip, <span class="keyword">sizeof</span>(ip), AF_INET))!=<span class="literal">NULL</span>)&#123;</span><br><span class="line">        <span class="built_in">memcpy</span>(&amp;addr_in.sin_addr.s_addr, host-&gt;h_addr, <span class="number">4</span>);</span><br><span class="line">        in.s_addr = addr_in.sin_addr.s_addr;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Host Name is %s\n"</span>, host-&gt;h_name);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Ip length %d\n"</span>, host-&gt;h_length);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Type is %d\n"</span>, host-&gt;h_addrtype);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"Ip is %s\n"</span>, inet_ntoa(in));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"error %d\n"</span>, h_errno);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%s\n"</span>, hstrerror(h_errno));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> <span class="keyword">const</span> *argv[])</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span> hostname1[] = <span class="string">"www.ansore.net"</span>;              <span class="comment">//定义一个存在的域名</span></span><br><span class="line">  <span class="keyword">char</span> hostname2[] = <span class="string">"www.123qwdferwerfsdfataewfar.net"</span>;        <span class="comment">//定义一个不存在的域名</span></span><br><span class="line">  <span class="keyword">char</span> ip[] = <span class="string">"139.129.35.50"</span>;</span><br><span class="line"></span><br><span class="line">  getIpByHostName(hostname1);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"--------------------------------------------------------\n"</span>);</span><br><span class="line">  getIpByHostName(hostname2);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">"--------------------------------------------------------\n"</span>);</span><br><span class="line">  getHontNameByIp(ip);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
@@ -483,6 +530,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -515,7 +567,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -535,10 +587,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -546,10 +598,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -603,13 +655,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -796,6 +854,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1169,7 +1238,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

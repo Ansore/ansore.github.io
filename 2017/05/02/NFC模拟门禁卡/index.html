@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -79,18 +86,18 @@
 
 
 
-<meta name="description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
+<meta name="description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：">
 <meta name="keywords" content="Ansore">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NFC模拟门禁卡">
 <meta property="og:url" content="/2017/05/02/NFC模拟门禁卡/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
+<meta property="og:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.737Z">
+<meta property="og:updated_time" content="2018-07-08T16:55:19.007Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NFC模拟门禁卡">
-<meta name="twitter:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：   NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,">
+<meta name="twitter:description" content="首先必须支持NFC，而且必须root，system有读写权限测试机型：小米5先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：">
 
 
 
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -357,6 +394,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  268
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1
+                </span>
+              
+            </div>
+          
 
           
 
@@ -374,6 +442,7 @@
 
       
         <h4 id="首先必须支持NFC，而且必须root，system有读写权限"><a href="#首先必须支持NFC，而且必须root，system有读写权限" class="headerlink" title="首先必须支持NFC，而且必须root，system有读写权限"></a>首先必须支持NFC，而且必须root，system有读写权限</h4><h4 id="测试机型：小米5"><a href="#测试机型：小米5" class="headerlink" title="测试机型：小米5"></a>测试机型：小米5</h4><p>先安装类似 NFC TagInfo 软件读取出卡的ID，假设卡的ID为 1f,ef,ff,4d 修改/etc/下的libnfc-nxp.conf文件（可能有的手机不是在这个目录下，可全局搜索nfc），找到下面这段：</p>
+<a id="more"></a>
 <blockquote>
 <p> NXP_CORE_CONF={20, 02, 27, 0E,         18, 01, 01,          21, 01, 00,          28, 01, 00,          30, 01, 04,          31, 01, 00,          32, 01, 60,         33, 00,         50, 01, 02,          54, 01, 06,          5B, 01, 00,          60, 01, 0E,          80, 01, 01,          81, 01, 01,          82, 01, 0E         }</p>
 </blockquote>
@@ -459,6 +528,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -500,7 +574,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -520,10 +594,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -531,10 +605,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -604,13 +678,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -797,6 +877,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1170,7 +1261,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 

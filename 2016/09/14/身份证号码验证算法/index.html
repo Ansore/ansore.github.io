@@ -14,6 +14,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-bounce.min.css?v=1.0.2" rel="stylesheet">
+
 
 
 
@@ -66,7 +73,7 @@
 
 
 
-  <meta name="keywords" content="编程,算法,C/C++," />
+  <meta name="keywords" content="编程,C/C++,算法," />
 
 
 
@@ -80,14 +87,14 @@
 
 
 <meta name="description" content="一、18位身份证号码结构身份证号码由前十七位本体码和最后一位校验码组成 排列次序一次依次是：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位校验码 二、校验值计算1.本体码加权求和 公式为：S = SUM(Ai*Bi); -Ai为身份证上第i个数字 -Bi为第i个加权因子（加权因子：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2） 2.计算模 mode = S %">
-<meta name="keywords" content="编程,算法,C&#x2F;C++">
+<meta name="keywords" content="编程,C&#x2F;C++,算法">
 <meta property="og:type" content="article">
 <meta property="og:title" content="身份证号码验证算法">
 <meta property="og:url" content="/2016/09/14/身份证号码验证算法/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="一、18位身份证号码结构身份证号码由前十七位本体码和最后一位校验码组成 排列次序一次依次是：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位校验码 二、校验值计算1.本体码加权求和 公式为：S = SUM(Ai*Bi); -Ai为身份证上第i个数字 -Bi为第i个加权因子（加权因子：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2） 2.计算模 mode = S %">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-30T12:25:32.740Z">
+<meta property="og:updated_time" content="2018-07-08T17:13:05.045Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="身份证号码验证算法">
 <meta name="twitter:description" content="一、18位身份证号码结构身份证号码由前十七位本体码和最后一位校验码组成 排列次序一次依次是：六位数字地址码，八位数字出生日期码，三位数字顺序码和一位校验码 二、校验值计算1.本体码加权求和 公式为：S = SUM(Ai*Bi); -Ai为身份证上第i个数字 -Bi为第i个加权因子（加权因子：7 9 10 5 8 4 2 1 6 3 7 9 10 5 8 4 2） 2.计算模 mode = S %">
@@ -193,12 +200,22 @@
         </li>
       
         
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
-            关于
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -209,6 +226,26 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-music">
+          <a href="/music/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-music"></i> <br />
+            
+            音乐
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
           </a>
         </li>
       
@@ -331,29 +368,7 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C-C/算法/编程/" itemprop="url" rel="index">
+                  <a href="/categories/编程/" itemprop="url" rel="index">
                     <span itemprop="name">编程</span>
                   </a>
                 </span>
@@ -378,6 +393,37 @@
             </span>
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  424
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  2
+                </span>
+              
+            </div>
           
 
           
@@ -435,9 +481,9 @@
           
             <a href="/tags/编程/" rel="tag"> <i class="fa fa-tag"></i> 编程</a>
           
-            <a href="/tags/算法/" rel="tag"> <i class="fa fa-tag"></i> 算法</a>
-          
             <a href="/tags/C-C/" rel="tag"> <i class="fa fa-tag"></i> C/C++</a>
+          
+            <a href="/tags/算法/" rel="tag"> <i class="fa fa-tag"></i> 算法</a>
           
         </div>
       
@@ -488,6 +534,11 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
+    </div>
+
+  
 
 
 
@@ -529,7 +580,7 @@
                 alt="Ansore" />
             
               <p class="site-author-name" itemprop="name">Ansore</p>
-              <p class="site-description motion-element" itemprop="description">纵然时光倒流，我还是想象不出一切最开始的模样</p>
+              <p class="site-description motion-element" itemprop="description">纵然时光倒流<br>我还是想象不出一切最开始的模样</p>
           </div>
 
           <nav class="site-state motion-element">
@@ -549,10 +600,10 @@
               
               
               <div class="site-state-item site-state-categories">
-                
-                  <span class="site-state-item-count">18</span>
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
-                
+                </a>
               </div>
             
 
@@ -560,10 +611,10 @@
               
               
               <div class="site-state-item site-state-tags">
-                
-                  <span class="site-state-item-count">10</span>
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
-                
+                </a>
               </div>
             
 
@@ -633,13 +684,19 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
-    <!--
-    <i class="fa fa-user"></i>
-    -->
-    <i class="far fa-kiss-wink-heart"></i>
+    <i class="fa fa-snowflake-o"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Ansore</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">5.6k</span>
   
 </div>
 
@@ -826,6 +883,17 @@
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
   
 
 
@@ -1199,7 +1267,7 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"superSample":2,"width":150,"height":200,"position":"right","hOffset":0,"vOffset":-20},"mobile":{"show":true,"scale":0.5},"react":{"opacityDefault":0.7,"opacityOnHover":0.2},"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/"});</script></body>
 
 <script type="text/javascript" src="/js/src/love.js"></script>
 
