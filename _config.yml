@@ -4,7 +4,7 @@
 
 # Site
 title: Ansore
-subtitle: 我也曾年少轻狂幻想一生琴棋书画诗酒花，可繁华落尽生活只是柴米油盐酱醋茶
+subtitle: 很喜欢下雨天
 description: 纵然时光倒流<br>我还是想象不出一切最开始的模样
 keywords: Ansore
 author: Ansore
@@ -137,8 +137,7 @@ live2d:
     hOffset: 0
     vOffset: -20
   mobile:
-    show: true
-    scale: 0.5
+    show: false
   react:
     opacityDefault: 0.7
     opacityOnHover: 0.2
