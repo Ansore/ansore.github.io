@@ -60,14 +60,10 @@
 <link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
 
 
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
-
 
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=5.1.4">
 
 
-
-  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
 
 
 
@@ -90,7 +86,7 @@
 <meta name="keywords" content="大学,心情,隨记">
 <meta property="og:type" content="article">
 <meta property="og:title" content="闲看花开，静待花落">
-<meta property="og:url" content="/2016/11/14/闲看花开，静待花落/index.html">
+<meta property="og:url" content="/2016/11/14/心情/闲看花开，静待花落/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="有时候走着走着，发现自己离最初的那个自己已经越来越远了，受到干扰时，却连坚持下去的勇气都没有。久而久之，偶尔谈起，却只能说说自己曾经追逐过，把自己弄丢得太久，想找回来的时候，却发现已经忘了自己原来的模样了。  某天，无端想起一个人，她曾让你对明天有所期待，但是却完全没有出现在你的明天，也曾在某个瞬间，我以为自己长大了，终究还是发现，长大的含义除了欲望还有勇气和坚强，以及某些必须的牺牲。 人生若只如">
 <meta property="og:locale" content="zh-Hans">
@@ -107,7 +103,7 @@
     root: '/',
     scheme: 'Pisces',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -127,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="/2016/11/14/闲看花开，静待花落/"/>
+  <link rel="canonical" href="/2016/11/14/心情/闲看花开，静待花落/"/>
 
 
 
@@ -143,9 +139,17 @@
 
 
 
+
+  <!-- 相册引用 -->
+  <script src="/js/src/photoswipe.js?v=5.1.4"></script>
+  <script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
+
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  <!-- 相册引用 -->
+
 
   
   
@@ -226,6 +230,16 @@
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-photos">
+          <a href="/photos/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-photo"></i> <br />
+            
+            相册
           </a>
         </li>
       
@@ -316,7 +330,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/2016/11/14/闲看花开，静待花落/">
+    <link itemprop="mainEntityOfPage" href="/2016/11/14/心情/闲看花开，静待花落/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ansore">
@@ -388,7 +402,7 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读次数
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
@@ -557,6 +571,8 @@
 
   <aside id="sidebar" class="sidebar">
     
+      <div id="sidebar-dimmer"></div>
+    
     <div class="sidebar-inner">
 
       
@@ -658,7 +674,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2017 &mdash; <span itemprop="copyrightYear">2018</span>
   <span class="with-love">
     <i class="fa fa-snowflake-o"></i>
   </span>
@@ -697,7 +713,7 @@
 
   
     <span class="site-uv">
-      <i class="fa fa-user"></i>
+      <i class="fa fa-user"></i> 访问人数
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
       
     </span>
@@ -705,7 +721,7 @@
 
   
     <span class="site-pv">
-      <i class="fa fa-eye"></i>
+      <i class="fa fa-eye"></i> 总访问量
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
       
     </span>
@@ -829,6 +845,9 @@
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+<script src="/js/src/photoswipe.js?v=5.1.4"></script>
+<script src="/js/src/photoswipe-ui-default.js?v=5.1.4"></script>
 
 
 
