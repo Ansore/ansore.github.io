@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="编程,算法," />
+  <meta name="keywords" content="Ansore" />
 
 
 
@@ -82,18 +82,20 @@
 
 
 
-<meta name="description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入  如果弹出栈不为空，绝对不能向弹出栈中压入数据  如果两个栈都为空，则队列就为空">
-<meta name="keywords" content="编程,算法">
-<meta property="og:type" content="article">
-<meta property="og:title" content="由两个栈组成的队列">
-<meta property="og:url" content="/posts/c7e55458/index.html">
+<meta name="description" content="2018 开始，可能只是想适当喝点、简单喝点，结果发现自己越喝越多，越喝越醉。等到自己不省人事的时候对方却跳出来说：你只要适当喝点就行了。然而自己却只能像个傻子一样。 红袖添香怎么比得过为你弹一曲夜曲，竹林为你算尽周易又怎么比得过草原上为你吹一次风琴 是的，她听不见 佛曰：人生有七苦，生、老、病、死、怨憎会、爱别离、求不得，离合既循环，忧喜迭相攻。佛本想说众生本可以洒脱地接受这阴晴圆缺">
+<meta name="keywords" content="Ansore">
+<meta property="og:type" content="website">
+<meta property="og:title" content="心情随笔">
+<meta property="og:url" content="/causerie/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入  如果弹出栈不为空，绝对不能向弹出栈中压入数据  如果两个栈都为空，则队列就为空">
+<meta property="og:description" content="2018 开始，可能只是想适当喝点、简单喝点，结果发现自己越喝越多，越喝越醉。等到自己不省人事的时候对方却跳出来说：你只要适当喝点就行了。然而自己却只能像个傻子一样。 红袖添香怎么比得过为你弹一曲夜曲，竹林为你算尽周易又怎么比得过草原上为你吹一次风琴 是的，她听不见 佛曰：人生有七苦，生、老、病、死、怨憎会、爱别离、求不得，离合既循环，忧喜迭相攻。佛本想说众生本可以洒脱地接受这阴晴圆缺">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T10:31:24.740Z">
+<meta property="og:image" content="https://ansore-album.oss-cn-beijing.aliyuncs.com/blog/article/39.jpg">
+<meta property="og:updated_time" content="2018-07-10T16:12:30.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="由两个栈组成的队列">
-<meta name="twitter:description" content="思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。  压入栈向弹出栈压入数据的时候，必须一次性全部压入  如果弹出栈不为空，绝对不能向弹出栈中压入数据  如果两个栈都为空，则队列就为空">
+<meta name="twitter:title" content="心情随笔">
+<meta name="twitter:description" content="2018 开始，可能只是想适当喝点、简单喝点，结果发现自己越喝越多，越喝越醉。等到自己不省人事的时候对方却跳出来说：你只要适当喝点就行了。然而自己却只能像个傻子一样。 红袖添香怎么比得过为你弹一曲夜曲，竹林为你算尽周易又怎么比得过草原上为你吹一次风琴 是的，她听不见 佛曰：人生有七苦，生、老、病、死、怨憎会、爱别离、求不得，离合既循环，忧喜迭相攻。佛本想说众生本可以洒脱地接受这阴晴圆缺">
+<meta name="twitter:image" content="https://ansore-album.oss-cn-beijing.aliyuncs.com/blog/article/39.jpg">
 
 
 
@@ -123,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="/posts/c7e55458/"/>
+  <link rel="canonical" href="/causerie/"/>
 
 
 
 
 
-  <title>由两个栈组成的队列 | Ansore</title>
+  <title>心情随笔 | Ansore</title>
   
 
 
@@ -328,229 +330,51 @@
 
   <div id="posts" class="posts-expand">
     
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/posts/c7e55458/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ansore">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/logo.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ansore">
-    </span>
-
     
+    
+    <div class="post-block page">
       <header class="post-header">
 
-        
-        
-          <h1 class="post-title" itemprop="name headline">由两个栈组成的队列</h1>
-        
+	<h1 class="post-title" itemprop="name headline">心情随笔</h1>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-07T14:23:30+08:00">
-                2017-07-07
-              </time>
-            
 
-            
 
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读次数
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  348
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
       
-
       
-        <p>思路：设计两个栈，一个栈作为压入栈，另一个作为弹出栈。</p>
-<ul>
-<li><p>压入栈向弹出栈压入数据的时候，必须一次性全部压入</p>
-</li>
-<li><p>如果弹出栈不为空，绝对不能向弹出栈中压入数据</p>
-</li>
-<li><p>如果两个栈都为空，则队列就为空</p>
-<a id="more"></a>
-</li>
+      <div class="post-body">
+        
+        
+          <hr>
+<p><img src="https://ansore-album.oss-cn-beijing.aliyuncs.com/blog/article/39.jpg" alt="心情随笔"></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="//music.163.com/outchain/player?type=2&id=165176&auto=0&height=66"></iframe>
+
+
+
+<h3 id="2018"><a href="#2018" class="headerlink" title="2018"></a>2018</h3><ul>
+<li>开始，可能只是想适当喝点、简单喝点，结果发现自己越喝越多，越喝越醉。等到自己不省人事的时候对方却跳出来说：你只要适当喝点就行了。然而自己却只能像个傻子一样。</li>
+<li>红袖添香怎么比得过为你弹一曲夜曲，竹林为你算尽周易又怎么比得过草原上为你吹一次风琴</li>
+<li>是的，她听不见</li>
+<li>佛曰：人生有七苦，生、老、病、死、怨憎会、爱别离、求不得，离合既循环，忧喜迭相攻。佛本想说众生本可以洒脱地接受这阴晴圆缺。可惜我只是普通人，不是佛。</li>
+<li>茕茕白兔，东走西顾。衣不如新，人不如故。</li>
+<li>你说你不愿种花，不愿看到它一点一点凋零。是的，为了避免结束，你避免了一切开始。　　——顾城</li>
+<li>有些事，是不是只要我去做了，不管是什么结果，我都能释怀？</li>
+<li>纵然时光倒流，我还是想象不出一切最开始的模样</li>
+<li>叨扰良久，望勿见怪。自此所有过往至于唇齿，掩于岁月，匿于年华。今生就此别过，愿尔遇良人，予君欢喜城，长歌暖浮生。泪既干涸，心已朽木，自此再不善良。</li>
+<li>蝉在地下能活七年之久，一旦破土而出，却只有七天寿命，而侥幸能活到第八天的蝉，就会非常孤独。倘若有幸遇到同是那第八天的蝉，我会将我错失的，统统补给她。</li>
 </ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TwoStackQueue</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackPush;</span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Integer&gt; stackPop;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        TwoStackQueue twoStackQueue = <span class="keyword">new</span> TwoStackQueue();</span><br><span class="line">        twoStackQueue.add(<span class="number">1</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">2</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">3</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">4</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"--"</span>+twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span>+twoStackQueue.peek());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        twoStackQueue.add(<span class="number">7</span>);</span><br><span class="line">        twoStackQueue.add(<span class="number">8</span>);</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.peek());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">        System.out.println(<span class="string">"--"</span> + twoStackQueue.poll());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TwoStackQueue</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stackPop = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        stackPush = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.stackPush.push(<span class="keyword">new</span> Integer(a));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">poll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.stackPop.isEmpty() &amp;&amp; <span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"the queue is empty!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.stackPop.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span>(!<span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.stackPop.push(<span class="keyword">this</span>.stackPush.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackPop.pop().intValue();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.stackPop.isEmpty() &amp;&amp; <span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException(<span class="string">"the queue is empty!"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.stackPop.isEmpty()) &#123;</span><br><span class="line">            <span class="keyword">while</span> (!<span class="keyword">this</span>.stackPush.isEmpty()) &#123;</span><br><span class="line">                <span class="keyword">this</span>.stackPop.push(<span class="keyword">this</span>.stackPush.pop());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.stackPop.peek().intValue();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+        
+      </div>
+      
+      
       
     </div>
     
     
     
-
-    <div>
-      
-        <div>
-    
-        <div style="text-align:center;color: #ccc;font-size:14px;">-------------结束啦<i class="fa fa-paw"></i>感谢您的阅读~-------------</div>
-    
-</div> 
-
-      
-    </div>
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/编程/" rel="tag"> <i class="fa fa-tag"></i> 编程</a>
-          
-            <a href="/tags/算法/" rel="tag"> <i class="fa fa-tag"></i> 算法</a>
-          
-        </div>
-      
-
-      
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/posts/7be922d9/" rel="next" title="一个有getMin功能的栈">
-                <i class="fa fa-chevron-left"></i> 一个有getMin功能的栈
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/da8e22a5/" rel="prev" title="BF串匹配算法">
-                BF串匹配算法 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
@@ -559,15 +383,6 @@
 
 
           
-
-  
-    <div class="comments" id="comments">
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zNzkwOC8xNDQzOA=="></div>
-    </div>
-
-  
-
-
 
         </div>
         
@@ -590,8 +405,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -672,6 +496,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#2018"><span class="nav-number">1.</span> <span class="nav-text">2018</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -890,17 +730,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
