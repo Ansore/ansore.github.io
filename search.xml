@@ -20,8 +20,8 @@
         <category>机器学习</category>
       </categories>
       <tags>
-        <tag>算法</tag>
         <tag>机器学习</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -69,7 +69,19 @@
       </categories>
       <tags>
         <tag>编程</tag>
+        <tag>算法</tag>
         <tag>C/C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[求子集问题]]></title>
+    <url>%2Fposts%2F93ce02fe%2F</url>
+    <content type="text"><![CDATA[问题描述：给定一个集合，求其所有子集。 解法思路：一个长度为n的集合，共有2^n个子集，每一种可能都用二进制表示，相应的二进制数的0和1对应相应的元素不存在/存在，问题解决。 C++实现： 1234567891011121314151617181920212223242526272829303132333435363738394041#include&lt;iostream&gt;#include "math.h"using namespace std;//用二进制表示元素的存在/不存在void findSubset(int r[], int n) &#123; //子集个数 int p = (int) pow(2 ,n); //元素下标 int i = 0; while(p != 0) &#123; int j = p; //该种情况下的集合 while(j != 0) &#123; int m = j % 2; //余数为1存在 if(m == 1) &#123; if(i &lt; n) &#123; cout &lt;&lt; r[i] &lt;&lt; " "; &#125; else &#123; //数组越界只有一种情况就是，该集合为空集的时候 cout &lt;&lt; "空集 "; &#125; &#125; i ++; j = j / 2; &#125; p--; i = 0; cout &lt;&lt; "\n----------" &lt;&lt; endl; &#125;&#125;int main () &#123; int a[3] = &#123;3,1,8&#125;; findSubset(a, 3); return 0;&#125;]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>编程</tag>
         <tag>算法</tag>
       </tags>
   </entry>
@@ -105,6 +117,9 @@
       <categories>
         <category>编程</category>
       </categories>
+      <tags>
+        <tag>NFC</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[初识WebService]]></title>
@@ -203,8 +218,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>C/C++</tag>
         <tag>算法</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
 </search>
