@@ -107,9 +107,9 @@
       <category term="机器学习" scheme="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
     
-      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
-    
       <category term="机器学习" scheme="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -218,9 +218,9 @@
     
       <category term="编程" scheme="/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="C/C++" scheme="/tags/C-C/"/>
-    
       <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="C/C++" scheme="/tags/C-C/"/>
     
   </entry>
   
@@ -540,9 +540,9 @@
     
       <category term="编程" scheme="/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="C/C++" scheme="/tags/C-C/"/>
-    
       <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="C/C++" scheme="/tags/C-C/"/>
     
   </entry>
   
