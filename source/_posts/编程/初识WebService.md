@@ -1,11 +1,12 @@
 ---
 title: 初识WebService
 tags:
-  - JAVA
+  - java
   - WebService
   - 编程
 categories:
   - 编程
+abbrlink: 2d791364
 date: 2017-03-07 16:46:52
 ---
 

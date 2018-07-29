@@ -1,13 +1,14 @@
 ---
 title: Destiny（命运）
-tags:  
+tags:
   - 大学
   - 心情
 categories:
   - 心情
-date: 2016-09-19 01:38:37
 photos:
-  - "https://ansore-album.oss-cn-beijing.aliyuncs.com/blog/article/19.jpg"
+  - 'https://ansore-album.oss-cn-beijing.aliyuncs.com/blog/article/19.jpg'
+abbrlink: ec4ad892
+date: 2016-09-19 01:38:37
 ---
 
 <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=27580009&auto=1&height=66"></iframe>

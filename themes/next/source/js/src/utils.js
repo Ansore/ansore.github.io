@@ -9,6 +9,10 @@ NexT.utils = NexT.$u = {
       .not('[hidden]')
       .not('.group-picture img, .post-gallery img')
       .each(function () {
+
+        // 取消相册页放大
+        if ($(this).hasClass('reward-img')) return;
+
         var $image = $(this);
         var imageTitle = $image.attr('title');
         var $imageWrapLink = $image.parent('a');

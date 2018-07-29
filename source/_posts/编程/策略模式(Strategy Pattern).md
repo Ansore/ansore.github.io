@@ -1,11 +1,12 @@
 ---
 title: 策略模式(Strategy Pattern)
 tags:
-  - JAVA
+  - java
   - 编程
   - 设计模式
 categories:
   - 编程
+abbrlink: 5db9b4b7
 date: 2016-10-31 18:47:37
 ---
 

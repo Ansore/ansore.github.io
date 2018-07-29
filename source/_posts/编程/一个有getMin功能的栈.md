@@ -1,12 +1,13 @@
 ---
 title: 一个有getMin功能的栈
-date: 2017-07-06 14:16:15
 tags:
   - java
   - 编程
   - 算法
 categories:
   - 编程
+abbrlink: 7be922d9
+date: 2017-07-06 14:16:15
 ---
 
 

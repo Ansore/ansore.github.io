@@ -15,8 +15,13 @@ timezone: Asia/Shanghai
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: //
 root: /
-permalink: :year/:month/:day/:title/
+permalink: posts/:abbrlink/
 permalink_defaults:
+
+# abbrlink config
+abbrlink:
+  alg: crc32  # 算法：crc16(default) and crc32 
+  rep: hex    # 进制：dec(default) and hex
 
 # Directory
 source_dir: source
@@ -142,9 +147,19 @@ live2d:
     opacityDefault: 0.7
     opacityOnHover: 0.2
 
+# SEO
+sitemap: 
+    path: sitemap.xml
+baidusitemap:
+    path: baidusitemap.xml
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repository: git@github.com:Ansore/ansore.github.io.git
+  repo:
+    github: git@github.com:Ansore/ansore.github.io.git
+    coding: git@gitee.com:Ansore/Ansore.git
+#  repository: git@github.com:Ansore/ansore.github.io.git
+#  repository: git@gitee.com:Ansore/blog.git
   branch: master

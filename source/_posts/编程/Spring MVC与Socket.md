@@ -1,10 +1,11 @@
 ---
 title: Spring MVC与Socket
 tags:
-  - JAVA
+  - java
   - 编程
 categories:
   - 编程
+abbrlink: dccbf65
 date: 2016-09-26 18:19:05
 ---
 

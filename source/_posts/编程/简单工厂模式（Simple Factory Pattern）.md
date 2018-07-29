@@ -6,6 +6,7 @@ tags:
   - 设计模式
 categories:
   - 编程
+abbrlink: eaa7cc98
 date: 2016-09-17 23:39:50
 ---
 

@@ -1,9 +1,11 @@
 ---
 title: NFC模拟门禁卡
+tags:
+  - NFC
 categories:
   - 编程
+abbrlink: 81ba4516
 date: 2017-05-02 17:02:42
-tags:
 ---
 
 #### 首先必须支持NFC，而且必须root，system有读写权限
