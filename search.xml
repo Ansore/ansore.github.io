@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
-    <url>%2Fposts%2F0%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
     <title><![CDATA[一致性Hash算法]]></title>
     <url>%2Fposts%2Faca386f3%2F</url>
     <content type="text"><![CDATA[场景如果有N个缓存服务器，将一个对象缓存到某个服务器上，也许可以这样计算对象的hash值，然后映射到某个cache上： hash(object) % N 这样做存在这两个问题： 如果其中一台服务器发生故障或者被移除，则映射到该服务器上的所有对象都会失效，而且映射公式就变为：hash(object) % (N-1) 相反，如果缓存已经不满足需求，需要增加缓存服务器时，映射公式变为：hash(object) % (N+1) 这就意味着几乎所有的cache都会失效，也有两种解决方案： 清空所有缓存服务器，重新建立缓存。本来缓存就是为了减小数据库压力而设计的，这样做对后端来说，如同一场灾难，严重的可能会到时数据库崩溃。所以，一般应该不会这样做。 夜深人静，流量最小的时候，使缓存服务器中的数据重新分布。 这两种做法的成本都非常大。 一致性hash算法基本原理简单来说，一致性hash算法主要做的就是在添加或者移除一个缓存服务器的时候，能够尽可能小的改变已存在的映射关系。一致性hash算法用的也是取模的方法，只不过是对2^32取模： 先构造一个0～2^32-1的整数环，也称一致性hash环，也可以把它看成一个首尾相接的圆环 根据节点服务器的名称计算hash值，对hash值进行取模，然后将服务器节点放置在hash环上 根据需要缓存数据的key值计算hash值，对hash值进行取模，接着在hash环上顺时针查找离这个值最近的服务器节点 完成映射查找 虚拟节点同样一致性hash算法也有缺点，在实际映射中，有可能缓存服务器会被映射到环上的其中一段弧上，这就造成大部分对象可能会集中缓存到某一台服务器上，这就诞生了虚拟节点。 虚拟节点就是实际节点的一个影子，或者说是复制品，一个实际节点对应多个虚拟节点，同样将虚拟节点映射到hash环上，这样一来缓存的分布就均衡多了，减少hash环的偏斜所带来的影响。 hash环上的节点越多，缓存被均匀分布的概率也就越大]]></content>
@@ -99,8 +94,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -111,8 +106,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -123,8 +118,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -135,8 +130,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
         <tag>C/C++</tag>
       </tags>
   </entry>
@@ -183,8 +178,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -195,8 +190,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -207,9 +202,9 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
         <tag>java</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -231,9 +226,20 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>WebService</tag>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
+        <tag>WebService</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown笔记]]></title>
+    <url>%2Fposts%2Fb9733a42%2F</url>
+    <content type="text"><![CDATA[标题123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 #### 水平分割线 12---*** 引用1&gt; 目录（大纲）1[toc] 强调或突出1234*斜体* 或 _斜体_**粗体** 或 __粗体__~~删除线~~---下划线--- 列表 有序列表 121. 有序列表2. 有序列表 无序列表 123- 无序列表* 无序列表+ 无序列表 链接1[链接文字](链接地址) 插入图片1![图片描述](图片地址) 代码块123​```java​ 123456#### 表格| 姓名 | 1 | 2 | 3 || :--- | :--: | ---: | :--: || 年龄 | 11 | 22 | 33 | 姓名 1 2 3 年龄 11 22 33 // :—- 左对齐// :—-: 居中// —-: 右对齐123456#### 公式- 行内$ f(x) = x $ $ f(x) = x $1234- 段落$$ f(x) = x $$ $$ f(x) = x $$1234- 上标$$ x^2 $$ $$ x^2 $$1234- 下标$$ x_2 $$ $$ x_2 $$1234- 大括号$$ \lbrace a+1 \rbrace $$ $$ \lbrace a+1 \rbrace $$1234- 尖括号$$ \langle x \rangle $$ $$ \langle x \rangle $$1234- 省略号$$ x_1, x_2 \dots x_n$$ $$ x_1, x_2 \dots x_n$$1234- 多行公式$$x + 1 \\ x + 2 \\ x + 3$$ $$ x + 1 \ x + 2 \ x + 3 $$1234- 分式$$ \frac &#123;a&#125; &#123;b&#125; $$ $$ \frac {a} {b} $$ $$ a \over b $$1234- 根式$$ \sqrt [3] &#123;x&#125; $$ $$ \sqrt [3] {x} $$1234- 求和$$ \sum_i^n $$ $$ \sum_i^n $$1234- 积分$$ \int_&#123;1&#125;^&#123;\infty&#125; $$ $$ \int_{1}^{\infty} $$12345678- 其他$$ \prod_&#123;1&#125;^&#123;n&#125; $$$$ \bigcup_&#123;1&#125;^&#123;n&#125; $$$$ \iint_&#123;1&#125;^&#123;n&#125; $$ $$ \prod_{1}^{n} $$ $$ \bigcup_{1}^{n} $$ $$ \iint_{1}^{n} $$`]]></content>
+      <categories>
+        <category>编程</category>
+      </categories>
+      <tags>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -256,8 +262,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
         <tag>设计模式</tag>
       </tags>
   </entry>
@@ -282,8 +288,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -319,8 +325,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>算法</tag>
+        <tag>编程</tag>
         <tag>C/C++</tag>
       </tags>
   </entry>
