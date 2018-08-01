@@ -3,15 +3,79 @@
 
 
     
+    
   <url>
-    <loc>/posts/b9733a42/</loc>
-    <lastmod>2018-07-29T08:27:22.917Z</lastmod>
+    <loc>/posts/0/</loc>
+    <lastmod>2018-08-01T01:51:48.795Z</lastmod>
     <data>
         <display>
-        <title>Markdown笔记</title>
-        <pubTime>2017-04-02T08:26:04.000Z</pubTime>
+        <title></title>
+        <pubTime>2018-08-01T01:51:48.795Z</pubTime>
         
-        <tag>markdown</tag>
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/de06556f/</loc>
+    <lastmod>2018-07-31T15:57:44.236Z</lastmod>
+    <data>
+        <display>
+        <title>JVM类加载机制</title>
+        <pubTime>2017-11-01T11:19:46.000Z</pubTime>
+        
+        <tag>jvm</tag>
+         
+        <tag>java</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程" url="/categories/%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/aca386f3/</loc>
+    <lastmod>2018-07-31T15:00:42.470Z</lastmod>
+    <data>
+        <display>
+        <title>一致性Hash算法</title>
+        <pubTime>2018-07-31T09:31:23.000Z</pubTime>
+        
+        <tag>算法</tag>
+         
+        <tag>分布式</tag>
+         
+         
+           
+             
+              <breadCrumb title="编程" url="/categories/%E7%BC%96%E7%A8%8B/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/f1601c3e/</loc>
+    <lastmod>2018-07-31T14:57:45.361Z</lastmod>
+    <data>
+        <display>
+        <title>单例模式</title>
+        <pubTime>2017-11-19T09:04:16.000Z</pubTime>
+        
+        <tag>编程</tag>
+         
+        <tag>JAVA</tag>
+         
+        <tag>设计模式</tag>
          
          
            
@@ -25,7 +89,7 @@
     
   <url>
     <loc>/posts/4c3e71da/</loc>
-    <lastmod>2018-07-29T08:25:14.899Z</lastmod>
+    <lastmod>2018-07-29T08:27:40.690Z</lastmod>
     <data>
         <display>
         <title>CNN基于Tensorflow实现cifar10数据集80%准确率</title>
@@ -55,9 +119,9 @@
         <title>关于JVM</title>
         <pubTime>2017-11-28T12:52:44.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>jvm</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -235,9 +299,9 @@
         
         <tag>编程</tag>
          
-        <tag>设计模式</tag>
-         
         <tag>JAVA</tag>
+         
+        <tag>设计模式</tag>
          
          
            
@@ -542,7 +606,6 @@
     </data>
     </url>
 
-    
     
     
     

@@ -2,16 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>/posts/b9733a42/</loc>
+    <loc>/about/index.html</loc>
     
-    <lastmod>2018-07-29T08:27:22.917Z</lastmod>
+    <lastmod>2018-08-01T04:11:53.771Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/0/</loc>
+    
+    <lastmod>2018-08-01T01:51:48.795Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/de06556f/</loc>
+    
+    <lastmod>2018-07-31T15:57:44.236Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/aca386f3/</loc>
+    
+    <lastmod>2018-07-31T15:00:42.470Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>/posts/f1601c3e/</loc>
+    
+    <lastmod>2018-07-31T14:57:45.361Z</lastmod>
     
   </url>
   
   <url>
     <loc>/posts/4c3e71da/</loc>
     
-    <lastmod>2018-07-29T08:25:14.899Z</lastmod>
+    <lastmod>2018-07-29T08:27:40.690Z</lastmod>
     
   </url>
   
@@ -201,13 +229,6 @@
     <loc>/categories/index.html</loc>
     
     <lastmod>2018-07-08T17:55:31.566Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>/about/index.html</loc>
-    
-    <lastmod>2018-07-08T17:54:39.919Z</lastmod>
     
   </url>
   
