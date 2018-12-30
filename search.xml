@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mxnet自动求梯度]]></title>
+    <url>%2Fposts%2F7b9a92a9%2F</url>
+    <content type="text"><![CDATA[求梯度实例1234567891011121314151617181920from mxnet import autograd, nd# 对函数y=2x(转置)x 求列向量x的梯度x = nd.arange(4).reshape(4,1)print(x)# 调取attach_grad函数申请计算存储梯度所需的内存x.attach_grad()# record 函数要求mxnet记录求梯度相关的计算with autograd.record(): y = 2 * nd.dot(x.T, x)# 调用backward自动求梯度y.backward()# 梯度应该为4x 验证梯度是否正确assert (x.grad - 4 * x).norm().asscalar() == 0print(x.grad) 训练模式和预测模式调用record函数后，mxnet会记录并计算梯度。此外还将运行模式从预测模式转为训练模式。 12345from mxnet import autogradprint(autograd.is_training())with autograd.record(): print(autograd.is_training()) 对python控制流求梯度123456789101112131415161718192021from mxnet import autograd, nddef f(a): b = a * 2 while b.norm().asscalar() &lt; 1000: b = b * 2 if b.sum().asscalar() &gt; 0: c = b else: c = 100 * b return ca = nd.random.normal(shape=1)a.attach_grad()with autograd.record(): c = f(a)c.backward()print(a.grad == c / a) 上面定义的函数$$f$$。给定任意的a，其输出必然是$$f(a) = x * a$$的形式，其中标量西施x的值取决于输入a，由于$$c = f(a)$$有段a的梯度为x，且值为c/a。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>mxnet</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mxnet数据操作]]></title>
+    <url>%2Fposts%2F81968f16%2F</url>
+    <content type="text"><![CDATA[创建NDArray12345678910111213141516171819202122232425262728from mxnet import nd# 创建行向量x = nd.arange(12)print(x)# 打印实例形状print(x.shape)# 输出 (12,)# 改变实例形状x = x.reshape((3,4))# x = x.reshape((-1,4))print(x)# 创建各项为0 形状为(2,3,4)的张量print(nd.zeros((2,3,4)))# 创建各项为1 形状为(2,3,4)的张量print(nd.ones((2,3,4)))# 创建指定元素的张量y = nd.array([[1,2,3,4], [2,3,5,6], [2,5,7,8]])print(y)# 随机生成 形状为(3,4) 每个元素均服从N(0,1)的正态分布z = nd.random.normal(0, 1, shape=(3,4))print(z) 运算1234567891011121314151617181920212223242526272829303132333435from mxnet import nd# 创建向量x = nd.arange(12)x = x.reshape((3,4))y = nd.array([[1,2,3,4], [2,3,5,6], [2,5,7,8]])# 按元素加法运算print(x+y)# 减法运算print(x-y)# 乘法运算print(x*y)# 除法运算print(x/y)# 指数运算print(y.exp())# 用dot做矩阵运算 x与y的转置相乘 得到3x3的矩阵print(nd.dot(x, y.T))# 两个矩阵连接到一起 在行上 (维度为0)print(nd.concat(x, y, dim=0))# 在列上 (维度为1)print(nd.concat(x, y, dim=1))# 按元素判断是否相等 返回一个新矩阵 (相等为1 不相等为0)print(x == y)# 求和 返回一个元素print(x.sum()) 广播机制当对形状不同的两个NDArray按元素操作后，可能会触发广播（broadcasting）机制：先适当复制元素使得两个NDArray形状相同后再按元素操作。 123456789from mxnet import nda = nd.arange(3).reshape((3,1))b = nd.arange(2).reshape((2,1))print(a,b)# 加法运算print(a + b) 索引1234567891011121314151617from mxnet import ndx = nd.arange(12).reshape((3,4))print(x)# 下标从0开始# 按范围截取 截取1,2两行print(x[1:3])# 访问单个元素x[1,2] = 12print(x)# 截取一部分元素重新赋值x[1:2, :] = 24print(x) 运算的内存开销对每个操作新开内存来存储运算结果。即使像y = x + 这样的运算，都会新建内存，然后y指向新的内存。可以使用python自带的id函数来证明这一点：如果两个实例id一致，那么他们所对应的内存地址相同，反之则不同。 1234567891011121314151617181920212223242526272829from mxnet import nd# 创建向量x = nd.arange(12)x = x.reshape((3,4))y = nd.array([[1,2,3,4], [2,3,5,6], [2,5,7,8]])before = id(y)y = x + yprint(id(y) == before)# False# 指定结果到特定内存 创建了临时内存来存储x+y的结果z = y.zeros_like()before = id(z)z[:] = x + yprint(id(z) == before)# True# 避免临时内存开销nd.elemwise_add(x, y, out=z)print(id(z) == before)# True# 如果x不再被复用 也可以使用x[:] = x + y 或者 x += y来减少内存开销before = id(x)x += yprint(id(x) == before)# True NDArray 和 NumPy互相转化123456789import numpy as npfrom mxnet import ndp = np.ones((2,3))d = nd.array(p)print(d)print(d.asnumpy())]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>mxnet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[一致性Hash算法]]></title>
     <url>%2Fposts%2Faca386f3%2F</url>
     <content type="text"><![CDATA[场景如果有N个缓存服务器，将一个对象缓存到某个服务器上，也许可以这样计算对象的hash值，然后映射到某个cache上： hash(object) % N 这样做存在这两个问题： 如果其中一台服务器发生故障或者被移除，则映射到该服务器上的所有对象都会失效，而且映射公式就变为：hash(object) % (N-1) 相反，如果缓存已经不满足需求，需要增加缓存服务器时，映射公式变为：hash(object) % (N+1) 这就意味着几乎所有的cache都会失效，也有两种解决方案： 清空所有缓存服务器，重新建立缓存。本来缓存就是为了减小数据库压力而设计的，这样做对后端来说，如同一场灾难，严重的可能会到时数据库崩溃。所以，一般应该不会这样做。 夜深人静，流量最小的时候，使缓存服务器中的数据重新分布。 这两种做法的成本都非常大。 一致性hash算法基本原理简单来说，一致性hash算法主要做的就是在添加或者移除一个缓存服务器的时候，能够尽可能小的改变已存在的映射关系。一致性hash算法用的也是取模的方法，只不过是对2^32取模： 先构造一个0～2^32-1的整数环，也称一致性hash环，也可以把它看成一个首尾相接的圆环 根据节点服务器的名称计算hash值，对hash值进行取模，然后将服务器节点放置在hash环上 根据需要缓存数据的key值计算hash值，对hash值进行取模，接着在hash环上顺时针查找离这个值最近的服务器节点 完成映射查找 虚拟节点同样一致性hash算法也有缺点，在实际映射中，有可能缓存服务器会被映射到环上的其中一段弧上，这就造成大部分对象可能会集中缓存到某一台服务器上，这就诞生了虚拟节点。 虚拟节点就是实际节点的一个影子，或者说是复制品，一个实际节点对应多个虚拟节点，同样将虚拟节点映射到hash环上，这样一来缓存的分布就均衡多了，减少hash环的偏斜所带来的影响。 hash环上的节点越多，缓存被均匀分布的概率也就越大]]></content>
@@ -45,8 +69,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -119,8 +143,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>

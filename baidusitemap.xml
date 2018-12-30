@@ -3,6 +3,50 @@
 
 
     
+  <url>
+    <loc>/posts/7b9a92a9/</loc>
+    <lastmod>2018-12-30T06:47:28.592Z</lastmod>
+    <data>
+        <display>
+        <title>mxnet自动求梯度</title>
+        <pubTime>2018-12-30T06:06:21.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/81968f16/</loc>
+    <lastmod>2018-12-30T06:04:49.016Z</lastmod>
+    <data>
+        <display>
+        <title>mxnet数据操作</title>
+        <pubTime>2018-12-30T04:48:36.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
     
   <url>
     <loc>/posts/b9733a42/</loc>
@@ -52,9 +96,9 @@
         <title>JVM类加载机制</title>
         <pubTime>2017-11-01T11:19:46.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>jvm</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -144,9 +188,9 @@
         <title>关于JVM</title>
         <pubTime>2017-11-28T12:52:44.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>jvm</tag>
+         
+        <tag>java</tag>
          
          
            
