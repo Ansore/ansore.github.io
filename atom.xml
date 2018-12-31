@@ -321,9 +321,9 @@
     
       <category term="编程" scheme="/tags/%E7%BC%96%E7%A8%8B/"/>
     
-      <category term="JAVA" scheme="/tags/JAVA/"/>
-    
       <category term="设计模式" scheme="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="JAVA" scheme="/tags/JAVA/"/>
     
   </entry>
   
