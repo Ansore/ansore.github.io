@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>/posts/40997091/</loc>
+    <lastmod>2018-12-31T07:43:30.636Z</lastmod>
+    <data>
+        <display>
+        <title>线性回归</title>
+        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/posts/7b9a92a9/</loc>
-    <lastmod>2018-12-30T06:47:28.592Z</lastmod>
+    <lastmod>2018-12-30T06:56:09.492Z</lastmod>
     <data>
         <display>
         <title>mxnet自动求梯度</title>
@@ -27,7 +49,7 @@
     
   <url>
     <loc>/posts/81968f16/</loc>
-    <lastmod>2018-12-30T06:04:49.016Z</lastmod>
+    <lastmod>2018-12-30T06:53:43.075Z</lastmod>
     <data>
         <display>
         <title>mxnet数据操作</title>
@@ -181,16 +203,16 @@
 
     
   <url>
-    <loc>/posts/df4b4949/</loc>
+    <loc>/posts/b5ea2dc8/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
     <data>
         <display>
-        <title>关于JVM</title>
-        <pubTime>2017-11-28T12:52:44.000Z</pubTime>
+        <title>java中Thread和Runnable实现多线程的区别</title>
+        <pubTime>2017-07-28T07:18:29.000Z</pubTime>
         
-        <tag>jvm</tag>
-         
         <tag>java</tag>
+         
+        <tag>多线程</tag>
          
          
            
@@ -203,16 +225,16 @@
 
     
   <url>
-    <loc>/posts/b5ea2dc8/</loc>
+    <loc>/posts/df4b4949/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
     <data>
         <display>
-        <title>java中Thread和Runnable实现多线程的区别</title>
-        <pubTime>2017-07-28T07:18:29.000Z</pubTime>
+        <title>关于JVM</title>
+        <pubTime>2017-11-28T12:52:44.000Z</pubTime>
         
-        <tag>java</tag>
+        <tag>jvm</tag>
          
-        <tag>多线程</tag>
+        <tag>java</tag>
          
          
            
@@ -280,9 +302,9 @@
         
         <tag>算法</tag>
          
-        <tag>编程</tag>
-         
         <tag>C/C++</tag>
+         
+        <tag>编程</tag>
          
          
            
@@ -326,9 +348,9 @@
         <title>策略模式(Strategy Pattern)</title>
         <pubTime>2016-10-31T10:47:37.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>编程</tag>
+         
+        <tag>java</tag>
          
         <tag>设计模式</tag>
          
@@ -394,9 +416,9 @@
         <title>初识WebService</title>
         <pubTime>2017-03-07T08:46:52.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>编程</tag>
+         
+        <tag>java</tag>
          
         <tag>WebService</tag>
          
@@ -442,9 +464,9 @@
         
         <tag>算法</tag>
          
-        <tag>java</tag>
-         
         <tag>编程</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -464,9 +486,9 @@
         <title>Spring MVC与Socket</title>
         <pubTime>2016-09-26T10:19:05.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>编程</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -528,11 +550,11 @@
         <title>IP与域名的相互转换</title>
         <pubTime>2016-10-15T10:35:36.000Z</pubTime>
         
-        <tag>编程</tag>
-         
         <tag>C/C++</tag>
          
         <tag>Linux</tag>
+         
+        <tag>编程</tag>
          
          
            
@@ -554,9 +576,9 @@
         
         <tag>算法</tag>
          
-        <tag>编程</tag>
-         
         <tag>C/C++</tag>
+         
+        <tag>编程</tag>
          
          
            

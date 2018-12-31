@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="求梯度实例1234567891011121314151617181920from mxnet import autograd, nd# 对函数y=2x(转置)x 求列向量x的梯度x = nd.arange(4).reshape(4,1)print(x)# 调取attach_grad函数申请计算存储梯度所需的内存x.attach_grad()# record 函数要求mxnet记录求梯度相关的计算w">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-12-30T06:47:28.592Z">
+<meta property="og:updated_time" content="2018-12-30T06:56:09.492Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mxnet自动求梯度">
 <meta name="twitter:description" content="求梯度实例1234567891011121314151617181920from mxnet import autograd, nd# 对函数y=2x(转置)x 求列向量x的梯度x = nd.arange(4).reshape(4,1)print(x)# 调取attach_grad函数申请计算存储梯度所需的内存x.attach_grad()# record 函数要求mxnet记录求梯度相关的计算w">
@@ -469,7 +469,7 @@
 <h3 id="训练模式和预测模式"><a href="#训练模式和预测模式" class="headerlink" title="训练模式和预测模式"></a>训练模式和预测模式</h3><p>调用record函数后，mxnet会记录并计算梯度。此外还将运行模式从预测模式转为训练模式。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd</span><br><span class="line"></span><br><span class="line">print(autograd.is_training())</span><br><span class="line"><span class="keyword">with</span> autograd.record():</span><br><span class="line">    print(autograd.is_training())</span><br></pre></td></tr></table></figure>
 <h3 id="对python控制流求梯度"><a href="#对python控制流求梯度" class="headerlink" title="对python控制流求梯度"></a>对python控制流求梯度</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, nd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a)</span>:</span></span><br><span class="line">    b = a * <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> b.norm().asscalar() &lt; <span class="number">1000</span>:</span><br><span class="line">        b = b * <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> b.sum().asscalar() &gt; <span class="number">0</span>:</span><br><span class="line">        c = b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        c = <span class="number">100</span> * b</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line">a = nd.random.normal(shape=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">a.attach_grad()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> autograd.record():</span><br><span class="line">    c = f(a)</span><br><span class="line"></span><br><span class="line">c.backward()</span><br><span class="line">print(a.grad == c / a)</span><br></pre></td></tr></table></figure>
-<p>上面定义的函数$$f$$。给定任意的a，其输出必然是$$f(a) = x * a$$的形式，其中标量西施x的值取决于输入a，由于$$c = f(a)$$有段a的梯度为x，且值为c/a。</p>
+<p>上面定义的函数$f$。给定任意的a，其输出必然是$f(a) = x * a$的形式，其中标量西施x的值取决于输入a，由于$c = f(a)$有段a的梯度为x，且值为c/a。</p>
 
       
     </div>
@@ -522,6 +522,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/posts/40997091/" rel="prev" title="线性回归">
+                线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -609,7 +613,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">28</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -715,7 +719,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">19.7k</span>
+    <span title="Site words total count">21.6k</span>
   
 </div>
 
