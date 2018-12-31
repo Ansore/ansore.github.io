@@ -2021,7 +2021,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #41b4ff;
+  background: #047dff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3223,7 +3223,7 @@ img:hover {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .main-inner {
-  opacity: 0.8;
+  opacity: 1;
 }
 body {
   background-image: url("/images/background.jpg");
