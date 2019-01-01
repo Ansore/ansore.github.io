@@ -4,12 +4,78 @@
 
     
   <url>
-    <loc>/posts/fb40efc5/</loc>
+    <loc>/posts/9558f536/</loc>
+    <lastmod>2019-01-01T08:18:30.859Z</lastmod>
+    <data>
+        <display>
+        <title>Softmax回归</title>
+        <pubTime>2019-01-01T06:25:19.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/593cfb3c/</loc>
+    <lastmod>2019-01-01T06:22:54.759Z</lastmod>
+    <data>
+        <display>
+        <title>线性回归的Gluon实现</title>
+        <pubTime>2019-01-01T05:18:12.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/40997091/</loc>
+    <lastmod>2019-01-01T05:13:19.647Z</lastmod>
+    <data>
+        <display>
+        <title>线性回归</title>
+        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>/posts/e26687da/</loc>
     <lastmod>2018-12-31T08:16:18.313Z</lastmod>
     <data>
         <display>
-        <title>拓扑排序</title>
-        <pubTime>2018-03-24T07:55:31.000Z</pubTime>
+        <title>求多项式的根</title>
+        <pubTime>2018-03-22T07:55:31.000Z</pubTime>
         
         <tag>算法</tag>
          
@@ -26,12 +92,12 @@
 
     
   <url>
-    <loc>/posts/e26687da/</loc>
+    <loc>/posts/fb40efc5/</loc>
     <lastmod>2018-12-31T08:16:18.313Z</lastmod>
     <data>
         <display>
-        <title>求多项式的根</title>
-        <pubTime>2018-03-22T07:55:31.000Z</pubTime>
+        <title>拓扑排序</title>
+        <pubTime>2018-03-24T07:55:31.000Z</pubTime>
         
         <tag>算法</tag>
          
@@ -63,28 +129,6 @@
            
              
               <breadCrumb title="编程" url="/categories/%E7%BC%96%E7%A8%8B/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/posts/40997091/</loc>
-    <lastmod>2018-12-31T07:43:50.329Z</lastmod>
-    <data>
-        <display>
-        <title>线性回归</title>
-        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>mxnet</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
           
         </display>
     </data>
@@ -184,9 +228,9 @@
         <title>JVM类加载机制</title>
         <pubTime>2017-11-01T11:19:46.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>jvm</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -230,9 +274,9 @@
         
         <tag>编程</tag>
          
-        <tag>设计模式</tag>
-         
         <tag>JAVA</tag>
+         
+        <tag>设计模式</tag>
          
          
            
@@ -298,9 +342,9 @@
         <title>关于JVM</title>
         <pubTime>2017-11-28T12:52:44.000Z</pubTime>
         
-        <tag>java</tag>
-         
         <tag>jvm</tag>
+         
+        <tag>java</tag>
          
          
            
@@ -392,9 +436,9 @@
         
         <tag>编程</tag>
          
-        <tag>设计模式</tag>
-         
         <tag>JAVA</tag>
+         
+        <tag>设计模式</tag>
          
          
            
