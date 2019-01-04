@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T01:54:11.498Z">
+<meta property="og:updated_time" content="2019-01-04T02:02:53.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax回归">
 <meta name="twitter:description" content="和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$">
@@ -485,7 +485,7 @@
 <p>$$argmax_io_i=argmax_i\hat{y}_i$$</p>
 <p>因此softmax运算不改变预测类别输出。</p>
 <h3 id="单样本分类的矢量计算表达式"><a href="#单样本分类的矢量计算表达式" class="headerlink" title="单样本分类的矢量计算表达式"></a>单样本分类的矢量计算表达式</h3><p>假设softmax回归的权重和偏置参数分别为</p>
-<p>$$W = \left[<br>\begin{matrix}<br>w_{11} &amp; w_{12} &amp; w_{13} \ w_{21} &amp; w_{22} &amp; w_{23} \ w_{31} &amp; w_{32} &amp; w_{33} \ w_{41} &amp; w_{42} &amp; w_{43}<br>\end{matrix}\right] $$</p>
+<p>$$W = \left[<br>\begin{matrix}<br>w_{11} &amp; w_{12} &amp; w_{13} \<br>w_{21} &amp; w_{22} &amp; w_{23} \<br>w_{31} &amp; w_{32} &amp; w_{33} \<br>w_{41} &amp; w_{42} &amp; w_{43}<br>\end{matrix}\right] ​$$</p>
 <p>$$b = \left[\begin{matrix} b_1 &amp; b_2 &amp; b_3 \end{matrix}\right]$$</p>
 <p>设宽和高分别为2个像素的图像样本$i$的特征为</p>
 <p>$$x^{(i)} = \left[\begin{matrix} x_1^{(i)} &amp; x_2^{(i)} &amp; x_3^{(i)} &amp; x_4^{(i)} \end{matrix}\right]$$</p>

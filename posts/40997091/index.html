@@ -90,7 +90,7 @@
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="简介在统计学中，线性回归（Linear regression）是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。只有一个自变量的情况称为简单回归，大于一个自变量情况的叫做多元回归。 在线性回归中，数据使用线性预测来建模，并且未知的模型参数也是通过数据来估计的。这些模型被叫做线性模型。 模型以预测房价为">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T01:56:14.681Z">
+<meta property="og:updated_time" content="2019-01-04T02:02:08.332Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性回归">
 <meta name="twitter:description" content="简介在统计学中，线性回归（Linear regression）是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。只有一个自变量的情况称为简单回归，大于一个自变量情况的叫做多元回归。 在线性回归中，数据使用线性预测来建模，并且未知的模型参数也是通过数据来估计的。这些模型被叫做线性模型。 模型以预测房价为">
@@ -428,7 +428,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,957
+                  1,953
                 </span>
               
 
@@ -481,7 +481,7 @@
 <p>$$l(w_1,w_2,b)=\frac{1}{n}\sum_{i=1}^nl^{(i)}(w_1,w_2,b)$$</p>
 <p>$$=\frac{1}{n}\sum_{i=1}^n\frac{1}{2}(\sideset{}{_1^{(i)}}xw_1+\sideset{}{_2^{(i)}}xw_2+b-y^{(i)})^2$$</p>
 <p>在模型训练中，我们希望找出一组模型参数，来使得训练样本平均损失最小：</p>
-<p>$$\sideset{}{_1^<em>}w,\sideset{}{_2^</em>}w,b^* = argmin_{w_1,w_2,b} l(w_1,w_2,b)$$</p>
+<p>$$w_1^<em>,w_2^</em>,b^* = argmin_{w_1,w_2,b} l(w_1,w_2,b)$$</p>
 <h3 id="优化算法"><a href="#优化算法" class="headerlink" title="优化算法"></a>优化算法</h3><p>当模型和损失函数形式较为简单时,上面的误差最小化问题的解可以直接用公式表达出来。这类解叫做解析解(analytical solution)。本节使用的线性回归和平方误差刚好属于这个范畴。然而,大多数深度学习模型并没有解析解,只能通过优化算法有限次迭代模型参数来尽可能降低损失函<br>数的值。这类解叫做数值解(numerical solution)。<br>在求数值解的优化算法中,小批量随机梯度下降(mini-batch stochastic gradient descent)在深度学习中被广泛使用。它的算法很简单:我们先选取一组模型参数的初始值,例如随机选取;接下来对参数进行多次迭代,使得每次迭代都可能降低损失函数的值。在每次迭代中,我们先随机均匀采样一个由固定数目训练数据样本所组成的小批量(mini-batch)B;然后求小批量中数据样本的平均损失有关模型参数的导数(梯度);最后用此结果与预先设定的一个正数的乘积作为模型参数在本次迭代的减小量。</p>
 <h3 id="模型预测"><a href="#模型预测" class="headerlink" title="模型预测"></a>模型预测</h3><p>模型训练完成以后，可以得到一个对最优解的近似。然后可以用模型来估算训练数据集以外的任意一栋房屋的房价。这里估算也叫模型预测、模型推断和模型测试。</p>
 <p>我们应尽可能采用矢量计算，以提升计算效率。</p>
