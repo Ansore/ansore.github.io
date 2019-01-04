@@ -4,12 +4,12 @@
 
     
   <url>
-    <loc>/posts/9558f536/</loc>
-    <lastmod>2019-01-04T02:02:53.837Z</lastmod>
+    <loc>/posts/40997091/</loc>
+    <lastmod>2019-01-04T02:23:10.283Z</lastmod>
     <data>
         <display>
-        <title>Softmax回归</title>
-        <pubTime>2019-01-01T06:25:19.000Z</pubTime>
+        <title>线性回归</title>
+        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
         
         <tag>机器学习</tag>
          
@@ -26,12 +26,12 @@
 
     
   <url>
-    <loc>/posts/40997091/</loc>
-    <lastmod>2019-01-04T02:02:08.332Z</lastmod>
+    <loc>/posts/9558f536/</loc>
+    <lastmod>2019-01-04T02:06:22.750Z</lastmod>
     <data>
         <display>
-        <title>线性回归</title>
-        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
+        <title>Softmax回归</title>
+        <pubTime>2019-01-01T06:25:19.000Z</pubTime>
         
         <tag>机器学习</tag>
          
