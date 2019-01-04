@@ -4,8 +4,30 @@
 
     
   <url>
+    <loc>/posts/40997091/</loc>
+    <lastmod>2019-01-04T01:56:14.681Z</lastmod>
+    <data>
+        <display>
+        <title>线性回归</title>
+        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
+        
+        <tag>机器学习</tag>
+         
+        <tag>mxnet</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>/posts/9558f536/</loc>
-    <lastmod>2019-01-01T08:18:30.859Z</lastmod>
+    <lastmod>2019-01-04T01:54:11.498Z</lastmod>
     <data>
         <display>
         <title>Softmax回归</title>
@@ -27,7 +49,7 @@
     
   <url>
     <loc>/posts/593cfb3c/</loc>
-    <lastmod>2019-01-01T06:22:54.759Z</lastmod>
+    <lastmod>2019-01-01T08:18:52.932Z</lastmod>
     <data>
         <display>
         <title>线性回归的Gluon实现</title>
@@ -48,34 +70,12 @@
 
     
   <url>
-    <loc>/posts/40997091/</loc>
-    <lastmod>2019-01-01T05:13:19.647Z</lastmod>
-    <data>
-        <display>
-        <title>线性回归</title>
-        <pubTime>2018-12-31T04:44:05.000Z</pubTime>
-        
-        <tag>机器学习</tag>
-         
-        <tag>mxnet</tag>
-         
-         
-           
-             
-              <breadCrumb title="机器学习" url="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>/posts/e26687da/</loc>
+    <loc>/posts/fb40efc5/</loc>
     <lastmod>2018-12-31T08:16:18.313Z</lastmod>
     <data>
         <display>
-        <title>求多项式的根</title>
-        <pubTime>2018-03-22T07:55:31.000Z</pubTime>
+        <title>拓扑排序</title>
+        <pubTime>2018-03-24T07:55:31.000Z</pubTime>
         
         <tag>算法</tag>
          
@@ -92,12 +92,12 @@
 
     
   <url>
-    <loc>/posts/fb40efc5/</loc>
+    <loc>/posts/e26687da/</loc>
     <lastmod>2018-12-31T08:16:18.313Z</lastmod>
     <data>
         <display>
-        <title>拓扑排序</title>
-        <pubTime>2018-03-24T07:55:31.000Z</pubTime>
+        <title>求多项式的根</title>
+        <pubTime>2018-03-22T07:55:31.000Z</pubTime>
         
         <tag>算法</tag>
          
@@ -228,9 +228,9 @@
         <title>JVM类加载机制</title>
         <pubTime>2017-11-01T11:19:46.000Z</pubTime>
         
-        <tag>jvm</tag>
-         
         <tag>java</tag>
+         
+        <tag>jvm</tag>
          
          
            
@@ -313,16 +313,16 @@
 
     
   <url>
-    <loc>/posts/b5ea2dc8/</loc>
+    <loc>/posts/df4b4949/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
     <data>
         <display>
-        <title>java中Thread和Runnable实现多线程的区别</title>
-        <pubTime>2017-07-28T07:18:29.000Z</pubTime>
+        <title>关于JVM</title>
+        <pubTime>2017-11-28T12:52:44.000Z</pubTime>
         
         <tag>java</tag>
          
-        <tag>多线程</tag>
+        <tag>jvm</tag>
          
          
            
@@ -335,16 +335,16 @@
 
     
   <url>
-    <loc>/posts/df4b4949/</loc>
+    <loc>/posts/b5ea2dc8/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
     <data>
         <display>
-        <title>关于JVM</title>
-        <pubTime>2017-11-28T12:52:44.000Z</pubTime>
+        <title>java中Thread和Runnable实现多线程的区别</title>
+        <pubTime>2017-07-28T07:18:29.000Z</pubTime>
         
-        <tag>jvm</tag>
-         
         <tag>java</tag>
+         
+        <tag>多线程</tag>
          
          
            
