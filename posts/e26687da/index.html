@@ -82,18 +82,18 @@
 
 
 
-<meta name="description" content="问题描述求多项式 $$ax^{11}-3x^8-5x^3-1=0$$ 的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
+<meta name="description" content="问题描述求多项式 ax^{11}-3x^8-5x^3-1=0的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
 <meta name="keywords" content="算法,编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="求多项式的根">
 <meta property="og:url" content="/posts/e26687da/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="问题描述求多项式 $$ax^{11}-3x^8-5x^3-1=0$$ 的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
+<meta property="og:description" content="问题描述求多项式 ax^{11}-3x^8-5x^3-1=0的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-12-31T08:16:18.313Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="求多项式的根">
-<meta name="twitter:description" content="问题描述求多项式 $$ax^{11}-3x^8-5x^3-1=0$$ 的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
+<meta name="twitter:description" content="问题描述求多项式 ax^{11}-3x^8-5x^3-1=0的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。">
 
 
 
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  263
+                  255
                 </span>
               
 
@@ -459,8 +459,7 @@
 
       
         <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>求多项式</p>
-<p>$$ax^{11}-3x^8-5x^3-1=0$$</p>
-<p>的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。</p>
+<script type="math/tex; mode=display">ax^{11}-3x^8-5x^3-1=0</script><p>的根，要求a用屏幕进行输入，根的精度为0.0000001，并且说可能无解。</p>
 <a id="more"></a>
 <h3 id="C语言实现"><a href="#C语言实现" class="headerlink" title="C语言实现"></a>C语言实现</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 牛顿迭代求根</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">//带入原函数后所得的值</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a*<span class="built_in">pow</span>(x,<span class="number">11</span>)<span class="number">-3</span>*<span class="built_in">pow</span>(x,<span class="number">8</span>)<span class="number">-5</span>*<span class="built_in">pow</span>(x,<span class="number">3</span>)<span class="number">-1</span>)/<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//带入一阶导函数后所得的值</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">f1</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a*<span class="number">11</span>*<span class="built_in">pow</span>(x,<span class="number">10</span>)<span class="number">-24</span>*<span class="built_in">pow</span>(x,<span class="number">7</span>)<span class="number">-15</span>*<span class="built_in">pow</span>(x,<span class="number">2</span>))/<span class="number">1.0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//牛顿迭代函数</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">F</span><span class="params">(<span class="keyword">double</span> a, <span class="keyword">double</span> x)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line"> <span class="keyword">double</span> x1;</span><br><span class="line"> x1=x<span class="number">-1.0</span>*f(a, x)/f1(a, x);</span><br><span class="line"> <span class="keyword">return</span> (x1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// ax^11 - 3x^8 - 5x^3 - 1 = 0</span></span><br><span class="line">    <span class="keyword">double</span> x0=<span class="number">20.0</span>,D_value=<span class="number">0.0</span>,x1=<span class="number">0.0</span>,a=<span class="number">0.0</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"ax^11 - 3x^8 - 5x^3 - 1 = 0\n请输入a: "</span>);</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%lf"</span>, &amp;a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n\na为:%lf"</span>, a);</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        x1=F(a, x0);</span><br><span class="line">        D_value=<span class="built_in">fabs</span>(x1-x0);</span><br><span class="line">        x0=x1;</span><br><span class="line">    &#125; <span class="keyword">while</span>((D_value&lt;=<span class="number">0.0000001</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n\n结果为:%lf"</span>, D_value);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\n\n"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -710,7 +709,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.2k</span>
+    <span title="Site words total count">25.8k</span>
   
 </div>
 

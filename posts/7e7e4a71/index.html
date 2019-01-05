@@ -82,18 +82,18 @@
 
 
 
-<meta name="description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：    标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Co">
+<meta name="description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：     标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 C">
 <meta name="keywords" content="机器学习,mxnet">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fashion-MNIST数据集">
 <meta property="og:url" content="/posts/7e7e4a71/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：    标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Co">
+<meta property="og:description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：     标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 C">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-05T03:07:53.625Z">
+<meta property="og:updated_time" content="2019-01-05T03:09:28.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fashion-MNIST数据集">
-<meta name="twitter:description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：    标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 Co">
+<meta name="twitter:description" content="简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片  类别如下：     标注编号 描述     0 T-shirt/top   1 Trouser   2 Pullover   3 Dress   4 C">
 
 
 
@@ -467,6 +467,7 @@
 <li>灰度图片</li>
 </ul>
 <p>类别如下：</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -517,6 +518,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <h3 id="获取数据集"><a href="#获取数据集" class="headerlink" title="获取数据集"></a>获取数据集</h3><p>通过mxnet.gluon的data包来下载这个数据集。第一次调用会从网上获取数据。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet.gluon <span class="keyword">import</span> data <span class="keyword">as</span> gdata</span><br><span class="line"></span><br><span class="line">mnist_train = gdata.vision.FashionMNIST(train=<span class="keyword">True</span>)</span><br><span class="line">mnist_test = gdata.vision.FashionMNIST(train=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">print(len(mnist_train))</span><br><span class="line">print(len(mnist_test))</span><br><span class="line"></span><br><span class="line">feature, label = mnist_train[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">print(feature.shape, label.dtype)</span><br></pre></td></tr></table></figure>
 <p>mxnet默认是从国外下载数据集，所以速度特别慢，可以在启动notebook时指定nexnet的国内镜像。</p>
@@ -769,7 +771,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.2k</span>
+    <span title="Site words total count">25.8k</span>
   
 </div>
 

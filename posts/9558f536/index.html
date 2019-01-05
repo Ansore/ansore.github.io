@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,499
+                  1,284
                 </span>
               
 
@@ -437,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  5
                 </span>
               
             </div>
@@ -462,43 +462,30 @@
 <h3 id="分类问题"><a href="#分类问题" class="headerlink" title="分类问题"></a>分类问题</h3><p>假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$y_1,y_2,y_3$。</p>
 <p>通常用离散的数值来表示类别，例如$y_1=1,y_2=2,y_3=3$。这样，一张图像的标签就为1,2和3这三个数值中的一个，虽然可以使回归模型来建模，并叫预测值就近定点化到1,2和3这三个数值中，但是这种连续值到离散值的转化会影响到分类的质量。因此，一般使用更加适合的离散值输出的模型来解决分类问题。</p>
 <h3 id="Softmax回归模型"><a href="#Softmax回归模型" class="headerlink" title="Softmax回归模型"></a>Softmax回归模型</h3><p>softmax回归跟线性回归一样将输入特征与权重做线性叠加。与回归模型的一个主要区别是，softmax回归的输出值个数等于标签里的类别数。因为一共有4个特征和3种输出动物类别，所以权重包含12个标量（带下标的$w$）、偏置包含三个标量（带下标的$b$），且对每一个输入计算$o_1,o_2,o_3$这三个输出：</p>
-<p>$$o_1 = x_1w_{11}+x_2w_{21}+x_3w_{31}+x_4w_{41}+b_1$$</p>
-<p>$$o_2 = x_1w_{12}+x_2w_{22}+x_3w_{32}+x_4w_{42}+b_2$$</p>
-<p>$$o_3 = x_1w_{13}+x_2w_{23}+x_3w_{33}+x_4w_{43}+b_3$$</p>
-<p>与线性回归一样，softmax回归也是一个单层网络。每个输出都依赖于所有的输入，softmax回归的输出层也是一个全连接层。</p>
+<script type="math/tex; mode=display">o_1 = x_1w_{11}+x_2w_{21}+x_3w_{31}+x_4w_{41}+b_1</script><script type="math/tex; mode=display">o_2 = x_1w_{12}+x_2w_{22}+x_3w_{32}+x_4w_{42}+b_2</script><script type="math/tex; mode=display">o_3 = x_1w_{13}+x_2w_{23}+x_3w_{33}+x_4w_{43}+b_3</script><p>与线性回归一样，softmax回归也是一个单层网络。每个输出都依赖于所有的输入，softmax回归的输出层也是一个全连接层。</p>
 <h3 id="softmax运算"><a href="#softmax运算" class="headerlink" title="softmax运算"></a>softmax运算</h3><p>既然分类问题需要得到离散的预测输出，一个简单的办法是将输出值$o_i$当做预测类别$i$的置信度，并将值最大的输出作为对应的类别预测输出，即输出$argmax_io_i$。</p>
 <p>然而，直接使用输出层的输出有两点问题。一方面，由于输出层的输出值的范围不确定，难以直观上判断这些值的意义。另一方面，由于真是标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量。</p>
 <p>softmax运算符（softmax operator）解决了这两个问题。它通过一下方式将输出值变成值为正且和为1的概率分布：</p>
-<p>$$\hat{y1},\hat{y2},\hat{y2} = softmax(o_1,o_2,o_3)$$</p>
-<p>其中：</p>
-<p>$$\hat{y1} = \frac{\exp(o_1)}{\sum_{i=1}^3\exp(o_i)}$$</p>
-<p>$$\hat{y2} = \frac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)}$$</p>
-<p>$$\hat{y3} = \frac{\exp(o_3)}{\sum_{i=1}^3\exp(o_i)}$$</p>
-<p>容易看出$\hat{y_1}+\hat{y_2}+\hat{y_3}=1$且$0&lt;=\hat{y_1},\hat{y_2},\hat{y_3}&lt;=1$，因此$\hat{y_1},\hat{y_2},\hat{y_3}$是一个合法的概率分布。此外</p>
-<p>$$argmax_io_i=argmax_i\hat{y}_i$$</p>
-<p>因此softmax运算不改变预测类别输出。</p>
+<script type="math/tex; mode=display">\hat{y1},\hat{y2},\hat{y2} = softmax(o_1,o_2,o_3)</script><p>其中：</p>
+<script type="math/tex; mode=display">\hat{y1} = \frac{\exp(o_1)}{\sum_{i=1}^3\exp(o_i)}</script><script type="math/tex; mode=display">\hat{y2} = \frac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)}</script><script type="math/tex; mode=display">\hat{y3} = \frac{\exp(o_3)}{\sum_{i=1}^3\exp(o_i)}</script><p>容易看出$\hat{y_1}+\hat{y_2}+\hat{y_3}=1$且$0&lt;=\hat{y_1},\hat{y_2},\hat{y_3}&lt;=1$，因此$\hat{y_1},\hat{y_2},\hat{y_3}$是一个合法的概率分布。此外</p>
+<script type="math/tex; mode=display">argmax_io_i=argmax_i\hat{y}_i</script><p>因此softmax运算不改变预测类别输出。</p>
 <h3 id="单样本分类的矢量计算表达式"><a href="#单样本分类的矢量计算表达式" class="headerlink" title="单样本分类的矢量计算表达式"></a>单样本分类的矢量计算表达式</h3><p>假设softmax回归的权重和偏置参数分别为</p>
-<p>$$W = \left[<br>\begin{matrix}<br>w_{11} &amp; w_{12} &amp; w_{13} \<br>w_{21} &amp; w_{22} &amp; w_{23} \<br>w_{31} &amp; w_{32} &amp; w_{33} \<br>w_{41} &amp; w_{42} &amp; w_{43}<br>\end{matrix}\right] $$</p>
-<p>$$b = \left[\begin{matrix} b_1 &amp; b_2 &amp; b_3 \end{matrix}\right]$$</p>
-<p>设宽和高分别为2个像素的图像样本$i$的特征为</p>
-<p>$$x^{(i)} = \left[\begin{matrix} x_1^{(i)} &amp; x_2^{(i)} &amp; x_3^{(i)} &amp; x_4^{(i)} \end{matrix}\right]$$</p>
-<p>输出层为</p>
-<p>$$o^{(i)} = \left[\begin{matrix} o_1^{(i)} &amp; o_2^{(i)} &amp; o_3^{(i)} \end{matrix}\right]$$</p>
-<p>预测概率分布为</p>
-<p>$$\hat{y}^{(i)} = \left[\begin{matrix} \hat{y}_1^{(i)} &amp; \hat{y}_2^{(i)} &amp; \hat{y}_3^{(i)} \end{matrix}\right]$$</p>
-<p>softmax对回归样本$i$分类的矢量计算表达式为</p>
-<p>$$0^{(i)} = x^{(i)}W + b$$</p>
-<p>$$\hat{y}^{(i)} = sfotmax(o^{(i)})$$</p>
-<h3 id="小批量样本分类的矢量计算表达式"><a href="#小批量样本分类的矢量计算表达式" class="headerlink" title="小批量样本分类的矢量计算表达式"></a>小批量样本分类的矢量计算表达式</h3><p>给定一个小批量样本，其批量大小为$n$，输入个数（特征数）为$d$，输出个数（类别数）为$q$。设批量特征为$X \in R^{n<em>d}$。假设softmax回归的权重和偏置参数分别为$W \in R^{d</em>q}, b \in R^{1*q}$。softmax回归的矢量表达式为</p>
-<p>$$O = XW + b$$</p>
-<p>$$\hat{Y} = softmax(O)$$</p>
-<p>其中加法运算使用了广播机制，$O,\hat{Y} \in R^{n*q}$且两个矩阵的第$i$行分别为样本$i$的输出$o^{i}$和概率分布$\hat{y}^{(i)}$</p>
+<script type="math/tex; mode=display">W = \left[
+\begin{matrix}
+w_{11} & w_{12} & w_{13} \\ 
+w_{21} & w_{22} & w_{23} \\ 
+w_{31} & w_{32} & w_{33} \\ 
+w_{41} & w_{42} & w_{43}
+\end{matrix}\right]</script><script type="math/tex; mode=display">b = \left[\begin{matrix} b_1 & b_2 & b_3 \end{matrix}\right]</script><p>设宽和高分别为2个像素的图像样本$i$的特征为</p>
+<script type="math/tex; mode=display">x^{(i)} = \left[\begin{matrix} x_1^{(i)} & x_2^{(i)} & x_3^{(i)} & x_4^{(i)} \end{matrix}\right]</script><p>输出层为</p>
+<script type="math/tex; mode=display">o^{(i)} = \left[\begin{matrix} o_1^{(i)} & o_2^{(i)} & o_3^{(i)} \end{matrix}\right]</script><p>预测概率分布为</p>
+<script type="math/tex; mode=display">\hat{y}^{(i)} = \left[\begin{matrix} \hat{y}_1^{(i)} & \hat{y}_2^{(i)} & \hat{y}_3^{(i)} \end{matrix}\right]</script><p>softmax对回归样本$i$分类的矢量计算表达式为</p>
+<script type="math/tex; mode=display">0^{(i)} = x^{(i)}W + b</script><script type="math/tex; mode=display">\hat{y}^{(i)} = sfotmax(o^{(i)})</script><h3 id="小批量样本分类的矢量计算表达式"><a href="#小批量样本分类的矢量计算表达式" class="headerlink" title="小批量样本分类的矢量计算表达式"></a>小批量样本分类的矢量计算表达式</h3><p>给定一个小批量样本，其批量大小为$n$，输入个数（特征数）为$d$，输出个数（类别数）为$q$。设批量特征为$X \in R^{n<em>d}$。假设softmax回归的权重和偏置参数分别为$W \in R^{d</em>q}, b \in R^{1*q}$。softmax回归的矢量表达式为</p>
+<script type="math/tex; mode=display">O = XW + b</script><script type="math/tex; mode=display">\hat{Y} = softmax(O)</script><p>其中加法运算使用了广播机制，$O,\hat{Y} \in R^{n*q}$且两个矩阵的第$i$行分别为样本$i$的输出$o^{i}$和概率分布$\hat{y}^{(i)}$</p>
 <h3 id="交叉熵损失函数"><a href="#交叉熵损失函数" class="headerlink" title="交叉熵损失函数"></a>交叉熵损失函数</h3><p>“交叉熵”（cross-entropy），产生与信息论，简单来说，交叉熵是衡量两个概率分布p和q之间的相似性，其定义如下：</p>
-<p>$$ H_{y’}(y) = -\sum_i{y’_i\log y_i} $$</p>
-<p>y是预测的概率分布，$y’$是实际的分布（one-hot）</p>
+<script type="math/tex; mode=display">H_{y'}(y) = -\sum_i{y'_i\log y_i}</script><p>y是预测的概率分布，$y’$是实际的分布（one-hot）</p>
 <p>或是</p>
-<p>$$H(y^{(i)}, \hat{y}^{(i)}) = -\sum_{j=1}^q y_j^{(i)}\log \hat{y}_j^{(i)}$$</p>
-<p>其中带下标的$y_j^{(i)}$是向量$y^{(i)}$中非0即1的元素，需要将它与样本$i$类别的离散数值，即不带下标的$y^{(i)}$区分。向量$y^{(i)}$中只有第$y^{(i)}$个元素$y^{(i)}_{y^{(i)}}$为1，其余全是0。也就是说，交叉熵只关心对正确类别的预测概率，因为只要其值足够大，就可以确保分类结果正确。当然，如果一个样本有多个标签时，就不能做这一步简化了。但即便对这种情况，交叉熵同样只关心对图像中出现的物体类别的预测。</p>
+<script type="math/tex; mode=display">H(y^{(i)}, \hat{y}^{(i)}) = -\sum_{j=1}^q y_j^{(i)}\log \hat{y}_j^{(i)}</script><p>其中带下标的$y<em>j^{(i)}$是向量$y^{(i)}$中非0即1的元素，需要将它与样本$i$类别的离散数值，即不带下标的$y^{(i)}$区分。向量$y^{(i)}$中只有第$y^{(i)}$个元素$y^{(i)}</em>{y^{(i)}}$为1，其余全是0。也就是说，交叉熵只关心对正确类别的预测概率，因为只要其值足够大，就可以确保分类结果正确。当然，如果一个样本有多个标签时，就不能做这一步简化了。但即便对这种情况，交叉熵同样只关心对图像中出现的物体类别的预测。</p>
 <p>交叉熵适合衡量两个概率分布的差异。</p>
 <h3 id="模型预测及评价"><a href="#模型预测及评价" class="headerlink" title="模型预测及评价"></a>模型预测及评价</h3><p>在训练好softmax回归模型后，给定任意一组样本特征，可以预测出每个输出类别的概率。通常，把预测概率最大的类别作为输出类别。如果它与真实的类别一致，说明这次预测是正确的。可以使用准确率（accuracy）来评价模型的表现。它等于正确预测数量与总预测数量之比。</p>
 
@@ -748,7 +735,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.2k</span>
+    <span title="Site words total count">25.8k</span>
   
 </div>
 

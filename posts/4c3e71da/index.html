@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,956
+                  6,939
                 </span>
               
 
@@ -521,14 +521,13 @@
 </ol>
 <p>即由输出层，经由每个隐藏层，到第一个隐藏层（后向传播）。理论上来说，权重和偏置最终会收敛，学习过程停止。</p>
 <p>要完成这两步，首先需要定义一个指标来评估这个模型的好坏，在机器学习中一般定义一个指标表示这个模型是坏的，这个指标成为成本（cost）或损失（loss），然后尽量减小这个指标。本文中使用的成本函数是“交叉熵”（cross-entropy），交叉熵产生与信息论，简单来说，交叉熵是衡量两个概率分布p和q之间的相似性，其定义如下：</p>
-<p>$$ H_{y’}(y) = -\sum_i{y’_i\log y_i} $$</p>
-<p>y是预测的概率分布，y`是实际的分布（即输入的ont-hot vector）。</p>
+<script type="math/tex; mode=display">H_{y'}(y) = -\sum_i{y'_i\log y_i}</script><p>y是预测的概率分布，y`是实际的分布（即输入的ont-hot vector）。</p>
 <p>程序中计算交叉熵：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cross_entropy = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=out, labels=y_))</span><br></pre></td></tr></table></figure>
 <p>softmax_cross_entropy_with_logits实现过程如下：</p>
 <ol>
 <li>对网络输入的最后一层（out）做一个softmax（所以在网络的输出层没有加softmax）</li>
-<li>用tf.log计算上层每个结果的对数，然后把y_的每个元素和tf.log(y_)对应的元素相乘</li>
+<li>用tf.log计算上层每个结果的对数，然后把y<em>的每个元素和tf.log(y</em>)对应的元素相乘</li>
 <li>用tf.reduce_sum计算张量的所有元素的总和</li>
 </ol>
 <p>最后用tf.reduce_mean计算batch维度（第一维度）下交叉熵（cross-entropy）的平均值，并将这个值作为总损失（loss）。</p>
@@ -543,8 +542,7 @@
 <p>其中tf.argmax会返回一个张量某个维度中的最大值得索引，如tf.argmax(out,1)表示模型对每个输入的最大概率的分类的分类值，而tf.argmax(y_,1)表示真实分类的分类值。然后用tf.equal来判断预测是否和真实分类一致。到这一步返回的是一个布尔数组，为了计算准确率，通过tf.cast将布尔值转化为浮点数来代表对、错（如1代表对、0代表错），然后通过tf.reduce_mean取平均值。</p>
 <h3 id="安卓的输出节点"><a href="#安卓的输出节点" class="headerlink" title="安卓的输出节点"></a>安卓的输出节点</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">p = tf.nn.softmax(out, name=<span class="string">"outnode"</span>)</span><br></pre></td></tr></table></figure>
 <p>这里使用了softmax回归（softmax regression）模型，这个模型可以用来给不同的对象分配概率，关于softmax定义如下：</p>
-<p>$$ softmax(x)_i = \frac {exp(x_i)} {\sum_j{exp(x_j)}} $$</p>
-<p>Softmax把输入值当成幂指数求值，然后再正则化这些结果。这个幂运算表示，更大的evidence对应更大的假设模型里面的乘数权重值，反之，更少的evidence意味假设模型里面更小的乘数权重值。如果模型里的权值不能是0或者负数，softmax然后会正则化这些权重值，使它们的总和等于1，以此来构造一个有效的概率分布。</p>
+<script type="math/tex; mode=display">softmax(x)_i = \frac {exp(x_i)} {\sum_j{exp(x_j)}}</script><p>Softmax把输入值当成幂指数求值，然后再正则化这些结果。这个幂运算表示，更大的evidence对应更大的假设模型里面的乘数权重值，反之，更少的evidence意味假设模型里面更小的乘数权重值。如果模型里的权值不能是0或者负数，softmax然后会正则化这些权重值，使它们的总和等于1，以此来构造一个有效的概率分布。</p>
 <p>这里把softmax看成一个激励（activation）函数，把定义的线性函数输出转换成需要的格式，也就是关于图片的10个类别。所以，给定一张图片，它对于每个类别的吻合成都可以被softmax函数转换成一个概率值。</p>
 <p>将这个概率值作为输出节点，并指明输出节点（通过name指定），供安卓端调用。</p>
 <h3 id="状态可视化"><a href="#状态可视化" class="headerlink" title="状态可视化"></a>状态可视化</h3><p>Tensorflow发布包中提供了TensorBoard，用于展示Tensorflow任务在计算过程中的Graph、定量指标图以及附加数据。为了释放tensorboard中所使用的事件文件，所有的即时数据都要在图表构建阶段合并到一个操作（op）中。</p>
@@ -846,7 +844,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">26.2k</span>
+    <span title="Site words total count">25.8k</span>
   
 </div>
 
