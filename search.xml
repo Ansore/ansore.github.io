@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Fashion-MNIST数据集]]></title>
+    <url>%2Fposts%2F7e7e4a71%2F</url>
+    <content type="text"><![CDATA[简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片 类别如下： 标注编号 描述 0 T-shirt/top 1 Trouser 2 Pullover 3 Dress 4 Coat 5 Sandal 6 Shirt 7 Sneaker 8 Bag 9 Ankle boot 获取数据集通过mxnet.gluon的data包来下载这个数据集。第一次调用会从网上获取数据。 1234567891011from mxnet.gluon import data as gdatamnist_train = gdata.vision.FashionMNIST(train=True)mnist_test = gdata.vision.FashionMNIST(train=True)print(len(mnist_train))print(len(mnist_test))feature, label = mnist_train[0]print(feature.shape, label.dtype) mxnet默认是从国外下载数据集，所以速度特别慢，可以在启动notebook时指定nexnet的国内镜像。 1MXNET_GLUON_REPO=https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/ jupyter notebook 该数据集会下载到.mxnet/datasets/fashion-mnist/目录下，一共四个文件，分别是训练图片、标签和测试图片、标签。 官方数据集的github地址为：https://github.com/zalandoresearch/fashion-mnist 读取小批量数据Gluon的DataLoader中一个很方便的功能是允许使用多进程来加速数据读取（暂时不支持windows系统） 此外，通过ToTensor类将图像数据从uint8格式转换为32位浮点格式，并除以255使得所有像素点的数值均在0到1之间。ToTensor类还将图像通道从最后一维移到最前一维。通过数据集的transform_firt函数，可以将ToTensor变得变换应用到每个数据样本（图像和标签）的第一个元素，即图像之上。 12345678910111213141516171819202122232425262728from mxnet.gluon import data as gdataimport sysimport timemnist_train = gdata.vision.FashionMNIST(train=True)mnist_test = gdata.vision.FashionMNIST(train=True)print(len(mnist_train))print(len(mnist_test))batch_size = 256transformer = gdata.vision.transforms.ToTensor()if sys.platform.startswith("win"): # 0表示不需要额外的进程加速数据读取 num_workers = 0else: num_workers = 4train_iter = gdata.DataLoader(mnist_train.transform_first(transformer), batch_size, shuffle=True, num_workers=num_workers)test_iter = gdata.DataLoader(mnist_test.transform_first(transformer), batch_size, shuffle=True, num_workers=num_workers)# 查看读取一遍训练数据需要的时间start = time.time()for X, y in train_iter: continueprint("%.2f s", time.time()-start)]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>mxnet</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Softmax回归]]></title>
     <url>%2Fposts%2F9558f536%2F</url>
     <content type="text"><![CDATA[和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$y_1,y_2,y_3$。 通常用离散的数值来表示类别，例如$y_1=1,y_2=2,y_3=3$。这样，一张图像的标签就为1,2和3这三个数值中的一个，虽然可以使回归模型来建模，并叫预测值就近定点化到1,2和3这三个数值中，但是这种连续值到离散值的转化会影响到分类的质量。因此，一般使用更加适合的离散值输出的模型来解决分类问题。 Softmax回归模型softmax回归跟线性回归一样将输入特征与权重做线性叠加。与回归模型的一个主要区别是，softmax回归的输出值个数等于标签里的类别数。因为一共有4个特征和3种输出动物类别，所以权重包含12个标量（带下标的$w$）、偏置包含三个标量（带下标的$b$），且对每一个输入计算$o_1,o_2,o_3$这三个输出： $$o_1 = x_1w_{11}+x_2w_{21}+x_3w_{31}+x_4w_{41}+b_1$$ $$o_2 = x_1w_{12}+x_2w_{22}+x_3w_{32}+x_4w_{42}+b_2$$ $$o_3 = x_1w_{13}+x_2w_{23}+x_3w_{33}+x_4w_{43}+b_3$$ 与线性回归一样，softmax回归也是一个单层网络。每个输出都依赖于所有的输入，softmax回归的输出层也是一个全连接层。 softmax运算既然分类问题需要得到离散的预测输出，一个简单的办法是将输出值$o_i$当做预测类别$i$的置信度，并将值最大的输出作为对应的类别预测输出，即输出$argmax_io_i$。 然而，直接使用输出层的输出有两点问题。一方面，由于输出层的输出值的范围不确定，难以直观上判断这些值的意义。另一方面，由于真是标签是离散值，这些离散值与不确定范围的输出值之间的误差难以衡量。 softmax运算符（softmax operator）解决了这两个问题。它通过一下方式将输出值变成值为正且和为1的概率分布： $$\hat{y1},\hat{y2},\hat{y2} = softmax(o_1,o_2,o_3)$$ 其中： $$\hat{y1} = \frac{\exp(o_1)}{\sum_{i=1}^3\exp(o_i)}$$ $$\hat{y2} = \frac{\exp(o_2)}{\sum_{i=1}^3\exp(o_i)}$$ $$\hat{y3} = \frac{\exp(o_3)}{\sum_{i=1}^3\exp(o_i)}$$ 容易看出$\hat{y_1}+\hat{y_2}+\hat{y_3}=1$且$0&lt;=\hat{y_1},\hat{y_2},\hat{y_3}&lt;=1$，因此$\hat{y_1},\hat{y_2},\hat{y_3}$是一个合法的概率分布。此外 $$argmax_io_i=argmax_i\hat{y}_i$$ 因此softmax运算不改变预测类别输出。 单样本分类的矢量计算表达式假设softmax回归的权重和偏置参数分别为 $$W = \left[\begin{matrix}w_{11} &amp; w_{12} &amp; w_{13} \w_{21} &amp; w_{22} &amp; w_{23} \w_{31} &amp; w_{32} &amp; w_{33} \w_{41} &amp; w_{42} &amp; w_{43}\end{matrix}\right] $$ $$b = \left[\begin{matrix} b_1 &amp; b_2 &amp; b_3 \end{matrix}\right]$$ 设宽和高分别为2个像素的图像样本$i$的特征为 $$x^{(i)} = \left[\begin{matrix} x_1^{(i)} &amp; x_2^{(i)} &amp; x_3^{(i)} &amp; x_4^{(i)} \end{matrix}\right]$$ 输出层为 $$o^{(i)} = \left[\begin{matrix} o_1^{(i)} &amp; o_2^{(i)} &amp; o_3^{(i)} \end{matrix}\right]$$ 预测概率分布为 $$\hat{y}^{(i)} = \left[\begin{matrix} \hat{y}_1^{(i)} &amp; \hat{y}_2^{(i)} &amp; \hat{y}_3^{(i)} \end{matrix}\right]$$ softmax对回归样本$i$分类的矢量计算表达式为 $$0^{(i)} = x^{(i)}W + b$$ $$\hat{y}^{(i)} = sfotmax(o^{(i)})$$ 小批量样本分类的矢量计算表达式给定一个小批量样本，其批量大小为$n$，输入个数（特征数）为$d$，输出个数（类别数）为$q$。设批量特征为$X \in R^{nd}$。假设softmax回归的权重和偏置参数分别为$W \in R^{dq}, b \in R^{1*q}$。softmax回归的矢量表达式为 $$O = XW + b$$ $$\hat{Y} = softmax(O)$$ 其中加法运算使用了广播机制，$O,\hat{Y} \in R^{n*q}$且两个矩阵的第$i$行分别为样本$i$的输出$o^{i}$和概率分布$\hat{y}^{(i)}$ 交叉熵损失函数“交叉熵”（cross-entropy），产生与信息论，简单来说，交叉熵是衡量两个概率分布p和q之间的相似性，其定义如下： $$ H_{y’}(y) = -\sum_i{y’_i\log y_i} $$ y是预测的概率分布，$y’$是实际的分布（one-hot） 或是 $$H(y^{(i)}, \hat{y}^{(i)}) = -\sum_{j=1}^q y_j^{(i)}\log \hat{y}_j^{(i)}$$ 其中带下标的$y_j^{(i)}$是向量$y^{(i)}$中非0即1的元素，需要将它与样本$i$类别的离散数值，即不带下标的$y^{(i)}$区分。向量$y^{(i)}$中只有第$y^{(i)}$个元素$y^{(i)}_{y^{(i)}}$为1，其余全是0。也就是说，交叉熵只关心对正确类别的预测概率，因为只要其值足够大，就可以确保分类结果正确。当然，如果一个样本有多个标签时，就不能做这一步简化了。但即便对这种情况，交叉熵同样只关心对图像中出现的物体类别的预测。 交叉熵适合衡量两个概率分布的差异。 模型预测及评价在训练好softmax回归模型后，给定任意一组样本特征，可以预测出每个输出类别的概率。通常，把预测概率最大的类别作为输出类别。如果它与真实的类别一致，说明这次预测是正确的。可以使用准确率（accuracy）来评价模型的表现。它等于正确预测数量与总预测数量之比。]]></content>
@@ -27,7 +39,7 @@
   <entry>
     <title><![CDATA[线性回归]]></title>
     <url>%2Fposts%2F40997091%2F</url>
-    <content type="text"><![CDATA[简介在统计学中，线性回归（Linear regression）是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。只有一个自变量的情况称为简单回归，大于一个自变量情况的叫做多元回归。 在线性回归中，数据使用线性预测来建模，并且未知的模型参数也是通过数据来估计的。这些模型被叫做线性模型。 模型以预测房价为例，假设价格指取决于房屋的两个因素：面积（平方米）和房龄（年）。 设房屋的面积是$x_1$，房龄是$x_2$，出售价格是$y$，建立基于输入$x_1$和$x_2$来计算输出$y$的表达式，也就是模型（model）。线性回归假设输出与各输入之间是线性关系： $$\hat{y}=x_1w_1+x_2w_2+b$$ 其实$w_1$，$w_2$是权重（weight），b是偏置（bias），均为标量。它们是线性回归模型的参数（parameter）。模型是输出$\hat{y}$是线性回归对真实价格$y$的预测或估计。通常允许有一定误差。 模型训练然后需要通过数据来寻找特定的模型参数数值，使得模型在数据上的误差尽可能小。这个过程叫做模型训练（Model training）。 训练数据通常收集一系列真实的数据，在这个数据上面寻找模型参数来最小化模型的预测价格与真实价格的误差。在机器学习中，该数据被称为训练数据集（training data set）或者训练集（training set），一栋房子的价格被称为一个样本（sample），其真实的价格叫做标签（label），用来预测标签的两个因素叫做特征（feature），特征用来表征样本的特点。 价格样本数为$n$，索引为$i$的样本特征为$\sideset{}{_1^{(i)}}x$，$\sideset{}{_2^{(i)}}x$，标签为$\hat{y}$。对索引为$i$的房屋，线性回归模型的预测表达式为 $$\hat{y}^{(i)}=\sideset{}{_1^{(i)}}xw_1+\sideset{}{_2^{(i)}}xw_2+b$$ 损失函数在模型训练中,我们需要衡量价格预测值与真实值之间的误差。通常我们会选取一个非负数作为误差,且数值越小表示误差越小。一个常用的选择是平方函数。它在评估索引为 i 的样本误差的表达式为 $$l^{(i)}(w_1,w_2,b)=\frac{1}{2}(\hat{y}^{(i)}-y^{(i)})^2$$ 其中常数 1/2 使得对平方项求导后的常数系数为 1,这样在形式上稍微简单一些。显然,误差越小表示预测价格与真实价格越相近,且当二者相等时误差为 0。给定训练数据集,这个误差只与模型参数相关,因此我们将它记为以模型参数为参数的函数。机器学习里,我们将衡量误差的函数称为损失函数(loss function)。这里使用的平方误差函数也被称为平方损失(square loss)。通常,我们用训练数据集中所有样本误差的平均来衡量模型预测的质量,即 $$l(w_1,w_2,b)=\frac{1}{n}\sum_{i=1}^nl^{(i)}(w_1,w_2,b)=\frac{1}{n}\sum_{i=1}^n\frac{1}{2}(\sideset{}{_1^{(i)}}xw_1+\sideset{}{_2^{(i)}}xw_2+b-y^{(i)})^2$$ 在模型训练中，我们希望找出一组模型参数，来使得训练样本平均损失最小： $$w_1’,w_2’ ,b’ = argmin_{w_1,w_2,b}l(w_1,w_2,b)$$ 优化算法当模型和损失函数形式较为简单时,上面的误差最小化问题的解可以直接用公式表达出来。这类解叫做解析解(analytical solution)。本节使用的线性回归和平方误差刚好属于这个范畴。然而,大多数深度学习模型并没有解析解,只能通过优化算法有限次迭代模型参数来尽可能降低损失函数的值。这类解叫做数值解(numerical solution)。在求数值解的优化算法中,小批量随机梯度下降(mini-batch stochastic gradient descent)在深度学习中被广泛使用。它的算法很简单:我们先选取一组模型参数的初始值,例如随机选取;接下来对参数进行多次迭代,使得每次迭代都可能降低损失函数的值。在每次迭代中,我们先随机均匀采样一个由固定数目训练数据样本所组成的小批量(mini-batch)B;然后求小批量中数据样本的平均损失有关模型参数的导数(梯度);最后用此结果与预先设定的一个正数的乘积作为模型参数在本次迭代的减小量。 模型预测模型训练完成以后，可以得到一个对最优解的近似。然后可以用模型来估算训练数据集以外的任意一栋房屋的房价。这里估算也叫模型预测、模型推断和模型测试。 我们应尽可能采用矢量计算，以提升计算效率。 实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990from IPython import displayfrom mxnet import nd, autogradimport randomfrom matplotlib import pyplot as plt# 生成数据集 加入一个服从N(0,0.01)的噪点num_input = 2num_example = 1000true_w = [2, -3.4]true_b = 4.2features = nd.random.normal(scale=1, shape=(num_example, num_input))labels = true_w[0] * features[:, 0] + true_w[1] * features[:, 1] + true_blabels += nd.random.normal(scale=0.01, shape=labels.shape)# 显示图像# def use_svg_display():# display.set_matplotlib_formats('svg')## def set_figsize(figsize=(3.5, 2.5)):# use_svg_display()# # 设置图的尺寸。# plt.rcParams['figure.figsize'] = figsize# set_figsize()# plt.show(plt.scatter(features[:, 1].asnumpy(), labels.asnumpy(), 1))def data_iter(batch_size, features, labels): num_example = len(features) indices = list(range(num_example)) # 样本读取随机 random.shuffle(indices) for i in range(0, num_example, batch_size): j = nd.array(indices[i: min(i + batch_size, num_example)]) # 根据索引返回元素 yield features.take(j), labels.take(j)# 初始化模型参数w = nd.random.normal(scale=0.01, shape=(num_input, 1))b = nd.zeros(shape=(1,))# 创建它们的梯度w.attach_grad()b.attach_grad()# 定义模型def linreg(x, w, b): return nd.dot(x, w) + b# 定义损失函数def squared_loss(y_hat, y): return (y_hat - y.reshape(y_hat.shape)) ** 2 / 2# 定义优化算法def sgd(params, lr, batch_size): for param in params: param[:] = param - lr * param.grad / batch_size# 训练模型lr = 0.03num_epochs = 3net = linregloss = squared_lossbatch_size = 10# for x, y in data_iter(batch_size, features, labels):# print(x, y)#迭代周期 num_epochsfor epoch in range(num_epochs): # 一个迭代周期 for x,y in data_iter(batch_size, features, labels): with autograd.record(): # l为损失 l = loss(net(x, w, b), y) # 小批量的损失对模型参数求梯度 l.backward() sgd([w, b], lr, batch_size) tran_l = loss(net(features, w, b), labels) print("epoch %d, loss %f" % (epoch + 1, tran_l.mean().asnumpy()))print("train_w: ")print(w)print("true_w: ")print(true_w)print("train_b: ")print(b)print("true_b: ")print(true_b) TensorFlow实现线性模型1234567891011121314151617181920212223242526272829import tensorflow as tfimport numpy as np# 创建数据集x_data = np.random.rand(100).astype(np.float32)y_data = x_data * 0.1 + 0.3# 权重和偏置初始化Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))biases = tf.Variable(tf.zeros([1]))# 线性模型y = Weights * x_data + biases# 损失和优化器loss = tf.reduce_mean(tf.square(y - y_data))optimizer = tf.train.GradientDescentOptimizer(0.5)train = optimizer.minimize(loss)# 训练模型init = tf.initialize_all_variables()sess = tf.Session()sess.run(init)for step in range(201): sess.run(train) if step % 20 == 0: print(step, sess.run(Weights), sess.run(biases))]]></content>
+    <content type="text"><![CDATA[简介在统计学中，线性回归（Linear regression）是利用称为线性回归方程的最小二乘函数对一个或多个自变量和因变量之间关系进行建模的一种回归分析。这种函数是一个或多个称为回归系数的模型参数的线性组合。只有一个自变量的情况称为简单回归，大于一个自变量情况的叫做多元回归。 在线性回归中，数据使用线性预测来建模，并且未知的模型参数也是通过数据来估计的。这些模型被叫做线性模型。 模型以预测房价为例，假设价格指取决于房屋的两个因素：面积（平方米）和房龄（年）。 设房屋的面积是$x_1$，房龄是$x_2$，出售价格是$y$，建立基于输入$x_1$和$x_2$来计算输出$y$的表达式，也就是模型（model）。线性回归假设输出与各输入之间是线性关系： $$\hat{y}=x_1w_1+x_2w_2+b$$ 其实$w_1$，$w_2$是权重（weight），b是偏置（bias），均为标量。它们是线性回归模型的参数（parameter）。模型是输出$\hat{y}$是线性回归对真实价格$y$的预测或估计。通常允许有一定误差。 模型训练然后需要通过数据来寻找特定的模型参数数值，使得模型在数据上的误差尽可能小。这个过程叫做模型训练（Model training）。 训练数据通常收集一系列真实的数据，在这个数据上面寻找模型参数来最小化模型的预测价格与真实价格的误差。在机器学习中，该数据被称为训练数据集（training data set）或者训练集（training set），一栋房子的价格被称为一个样本（sample），其真实的价格叫做标签（label），用来预测标签的两个因素叫做特征（feature），特征用来表征样本的特点。 价格样本数为$n$，索引为$i$的样本特征为$\sideset{}{_1^{(i)}}x$，$\sideset{}{_2^{(i)}}x$，标签为$\hat{y}$。对索引为$i$的房屋，线性回归模型的预测表达式为 $$\hat{y}^{(i)}=\sideset{}{_1^{(i)}}xw_1+\sideset{}{_2^{(i)}}xw_2+b$$ 损失函数在模型训练中,我们需要衡量价格预测值与真实值之间的误差。通常我们会选取一个非负数作为误差,且数值越小表示误差越小。一个常用的选择是平方函数。它在评估索引为 i 的样本误差的表达式为 $$l^{(i)}(w_1,w_2,b)=\frac{1}{2}(\hat{y}^{(i)}-y^{(i)})^2$$ 其中常数 1/2 使得对平方项求导后的常数系数为 1,这样在形式上稍微简单一些。显然,误差越小表示预测价格与真实价格越相近,且当二者相等时误差为 0。给定训练数据集,这个误差只与模型参数相关,因此我们将它记为以模型参数为参数的函数。机器学习里,我们将衡量误差的函数称为损失函数(loss function)。这里使用的平方误差函数也被称为平方损失(square loss)。通常,我们用训练数据集中所有样本误差的平均来衡量模型预测的质量,即 $$l(w_1,w_2,b)=\frac{1}{n}\sum_{i=1}^nl^{(i)}(w_1,w_2,b)$$ $$=\frac{1}{n}\sum_{i=1}^n\frac{1}{2}(\sideset{}{_1^{(i)}}xw_1+\sideset{}{_2^{(i)}}xw_2+b-y^{(i)})^2$$ 在模型训练中，我们希望找出一组模型参数，来使得训练样本平均损失最小： $$w_1’,w_2’ ,b’ = argmin_{w_1,w_2,b}l(w_1,w_2,b)​$$ 优化算法当模型和损失函数形式较为简单时,上面的误差最小化问题的解可以直接用公式表达出来。这类解叫做解析解(analytical solution)。本节使用的线性回归和平方误差刚好属于这个范畴。然而,大多数深度学习模型并没有解析解,只能通过优化算法有限次迭代模型参数来尽可能降低损失函数的值。这类解叫做数值解(numerical solution)。在求数值解的优化算法中,小批量随机梯度下降(mini-batch stochastic gradient descent)在深度学习中被广泛使用。它的算法很简单:我们先选取一组模型参数的初始值,例如随机选取;接下来对参数进行多次迭代,使得每次迭代都可能降低损失函数的值。在每次迭代中,我们先随机均匀采样一个由固定数目训练数据样本所组成的小批量(mini-batch)B;然后求小批量中数据样本的平均损失有关模型参数的导数(梯度);最后用此结果与预先设定的一个正数的乘积作为模型参数在本次迭代的减小量。 模型预测模型训练完成以后，可以得到一个对最优解的近似。然后可以用模型来估算训练数据集以外的任意一栋房屋的房价。这里估算也叫模型预测、模型推断和模型测试。 我们应尽可能采用矢量计算，以提升计算效率。 实现123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990from IPython import displayfrom mxnet import nd, autogradimport randomfrom matplotlib import pyplot as plt# 生成数据集 加入一个服从N(0,0.01)的噪点num_input = 2num_example = 1000true_w = [2, -3.4]true_b = 4.2features = nd.random.normal(scale=1, shape=(num_example, num_input))labels = true_w[0] * features[:, 0] + true_w[1] * features[:, 1] + true_blabels += nd.random.normal(scale=0.01, shape=labels.shape)# 显示图像# def use_svg_display():# display.set_matplotlib_formats('svg')## def set_figsize(figsize=(3.5, 2.5)):# use_svg_display()# # 设置图的尺寸。# plt.rcParams['figure.figsize'] = figsize# set_figsize()# plt.show(plt.scatter(features[:, 1].asnumpy(), labels.asnumpy(), 1))def data_iter(batch_size, features, labels): num_example = len(features) indices = list(range(num_example)) # 样本读取随机 random.shuffle(indices) for i in range(0, num_example, batch_size): j = nd.array(indices[i: min(i + batch_size, num_example)]) # 根据索引返回元素 yield features.take(j), labels.take(j)# 初始化模型参数w = nd.random.normal(scale=0.01, shape=(num_input, 1))b = nd.zeros(shape=(1,))# 创建它们的梯度w.attach_grad()b.attach_grad()# 定义模型def linreg(x, w, b): return nd.dot(x, w) + b# 定义损失函数def squared_loss(y_hat, y): return (y_hat - y.reshape(y_hat.shape)) ** 2 / 2# 定义优化算法def sgd(params, lr, batch_size): for param in params: param[:] = param - lr * param.grad / batch_size# 训练模型lr = 0.03num_epochs = 3net = linregloss = squared_lossbatch_size = 10# for x, y in data_iter(batch_size, features, labels):# print(x, y)#迭代周期 num_epochsfor epoch in range(num_epochs): # 一个迭代周期 for x,y in data_iter(batch_size, features, labels): with autograd.record(): # l为损失 l = loss(net(x, w, b), y) # 小批量的损失对模型参数求梯度 l.backward() sgd([w, b], lr, batch_size) tran_l = loss(net(features, w, b), labels) print("epoch %d, loss %f" % (epoch + 1, tran_l.mean().asnumpy()))print("train_w: ")print(w)print("true_w: ")print(true_w)print("train_b: ")print(b)print("true_b: ")print(true_b) TensorFlow实现线性模型1234567891011121314151617181920212223242526272829import tensorflow as tfimport numpy as np# 创建数据集x_data = np.random.rand(100).astype(np.float32)y_data = x_data * 0.1 + 0.3# 权重和偏置初始化Weights = tf.Variable(tf.random_uniform([1], -1.0, 1.0))biases = tf.Variable(tf.zeros([1]))# 线性模型y = Weights * x_data + biases# 损失和优化器loss = tf.reduce_mean(tf.square(y - y_data))optimizer = tf.train.GradientDescentOptimizer(0.5)train = optimizer.minimize(loss)# 训练模型init = tf.initialize_all_variables()sess = tf.Session()sess.run(init)for step in range(201): sess.run(train) if step % 20 == 0: print(step, sess.run(Weights), sess.run(biases))]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -141,8 +153,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -154,8 +166,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>设计模式</tag>
         <tag>JAVA</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -215,8 +227,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -277,6 +289,18 @@
         <tag>算法</tag>
         <tag>java</tag>
         <tag>编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[三行情书]]></title>
+    <url>%2Fposts%2F4183b246%2F</url>
+    <content type="text"><![CDATA[未知的迷途相遇 相遇很美，美到极致 何其有幸，能遇见你 曾经很天真的以为 遮住了双眼 就可以看不见整个世界 不过是希望一切不是昙花一现 我只是想在自己生命中 留住自己想留住的人 时间是否会等我 是否一切只如初见 很害怕，转身便是永远 我从来都不是一个很乐观的人 也曾以为不去拥有，便不会失去 可最终，却是永远失去 我一直不敢把喜欢说成爱 可隐隐感觉，这般喜欢 就是爱了 死皮赖脸地叨扰你 只是因为，对谁都不放心 想，亲自照顾你 很想以后 湖畔杨柳，微风斜阳 一椅，两人 可惜，一切终究不过是捕风捉影 一枕邯郸 一生荒唐]]></content>
+      <categories>
+        <category>心情</category>
+      </categories>
+      <tags>
+        <tag>大学</tag>
+        <tag>心情</tag>
       </tags>
   </entry>
   <entry>
@@ -385,8 +409,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>设计模式</tag>
         <tag>JAVA</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
