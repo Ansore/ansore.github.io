@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[softmax回归的Gluon实现]]></title>
+    <url>%2Fposts%2Fc643d6ee%2F</url>
+    <content type="text"><![CDATA[使用MXNet提供的Gluon接口实现Softmax回归 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566import gluonbook as gbfrom mxnet import gluon, init, autogradfrom mxnet.gluon import loss as gloss, nn# 获取数据batch_size = 256train_iter, test_iter = gb.load_data_fashion_mnist(batch_size)# 定义和初始化模型net = nn.Sequential()net.add(nn.Dense(10))# 使用N(0,1)初始化模型权重参数net.initialize(init.Normal(sigma=0.01))# softmax和交叉熵损失函数loss = gloss.SoftmaxCrossEntropyLoss()# 定义优化算法trainer = gluon.Trainer(net.collect_params(), 'sgd', &#123;'learning_rate': 0.1&#125;)# 计算分类准确率def accuracy(y_hat, y): # y_hat.argmax(axis=1) 返回每行中最大元素的索引 # y中对应的即是分类的索引值 # == 获得非0即1的数 # 求平均值 得到准确率 return (y_hat.argmax(axis=1) == y.astype('float32')).mean().asscalar()# 评估模型# 对每个数据块准确率求和 算平均值def evaluate_accuracy(data_iter, net): acc = 0 for X, y in data_iter: acc += accuracy(net(X), y) return acc / len(data_iter)# 训练模型def train(net, train_iter, test_iter, loss, num_epochs, barch_size, params=None, lr=None, trainer=None): for epoch in range(num_epochs): train_l_sum = 0 train_acc_sum = 0 for X, y in train_iter: with autograd.record(): y_hat = net(X) l = loss(y_hat, y) l.backward() if trainer is None: gb.sgd(params, lr, batch_size) else: trainer.step(batch_size) train_l_sum += l.mean().asscalar() train_acc_sum += accuracy(y_hat, y) test_acc = evaluate_accuracy(test_iter, net) print("epoch %d, loss %.4f, train_acc %.3f, test_acc %.3f" % (epoch + 1, train_l_sum / len(train_iter), train_acc_sum / len(train_iter), test_acc))num_epochs = 5lr = 0.1train(net, train_iter, test_iter, loss, num_epochs, batch_size, None, None, trainer)]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>mxnet</tag>
+        <tag>softmax</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[softmax回归的实现]]></title>
+    <url>%2Fposts%2F532472fc%2F</url>
+    <content type="text"><![CDATA[softmax回归的实现与线性回归的实现非常相似。同样使用小批量随机梯度下降来优化模型的损失函数。在训练模型是，迭代周期num_epochs和学习率lr都是可以调节的参数。 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596import gluonbook as gbfrom mxnet import autograd, ndbatch_size = 256train_iter, test_iter = gb.load_data_fashion_mnist(batch_size)# 输入向量28x28x1 (宽28 高28 灰度)num_input = 784# 输出向量 10个分类num_output = 10# 权重初始化weight = nd.random.normal(scale=0.01, shape=(num_input, num_output))# 偏置初始化bias = nd.zeros(num_output)# 对模型参数附上梯度weight.attach_grad()bias.attach_grad()# 定义softmax运算# 1.对每个元素进行指数运算# 2.对exp矩阵同行元素求和# 3.令矩阵各元素与该行元素之和相除# 最终得到每行元素和为1，且非负def softmax(X): X_exp = X.exp() partition = X_exp.sum(axis=1, keepdims=True) # 运用广播机制 return X_exp / partition# 定义模型def net(X): return softmax(nd.dot(X.reshape((-1, num_input)), weight) + bias)# 定义损失函数# 交叉熵def cross_entropy(y_hat, y): return - nd.pick(y_hat, y).log()# nd.pick说明# y_hat是对两个样本的预测的三个概率值# y是真实类别 可用pick函数，这直接的到这两个标签的预测概率# y_hat = nd.array([[0.1,0.2,0.7], [0.3,0.2,0.5]])# y = nd.array([0,2])# print(nd.pick(y_hat, y))# y = nd.array([0,0])# print(nd.pick(y_hat, y))# 计算分类准确率def accuracy(y_hat, y): # y_hat.argmax(axis=1) 返回每行中最大元素的索引 # y中对应的即是分类的索引值 # == 获得非0即1的数 # 求平均值 得到准确率 return (y_hat.argmax(axis=1) == y.astype('float32')).mean().asscalar()# 评估模型# 对每个数据块准确率求和 算平均值def evaluate_accuracy(data_iter, net): acc = 0 for X, y in data_iter: acc += accuracy(net(X), y) return acc / len(data_iter)# 训练模型num_epochs = 5lr = 0.1def train(net, train_iter, test_iter, loss, num_epochs, barch_size, params=None, lr=None, trainer=None): for epoch in range(num_epochs): train_l_sum = 0 train_acc_sum = 0 for X, y in train_iter: with autograd.record(): y_hat = net(X) l = loss(y_hat, y) l.backward() if trainer is None: gb.sgd(params, lr, batch_size) else: trainer.step(batch_size) train_l_sum += l.mean().asscalar() train_acc_sum += accuracy(y_hat, y) test_acc = evaluate_accuracy(test_iter, net) print("epoch %d, loss %.4f, train_acc %.3f, test_acc %.3f" % (epoch + 1, train_l_sum / len(train_iter), train_acc_sum / len(train_iter), test_acc))train(net, train_iter, test_iter, cross_entropy, num_epochs, batch_size, [weight, bias], lr)]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>mxnet</tag>
+        <tag>softmax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Fashion-MNIST数据集]]></title>
     <url>%2Fposts%2F7e7e4a71%2F</url>
     <content type="text"><![CDATA[简介Fashion-MNIST是一个替代手写数字集的图像数据集，比手写数据集更加复杂。它是由Zalando旗下的研究部门提供。 特征 60000张训练图像和标签数据 10000张测试图像和标签数据 10个类别 每张图片28x28分辨率 灰度图片 类别如下： 标注编号 描述 0 T-shirt/top 1 Trouser 2 Pullover 3 Dress 4 Coat 5 Sandal 6 Shirt 7 Sneaker 8 Bag 9 Ankle boot 获取数据集通过mxnet.gluon的data包来下载这个数据集。第一次调用会从网上获取数据。 1234567891011from mxnet.gluon import data as gdatamnist_train = gdata.vision.FashionMNIST(train=True)mnist_test = gdata.vision.FashionMNIST(train=True)print(len(mnist_train))print(len(mnist_test))feature, label = mnist_train[0]print(feature.shape, label.dtype) mxnet默认是从国外下载数据集，所以速度特别慢，可以在启动notebook时指定nexnet的国内镜像。 1MXNET_GLUON_REPO=https://apache-mxnet.s3.cn-north-1.amazonaws.com.cn/ jupyter notebook 该数据集会下载到.mxnet/datasets/fashion-mnist/目录下，一共四个文件，分别是训练图片、标签和测试图片、标签。 官方数据集的github地址为：https://github.com/zalandoresearch/fashion-mnist 读取小批量数据Gluon的DataLoader中一个很方便的功能是允许使用多进程来加速数据读取（暂时不支持windows系统） 此外，通过ToTensor类将图像数据从uint8格式转换为32位浮点格式，并除以255使得所有像素点的数值均在0到1之间。ToTensor类还将图像通道从最后一维移到最前一维。通过数据集的transform_firt函数，可以将ToTensor变得变换应用到每个数据样本（图像和标签）的第一个元素，即图像之上。 12345678910111213141516171819202122232425262728from mxnet.gluon import data as gdataimport sysimport timemnist_train = gdata.vision.FashionMNIST(train=True)mnist_test = gdata.vision.FashionMNIST(train=True)print(len(mnist_train))print(len(mnist_test))batch_size = 256transformer = gdata.vision.transforms.ToTensor()if sys.platform.startswith("win"): # 0表示不需要额外的进程加速数据读取 num_workers = 0else: num_workers = 4train_iter = gdata.DataLoader(mnist_train.transform_first(transformer), batch_size, shuffle=True, num_workers=num_workers)test_iter = gdata.DataLoader(mnist_test.transform_first(transformer), batch_size, shuffle=True, num_workers=num_workers)# 查看读取一遍训练数据需要的时间start = time.time()for X, y in train_iter: continueprint("%.2f s", time.time()-start)]]></content>
@@ -10,6 +36,7 @@
       <tags>
         <tag>机器学习</tag>
         <tag>mxnet</tag>
+        <tag>fashion-mnist</tag>
       </tags>
   </entry>
   <entry>
@@ -22,6 +49,7 @@
       <tags>
         <tag>机器学习</tag>
         <tag>mxnet</tag>
+        <tag>softmax</tag>
       </tags>
   </entry>
   <entry>
@@ -34,6 +62,7 @@
       <tags>
         <tag>机器学习</tag>
         <tag>mxnet</tag>
+        <tag>线性回归</tag>
       </tags>
   </entry>
   <entry>
@@ -46,6 +75,7 @@
       <tags>
         <tag>机器学习</tag>
         <tag>mxnet</tag>
+        <tag>线性回归</tag>
       </tags>
   </entry>
   <entry>
@@ -166,8 +196,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>JAVA</tag>
         <tag>设计模式</tag>
+        <tag>JAVA</tag>
       </tags>
   </entry>
   <entry>
@@ -409,8 +439,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>JAVA</tag>
         <tag>设计模式</tag>
+        <tag>JAVA</tag>
       </tags>
   </entry>
   <entry>

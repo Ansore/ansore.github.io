@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="机器学习,mxnet,">
+  <meta name="keywords" content="机器学习,mxnet,softmax,">
 
 
 
@@ -83,14 +83,14 @@
 
 
 <meta name="description" content="和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$">
-<meta name="keywords" content="机器学习,mxnet">
+<meta name="keywords" content="机器学习,mxnet,softmax">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Softmax回归">
 <meta property="og:url" content="/posts/9558f536/index.html">
 <meta property="og:site_name" content="Ansore">
 <meta property="og:description" content="和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T03:42:38.814Z">
+<meta property="og:updated_time" content="2019-01-05T11:50:12.090Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Softmax回归">
 <meta name="twitter:description" content="和线性回归不同，Softmax回归的输出单元从一个变成了多个，且引入了softmax运算使得输出更适合离散值的预测和训练。 分类问题假设一个简单的图像分类问题，输入的图像为灰度、高和宽分别问两个像素。这样每个像素都可以用一个标量来表示。将图像的四个像素分别记为$x_1,x_2,x_3,x_4$，假设这些训练集中图像的真实标签为狗、猫和猪（假设四个像素可以表示出这三种动物），这些标签分别对应离散值$">
@@ -520,6 +520,8 @@ w_{41} & w_{42} & w_{43}
           
             <a href="/tags/mxnet/" rel="tag"> <i class="fa fa-tag"></i> mxnet</a>
           
+            <a href="/tags/softmax/" rel="tag"> <i class="fa fa-tag"></i> softmax</a>
+          
         </div>
       
 
@@ -629,7 +631,7 @@ w_{41} & w_{42} & w_{43}
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">37</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -651,7 +653,7 @@ w_{41} & w_{42} & w_{43}
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -735,7 +737,7 @@ w_{41} & w_{42} & w_{43}
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">25.8k</span>
+    <span title="Site words total count">26.8k</span>
   
 </div>
 
