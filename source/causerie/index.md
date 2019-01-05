@@ -35,14 +35,6 @@ comments: false
 
 {% note info %} 
 
-红袖添香怎么比得过为你弹一曲夜曲，竹林为你算尽周易又怎么比得过草原上为你吹一次风琴
-
-{% endnote %}
-
-
-
-{% note info %} 
-
 是的，她听不见
 
 {% endnote %}

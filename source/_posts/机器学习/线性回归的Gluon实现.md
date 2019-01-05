@@ -3,6 +3,7 @@ title: 线性回归的Gluon实现
 tags:
   - 机器学习
   - mxnet
+  - 线性回归
 categories:
   - 机器学习
 abbrlink: 593cfb3c

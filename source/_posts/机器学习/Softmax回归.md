@@ -3,6 +3,7 @@ title: Softmax回归
 tags:
   - 机器学习
   - mxnet
+  - softmax
 categories:
   - 机器学习
 abbrlink: 9558f536

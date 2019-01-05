@@ -3,6 +3,7 @@ title: Fashion-MNIST数据集
 tags:
   - 机器学习
   - mxnet
+  - fashion-mnist
 categories:
   - 机器学习
 abbrlink: 7e7e4a71
