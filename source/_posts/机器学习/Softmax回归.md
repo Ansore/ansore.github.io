@@ -63,7 +63,7 @@ w_{11} & w_{12} & w_{13} \\
 w_{21} & w_{22} & w_{23} \\ 
 w_{31} & w_{32} & w_{33} \\ 
 w_{41} & w_{42} & w_{43}
-\end{matrix}\right] ​$$
+\end{matrix}\right] $$
 
 $$b = \left[\begin{matrix} b_1 & b_2 & b_3 \end{matrix}\right]$$
 
