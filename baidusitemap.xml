@@ -2,7 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>/posts/c3f7cdb7/</loc>
-    <lastmod>2019-01-06T00:43:59.244Z</lastmod>
+    <lastmod>2019-01-10T14:06:31.000Z</lastmod>
+  </url>  <url>
+    <loc>/posts/2f241816/</loc>
+    <lastmod>2019-01-10T14:05:52.685Z</lastmod>
   </url>  <url>
     <loc>/posts/532472fc/</loc>
     <lastmod>2019-01-05T12:11:50.099Z</lastmod>
@@ -21,9 +24,6 @@
   </url>  <url>
     <loc>/posts/9558f536/</loc>
     <lastmod>2019-01-05T11:50:12.090Z</lastmod>
-  </url>  <url>
-    <loc>/posts/2f241816/</loc>
-    <lastmod>2019-01-05T03:19:05.331Z</lastmod>
   </url>  <url>
     <loc>/posts/fb40efc5/</loc>
     <lastmod>2018-12-31T08:16:18.313Z</lastmod>
@@ -58,10 +58,10 @@
     <loc>/posts/4c3e71da/</loc>
     <lastmod>2018-07-29T08:27:40.000Z</lastmod>
   </url>  <url>
-    <loc>/posts/b5ea2dc8/</loc>
+    <loc>/posts/df4b4949/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
   </url>  <url>
-    <loc>/posts/df4b4949/</loc>
+    <loc>/posts/b5ea2dc8/</loc>
     <lastmod>2018-07-28T16:03:03.000Z</lastmod>
   </url>  <url>
     <loc>/posts/ef296a07/</loc>
