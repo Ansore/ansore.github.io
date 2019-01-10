@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[If-丁可]]></title>
+    <url>%2Fposts%2F810ab33b%2F</url>
+    <content type="text"><![CDATA[I came your danger soul think so you’ll say hello breaking you find to go break down you might be lone angel you down thinking think so you freaking down say hi to send you go break down you might be lone and you know you saying to go you don’t know I love you so breaking down I find to go I can’t down to soul angel now you think so don’t freak the danger soul breaking I find to go break down you might be lone and you know you saying to go you don’t know I love you so breaking down you trying to go I can’t down to soul and you know you trying to go you don’t know I love you so breaking down you trying to go I can’t down to soul]]></content>
+      <categories>
+        <category>心情</category>
+      </categories>
+      <tags>
+        <tag>大学</tag>
+        <tag>心情</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[多层感知机]]></title>
     <url>%2Fposts%2Fc3f7cdb7%2F</url>
     <content type="text"><![CDATA[多层感知机（multilayer perceptron，简称 MLP），多层神经网络模型。 隐藏层多层感知机在单层神经网络的基础上引入了一到多个隐藏层（hidden layer）。隐藏层介于输入层和输出层之间。 包含单个隐藏层的多层感知机设计： H = XW_h + b_hO = HW_o + b_o将隐藏层的输出直接作为输入层的输入。两个式子联立起来，得到： O = (XW_h + b_h)W_o + b_o = XW_hW_0 + b_hW_o + b_o可以看出，虽然引入了隐藏层，却依然等价与一个单层神经网络：其中输出层权重参数为$W_hW_o$，偏置参数为$b_hW_o + b_o$。即便添加再多的隐藏层，以上设计依然等价与一个单层神经网络。 激活函数上述问题的根源在于全连接层只是对数据做仿射变换（affine transformation），而多个仿射变换的叠加依然是一个仿射变换。解决问题的一个方法是引入一个非线性变换，例如对隐藏层变量使用按元素操作的非线性函数进行变换，然后作为下一个全连接层的输入。这个非线性函数被称为激活函数（activation function）。 ReLU函数ReLU（rectified linear unit）函数提供了一个很简单的非线性变换。给定元素$x$，该函数定义为： ReLU(x) = max(x, 0)ReLU函数只保留正数元素，并将负数元素清零。 当输入为负数时，ReLU函数的导数为0，输入为正时，ReLU的导数为1 绘制函数图像： 123456789101112131415161718192021222324252627from mxnet import autograd, ndfrom matplotlib import pyplot as pltdef xyplot(x_vals, y_vals, name): plt.rcParams['figure.figsize'] = (5, 2.5) plt.plot(x_vals.asnumpy(), y_vals.asnumpy()) plt.xlabel('x') plt.ylabel(name + '(x)') plt.show()x = nd.arange(-8.0, 8.0, 0.1)# print(x)x.attach_grad()with autograd.record(): y = x.relu()# print(y)# 绘制函数图像xyplot(x, y, "relu")# 绘制导数y.backward()xyplot(x, x.grad, "grad of relu") 结果如图所示： ReLU函数的导数： Sigmoid函数Sigmoid函数可以将元素的值变换到0和1之间： sigmoid(x) = \frac{1}{1+\exp(-x)}Sigmoid函数在早期神经网络中较为普遍，但是目前更多被简单的ReLU函数所替代。当输入接近0时，sigmoid函数接近线性变换。 绘制函数图像： 12345678910111213141516171819202122232425from mxnet import autograd, ndfrom matplotlib import pyplot as pltdef xyplot(x_vals, y_vals, name): plt.rcParams['figure.figsize'] = (5, 2.5) plt.plot(x_vals.asnumpy(), y_vals.asnumpy()) plt.xlabel('x') plt.ylabel(name + '(x)') plt.show()x = nd.arange(-8.0, 8.0, 0.1)# print(x)x.attach_grad()with autograd.record(): y = x.sigmoid()# 绘制函数图像xyplot(x, y, 'sigmoid')# 绘制导数图像y.backward()xyplot(x, x.grad, 'grad of sigmoid') sigmoid函数图像： sigmoid的导数： 当输入为0时，sigmoid函数的导数达到最大值0.25；当输入越偏离0时，sigmoid函数的导数越接近0. Tanh函数Tanh（双曲正切）函数可以将元素的值变换到-1和1之间： tanh(x) = \frac{1-\exp(-2x)}{1+\exp(-2x)}当输入接近0时，tanh函数接近线性变换。虽然函数的形状和sigmoid函数的形状很相似，但是tanh函数在坐标系的原点上对称。 123456789101112131415161718192021222324from mxnet import autograd, ndfrom matplotlib import pyplot as pltdef xyplot(x_vals, y_vals, name): plt.rcParams['figure.figsize'] = (5, 2.5) plt.plot(x_vals.asnumpy(), y_vals.asnumpy()) plt.xlabel('x') plt.ylabel(name + '(x)') plt.show()x = nd.arange(-8.0, 8.0, 0.1)# print(x)x.attach_grad()with autograd.record(): y = x.tanh()# 绘制函数图像xyplot(x, y, 'tanh')# 绘制导数图像y.backward()xyplot(x, x.grad, 'grad of tanh') tanh的函数图像： tanh的导数： 当输入为0时，tanh函数的导数达到最大值1；当输入偏离0时，tanh函数的导数越接近0. 多层感知机多层感知机就是至少含有一个隐藏层的由全连接层组成的神经网络，且每个隐藏层的输出通过激活函数变换。多层感知机的层数和各个隐藏层中隐藏单元个数都是超参数。由于引入了非线性因素，多层感知机的计算方式为： H=\phi(XW_h+b_h)O = HW_o +b_o其中$\phi$表示激活函数。在分类问题中，可以对输出Ｏsoftmax运算，并使用softmax回归中的交叉熵损失函数。在回归问题中，将输出层个数设置为1，并将输出$O$直接提供给线性回归中使用的平方损失函数。]]></content>
@@ -196,8 +208,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -270,8 +282,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>java</tag>
         <tag>jvm</tag>
+        <tag>java</tag>
       </tags>
   </entry>
   <entry>
@@ -366,8 +378,8 @@
       </categories>
       <tags>
         <tag>java</tag>
-        <tag>WebService</tag>
         <tag>编程</tag>
+        <tag>WebService</tag>
       </tags>
   </entry>
   <entry>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2019-01-10T14:06:31.000Z</updated>
+  <updated>2019-01-10T14:28:38.106Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>If-丁可</title>
+    <link href="/posts/810ab33b/"/>
+    <id>/posts/810ab33b/</id>
+    <published>2019-01-10T14:17:39.000Z</published>
+    <updated>2019-01-10T14:28:38.106Z</updated>
+    
+    <content type="html"><![CDATA[<div class="note info"><p>I came your danger soul</p><p>think so you’ll say hello</p><p>breaking you find to go</p><p>break down you might be lone</p><p>angel you down thinking</p><p>think so you freaking down</p><p>say hi to send you go</p><p>break down you might be lone</p><p>and you know you saying to go</p><p>you don’t know I love you so</p><p>breaking down I find to go</p><p>I can’t down to soul</p><p>angel now you think so</p><p>don’t freak the danger soul</p><p>breaking I find to go</p><p>break down you might be lone</p><p>and you know you saying to go</p><p>you don’t know I love you so</p><p>breaking down you trying to go</p><p>I can’t down to soul</p><p>and you know you trying to go</p><p>you don’t know I love you so</p><p>breaking down you trying to go</p><p>I can’t down to soul</p></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;div class=&quot;note info&quot;&gt;&lt;p&gt;I came your danger soul&lt;/p&gt;
+&lt;p&gt;think so you’ll say hello&lt;/p&gt;
+&lt;p&gt;breaking you find to go&lt;/p&gt;
+&lt;p&gt;break down you migh
+      
+    
+    </summary>
+    
+      <category term="心情" scheme="/categories/%E5%BF%83%E6%83%85/"/>
+    
+    
+      <category term="大学" scheme="/tags/%E5%A4%A7%E5%AD%A6/"/>
+    
+      <category term="心情" scheme="/tags/%E5%BF%83%E6%83%85/"/>
+    
+  </entry>
   
   <entry>
     <title>多层感知机</title>
@@ -462,9 +492,9 @@
       <category term="编程" scheme="/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="java" scheme="/tags/java/"/>
-    
       <category term="jvm" scheme="/tags/jvm/"/>
+    
+      <category term="java" scheme="/tags/java/"/>
     
   </entry>
   
@@ -540,34 +570,6 @@
 &lt;p&gt;冒泡排序算法基本思想就是：依次比较相邻两个数，如果前面的数比后面大（降序），则交换两个数，这样的话第一轮遍历结束会浮出最大的数（就像水中的气泡一样，最大的先浮上来），最多经过n-1次，该序列成为有序序列。&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;C++实现：&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="编程" scheme="/categories/%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="算法" scheme="/tags/%E7%AE%97%E6%B3%95/"/>
-    
-      <category term="编程" scheme="/tags/%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>KMP算法</title>
-    <link href="/posts/2da0528d/"/>
-    <id>/posts/2da0528d/</id>
-    <published>2017-11-18T15:44:22.000Z</published>
-    <updated>2018-07-12T03:53:58.000Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针j同时自增1。next中的值是模式的真前缀和真后缀相等的最大字串长度。</p></blockquote><p>KMP算法C++实现：</p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">char</span> T[], <span class="keyword">int</span> next[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,len;</span><br><span class="line">    next[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">1</span>; T[j] != <span class="string">'\0'</span>; j ++) &#123;</span><br><span class="line">        <span class="keyword">for</span>(len = j - <span class="number">1</span>; len &gt;= <span class="number">1</span>; len --) &#123;</span><br><span class="line">            <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; len; i ++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(T[i] != T[j-len+i])</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i == len) &#123;</span><br><span class="line">                next[j] = len;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span>(len &lt; <span class="number">1</span>) &#123;</span><br><span class="line">                next[j] = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> T[])</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> next[<span class="number">80</span>];</span><br><span class="line">    getNext(T, next);</span><br><span class="line">    <span class="keyword">while</span>(S[i] != <span class="string">'\0'</span> &amp;&amp; T[j] != <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span>(S[i] == T[j]) &#123;</span><br><span class="line">            i ++;</span><br><span class="line">            j ++;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = next[j];</span><br><span class="line">            <span class="keyword">if</span>(j == <span class="number">-1</span>) &#123;</span><br><span class="line">                i ++;</span><br><span class="line">                j ++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(T[j] == <span class="string">'\0'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> (i-j+<span class="number">1</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">char</span> S[] = <span class="string">"sdfasdfads"</span>;</span><br><span class="line">        <span class="keyword">char</span> T[] = <span class="string">"dfas"</span>;</span><br><span class="line">        <span class="keyword">int</span> r = KMP(S,T);</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"result is "</span> &lt;&lt; r &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt;KMP算法是BF算法的改进算法， 当匹配过程中有不匹配项时，在BF算法中，主串直接回溯到i+1，而模式回溯到第一个字符上重新匹配。KMP算法中，匹配失败时，主串指针i不变，模式指针j回退到next[j]重新进行匹配，当j指针回退到0时，指针i和指针
-      
     
     </summary>
     
