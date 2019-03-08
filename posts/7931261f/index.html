@@ -69,7 +69,7 @@
 
 
 
-  <meta name="keywords" content="算法,编程,">
+  <meta name="keywords" content="tfrecord,tensorflow,">
 
 
 
@@ -82,18 +82,18 @@
 
 
 
-<meta name="description" content="问题描述：给定一个集合，求其所有子集。  解法思路：一个长度为n的集合，共有2^n个子集，每一种可能都用二进制表示，相应的二进制数的0和1对应相应的元素不存在/存在，问题解决。  C++实现：">
-<meta name="keywords" content="算法,编程">
+<meta name="description" content="简介TFRecord是一种二进制格式文件，理论上可以保存任何格式的信息，可以将任何类型数据转化为Tensorflow所支持的格式，这种方法可以让数据集和网络架构更容易相互匹配。TFRecord文件包含了tf.train.Example协议内存块（protocol buffer）。可以将数据填入Example协议内存块（protocol buffer），将协议内存块序列化为一个字符串，并且通过tf.">
+<meta name="keywords" content="tfrecord,tensorflow">
 <meta property="og:type" content="article">
-<meta property="og:title" content="求子集问题">
-<meta property="og:url" content="/posts/93ce02fe/index.html">
+<meta property="og:title" content="图片与TFRecord的相互转化">
+<meta property="og:url" content="/posts/7931261f/index.html">
 <meta property="og:site_name" content="Ansore">
-<meta property="og:description" content="问题描述：给定一个集合，求其所有子集。  解法思路：一个长度为n的集合，共有2^n个子集，每一种可能都用二进制表示，相应的二进制数的0和1对应相应的元素不存在/存在，问题解决。  C++实现：">
+<meta property="og:description" content="简介TFRecord是一种二进制格式文件，理论上可以保存任何格式的信息，可以将任何类型数据转化为Tensorflow所支持的格式，这种方法可以让数据集和网络架构更容易相互匹配。TFRecord文件包含了tf.train.Example协议内存块（protocol buffer）。可以将数据填入Example协议内存块（protocol buffer），将协议内存块序列化为一个字符串，并且通过tf.">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-12T03:54:52.000Z">
+<meta property="og:updated_time" content="2019-03-08T01:21:20.705Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="求子集问题">
-<meta name="twitter:description" content="问题描述：给定一个集合，求其所有子集。  解法思路：一个长度为n的集合，共有2^n个子集，每一种可能都用二进制表示，相应的二进制数的0和1对应相应的元素不存在/存在，问题解决。  C++实现：">
+<meta name="twitter:title" content="图片与TFRecord的相互转化">
+<meta name="twitter:description" content="简介TFRecord是一种二进制格式文件，理论上可以保存任何格式的信息，可以将任何类型数据转化为Tensorflow所支持的格式，这种方法可以让数据集和网络架构更容易相互匹配。TFRecord文件包含了tf.train.Example协议内存块（protocol buffer）。可以将数据填入Example协议内存块（protocol buffer），将协议内存块序列化为一个字符串，并且通过tf.">
 
 
 
@@ -123,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="/posts/93ce02fe/">
+  <link rel="canonical" href="/posts/7931261f/">
 
 
 
 
 
-  <title>求子集问题 | Ansore</title>
+  <title>图片与TFRecord的相互转化 | Ansore</title>
   
 
 
@@ -338,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="/posts/93ce02fe/">
+    <link itemprop="mainEntityOfPage" href="/posts/7931261f/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ansore">
@@ -355,7 +355,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">求子集问题</h1>
+          <h1 class="post-title" itemprop="name headline">图片与TFRecord的相互转化</h1>
         
 
         <div class="post-meta">
@@ -367,8 +367,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T10:34:18+08:00">
-                2017-07-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-01T08:49:25+08:00">
+                2019-03-01
               </time>
             
 
@@ -390,8 +390,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/编程/" itemprop="url" rel="index">
-                    <span itemprop="name">编程</span>
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
                   </a>
                 </span>
 
@@ -421,7 +421,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  247
+                  1,037
                 </span>
               
 
@@ -437,7 +437,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  5
                 </span>
               
             </div>
@@ -458,13 +458,20 @@
       
 
       
-        <p>问题描述：给定一个集合，求其所有子集。</p>
-<blockquote>
-<p>解法思路：一个长度为n的集合，共有2^n个子集，每一种可能都用二进制表示，相应的二进制数的0和1对应相应的元素不存在/存在，问题解决。</p>
-</blockquote>
-<p>C++实现：</p>
-<a id="more"></a>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"math.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用二进制表示元素的存在/不存在</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">findSubset</span><span class="params">(<span class="keyword">int</span> r[], <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//子集个数</span></span><br><span class="line">    <span class="keyword">int</span> p = (<span class="keyword">int</span>) <span class="built_in">pow</span>(<span class="number">2</span> ,n);</span><br><span class="line">    <span class="comment">//元素下标</span></span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(p != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = p;</span><br><span class="line">        <span class="comment">//该种情况下的集合</span></span><br><span class="line">        <span class="keyword">while</span>(j != <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span> m = j % <span class="number">2</span>;</span><br><span class="line">            <span class="comment">//余数为1存在</span></span><br><span class="line">            <span class="keyword">if</span>(m == <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(i &lt; n) &#123;</span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; r[i] &lt;&lt; <span class="string">"  "</span>;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="comment">//数组越界只有一种情况就是，该集合为空集的时候</span></span><br><span class="line">                    <span class="built_in">cout</span> &lt;&lt; <span class="string">"空集  "</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            i ++;</span><br><span class="line">            j = j / <span class="number">2</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        p--;</span><br><span class="line">        i = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"\n----------"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a[<span class="number">3</span>] = &#123;<span class="number">3</span>,<span class="number">1</span>,<span class="number">8</span>&#125;;</span><br><span class="line">    findSubset(a, <span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>TFRecord是一种二进制格式文件，理论上可以保存任何格式的信息，可以将任何类型数据转化为Tensorflow所支持的格式，这种方法可以让数据集和网络架构更容易相互匹配。TFRecord文件包含了tf.train.Example协议内存块（protocol buffer）。可以将数据填入Example协议内存块（protocol buffer），将协议内存块序列化为一个字符串，并且通过tf.python_io.TFRecordWriter写入到TFRecord文件。</p>
+<p>Protocol Buffer（protobuf）是Google公司出口的一种独立于开发语言，独立于平台的可扩展结构化徐磊机制。与xml、json类似。是一种数据交互格式协议。</p>
+<p>Example消息体：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">message Example &#123;</span><br><span class="line">  Features features = 1;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">message Features &#123;</span><br><span class="line">  // Map from feature name to feature.</span><br><span class="line">  map&lt;string, Feature&gt; feature = 1;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">message Feature &#123;</span><br><span class="line">  // Each feature can be exactly one kind.</span><br><span class="line">  oneof kind &#123;</span><br><span class="line">    BytesList bytes_list = 1;</span><br><span class="line">    FloatList float_list = 2;</span><br><span class="line">    Int64List int64_list = 3;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">message BytesList &#123;</span><br><span class="line">  repeated bytes value = 1;</span><br><span class="line">&#125;</span><br><span class="line">message FloatList &#123;</span><br><span class="line">  repeated float value = 1 [packed = true];</span><br><span class="line">&#125;</span><br><span class="line">message Int64List &#123;</span><br><span class="line">  repeated int64 value = 1 [packed = true];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>一个包含一系列的feature属性。灭一个feature是一个map，也就是key-value键值对的形式，key取值是String类型，而value是feature类型的消息体，他的类型有三种：</p>
+<ul>
+<li>BytesList</li>
+<li>FloatList</li>
+<li>Int64List</li>
+</ul>
+<p>它们都是列表形式。</p>
+<h3 id="图片转TfRecord格式"><a href="#图片转TfRecord格式" class="headerlink" title="图片转TfRecord格式"></a>图片转TfRecord格式</h3><p>python代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line"><span class="comment"># 打包图片文件 to tfrecord</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 图片路径，两组标签都在该目录下</span></span><br><span class="line">filename = <span class="string">"./images/train.txt"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># tfrecord文件保存路径</span></span><br><span class="line">file_path = <span class="string">r"/image/tfrecord/train/"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 每个tfrecord存放图片个数</span></span><br><span class="line">bestnum = <span class="number">2000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第几个图片</span></span><br><span class="line">num = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 第几个TFRecord文件</span></span><br><span class="line">recordfilenum = <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 文件格式：图片路径 标签</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_images_labels</span><span class="params">(filename = filename)</span>:</span></span><br><span class="line">    images_list = []</span><br><span class="line">    labels_list = []</span><br><span class="line">    <span class="keyword">with</span> open(filename) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.readlines()</span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">            <span class="comment"># rstrip：用来去除结尾字符、空白符(包括\n、\r、\t、' '，即：换行、回车、制表符、空格)</span></span><br><span class="line">            content = line.rstrip().split(<span class="string">' '</span>)</span><br><span class="line">            name = content[<span class="number">0</span>]</span><br><span class="line">            <span class="comment"># labels = []</span></span><br><span class="line">            <span class="keyword">for</span> value <span class="keyword">in</span> content[<span class="number">1</span>:]:</span><br><span class="line">                labels_list.append(int(value))</span><br><span class="line">            images_list.append(name)</span><br><span class="line">    <span class="comment"># 将训练数据随机打乱以获得更好的训练效果。</span></span><br><span class="line">    state = np.random.get_state()</span><br><span class="line">    np.random.shuffle(images_list)</span><br><span class="line">    np.random.set_state(state)</span><br><span class="line">    np.random.shuffle(labels_list)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> images_list, labels_list</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line"></span><br><span class="line">    <span class="comment"># tfrecords格式文件名</span></span><br><span class="line">    ftrecordfilename = (<span class="string">"train-%d.tfrecords"</span> % recordfilenum)</span><br><span class="line">    writer = tf.python_io.TFRecordWriter(os.path.join(file_path, ftrecordfilename))</span><br><span class="line"></span><br><span class="line">    images_list, labels_list = load_images_labels()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i, image_path <span class="keyword">in</span> enumerate(images_list):</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 超过2000，写入下一个tfrecord</span></span><br><span class="line">        <span class="keyword">if</span> i !=<span class="number">0</span> <span class="keyword">and</span> i % bestnum == <span class="number">0</span>:</span><br><span class="line">            print(<span class="string">"(%d/%d) 已完成"</span> % (i, len(images_list)))</span><br><span class="line">            recordfilenum += <span class="number">1</span></span><br><span class="line">            ftrecordfilename = (<span class="string">"train-%d.tfrecords"</span> % recordfilenum)</span><br><span class="line">            writer = tf.python_io.TFRecordWriter(os.path.join(file_path, ftrecordfilename))</span><br><span class="line"></span><br><span class="line">        img = Image.open(image_path, <span class="string">'r'</span>)</span><br><span class="line">        <span class="comment"># 将图片转化为二进制格式</span></span><br><span class="line">        img_raw = img.tobytes()</span><br><span class="line">        example = tf.train.Example(</span><br><span class="line">            features=tf.train.Features(feature=&#123;</span><br><span class="line">                <span class="string">'label'</span>: tf.train.Feature(int64_list=tf.train.Int64List(value=[labels_list[i]])),</span><br><span class="line">                <span class="string">'image_raw'</span>: tf.train.Feature(bytes_list=tf.train.BytesList(value=[img_raw])),</span><br><span class="line">            &#125;))</span><br><span class="line">        <span class="comment"># 序列化为字符串</span></span><br><span class="line">        writer.write(example.SerializeToString())</span><br><span class="line">    writer.close()</span><br></pre></td></tr></table></figure>
+<h3 id="读取TFRecord格式文件"><a href="#读取TFRecord格式文件" class="headerlink" title="读取TFRecord格式文件"></a>读取TFRecord格式文件</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">img_size = <span class="number">224</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_and_decode_tfrecord</span><span class="params">(filename)</span>:</span></span><br><span class="line">    filename_deque = tf.train.string_input_producer(filename)</span><br><span class="line">    reader = tf.TFRecordReader()</span><br><span class="line">    _, serialized_example = reader.read(filename_deque)</span><br><span class="line">    features = tf.parse_single_example(serialized_example, features=&#123;</span><br><span class="line">        <span class="string">'label'</span>: tf.FixedLenFeature([], tf.int64),</span><br><span class="line">        <span class="string">'image_raw'</span>: tf.FixedLenFeature([], tf.string)&#125;)</span><br><span class="line">    label = tf.cast(features[<span class="string">'label'</span>], tf.int32)</span><br><span class="line">    img = tf.decode_raw(features[<span class="string">'image_raw'</span>], tf.uint8)</span><br><span class="line">    img = tf.reshape(img, [img_size, img_size, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 归一化处理</span></span><br><span class="line">    img = tf.image.convert_image_dtype(img, dtype=tf.float32)</span><br><span class="line">    <span class="comment"># 归一化处理 两种方式效果相同</span></span><br><span class="line">    <span class="comment"># img = tf.cast(img, tf.float32) / 255.0</span></span><br><span class="line">    <span class="comment"># One-hot处理</span></span><br><span class="line">    label = tf.one_hot(label, <span class="number">8</span>)</span><br><span class="line">    <span class="keyword">return</span> img, label</span><br><span class="line"></span><br><span class="line"><span class="comment"># TFrecord文件路径</span></span><br><span class="line">train_list = [<span class="string">'./images/test/train-0.tfrecords'</span>, <span class="string">'./images/test/train-1.tfrecords'</span>]</span><br><span class="line"></span><br><span class="line">img, label = read_and_decode_tfrecord(train_list)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 小批量读取</span></span><br><span class="line">img_batch, label_batch = tf.train.batch([img, label], num_threads=<span class="number">1</span>, batch_size=<span class="number">10</span>, capacity=<span class="number">1000</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># print(img_batch.shape)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    sess.run(tf.global_variables_initializer())</span><br><span class="line">    <span class="comment"># 创建一个协调器，管理线程</span></span><br><span class="line">    coord = tf.train.Coordinator()</span><br><span class="line">    <span class="comment"># 启动QueueRunner,此时文件名队列已经进队</span></span><br><span class="line">    threads = tf.train.start_queue_runners(sess=sess, coord=coord)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">        b_image, b_label = sess.run([img_batch, label_batch])</span><br><span class="line">        <span class="comment"># b_image = Image.fromarray(b_image[0])</span></span><br><span class="line">        <span class="comment"># plt.imshow(b_image)</span></span><br><span class="line">        <span class="comment"># plt.axis('off')</span></span><br><span class="line">        <span class="comment"># plt.show()</span></span><br><span class="line">        <span class="comment"># print(b_image)</span></span><br><span class="line">        print(b_label)</span><br><span class="line">    coord.request_stop()</span><br><span class="line">    <span class="comment"># 其他所有线程关闭之后，这一函数才能返回</span></span><br><span class="line">    coord.join(threads)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -493,9 +500,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/算法/" rel="tag"> <i class="fa fa-tag"></i> 算法</a>
+            <a href="/tags/tfrecord/" rel="tag"> <i class="fa fa-tag"></i> tfrecord</a>
           
-            <a href="/tags/编程/" rel="tag"> <i class="fa fa-tag"></i> 编程</a>
+            <a href="/tags/tensorflow/" rel="tag"> <i class="fa fa-tag"></i> tensorflow</a>
           
         </div>
       
@@ -508,8 +515,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/posts/c7e55458/" rel="next" title="由两个栈组成的队列">
-                <i class="fa fa-chevron-left"></i> 由两个栈组成的队列
+              <a href="/posts/470e020b/" rel="next" title="深度学习-权重衰减">
+                <i class="fa fa-chevron-left"></i> 深度学习-权重衰减
               </a>
             
           </div>
@@ -517,10 +524,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/posts/b5ea2dc8/" rel="prev" title="java中Thread和Runnable实现多线程的区别">
-                java中Thread和Runnable实现多线程的区别 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -579,8 +582,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -659,6 +671,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片转TfRecord格式"><span class="nav-number">2.</span> <span class="nav-text">图片转TfRecord格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取TFRecord格式文件"><span class="nav-number">3.</span> <span class="nav-text">读取TFRecord格式文件</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
