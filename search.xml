@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[用tf.data读取TFRecord]]></title>
     <url>%2Fposts%2F9658a59d%2F</url>
-    <content type="text"><![CDATA[tf.TFRecordReader()可能会弃用，官方推荐用tf.data读取TFRecord，用起来也相对方便。实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647import tensorflow as tfimport randomimport numpy as npimport matplotlib.pyplot as pltfrom PIL import Imageimg_size = 224def parse_exmp(serial_exmp): features = tf.parse_single_example(serial_exmp, features=&#123; 'label': tf.FixedLenFeature([], tf.int64), 'image_raw': tf.FixedLenFeature([], tf.string) &#125;) label = tf.cast(features['label'], tf.int32) img = tf.decode_raw(features['image_raw'], tf.uint8) # img = tf.cast(img, tf.float32) img = tf.reshape(img, [500, 500, 3]) # print(img.shape) img = tf.reshape(img, [224, 224, 3]) # 归一化处理 img = tf.image.convert_image_dtype(img, dtype=tf.uint8) # img = tf.cast(img, tf.float32) / 255.0 # label = tf.one_hot(label, 8) return img, label# TFrecord文件路径train_list = ['./images/test/hbr-train-0.tfrecords']train_set = tf.data.TFRecordDataset(train_list)train_set = train_set.map(parse_exmp).repeat().batch(1).shuffle(buffer_size=50)train_iterator = train_set.make_one_shot_iterator()images_batch, labels_batch = train_iterator.get_next()with tf.Session() as sess: sess.run(tf.global_variables_initializer()) for n in range(100): images, labels = sess.run([images_batch, labels_batch]) b_image = Image.fromarray(images[0]) print(labels[0]) plt.imshow(b_image) # plt.axis('off') plt.show() # print(labels)]]></content>
+    <content type="text"><![CDATA[tf.TFRecordReader()可能会弃用，官方推荐用tf.data读取TFRecord，用起来也相对方便。实现代码如下： 1234567891011121314151617181920212223242526272829303132333435363738394041424344import tensorflow as tfimport randomimport numpy as npimport matplotlib.pyplot as pltfrom PIL import Imageimg_size = 224def parse_exmp(serial_exmp): features = tf.parse_single_example(serial_exmp, features=&#123; 'label': tf.FixedLenFeature([], tf.int64), 'image_raw': tf.FixedLenFeature([], tf.string) &#125;) label = tf.cast(features['label'], tf.int32) img = tf.decode_raw(features['image_raw'], tf.uint8) # print(img.shape) img = tf.reshape(img, [224, 224, 3]) # 归一化处理 img = tf.image.convert_image_dtype(img, dtype=tf.uint8) # img = tf.cast(img, tf.float32) / 255.0 # label = tf.one_hot(label, 8) return img, label# TFrecord文件路径train_list = ['./images/test/hbr-train-0.tfrecords']train_set = tf.data.TFRecordDataset(train_list)train_set = train_set.map(parse_exmp).repeat().batch(1).shuffle(buffer_size=50)train_iterator = train_set.make_one_shot_iterator()images_batch, labels_batch = train_iterator.get_next()with tf.Session() as sess: sess.run(tf.global_variables_initializer()) for n in range(100): images, labels = sess.run([images_batch, labels_batch]) b_image = Image.fromarray(images[0]) print(labels[0]) plt.imshow(b_image) # plt.axis('off') plt.show() # print(labels)]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -281,8 +281,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>设计模式</tag>
         <tag>JAVA</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -330,8 +330,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>C/C++</tag>
         <tag>编程</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
   <entry>
@@ -402,8 +402,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -437,8 +437,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
         <tag>WebService</tag>
       </tags>
   </entry>
@@ -473,8 +473,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
         <tag>设计模式</tag>
       </tags>
   </entry>
@@ -486,9 +486,9 @@
         <category>编程</category>
       </categories>
       <tags>
+        <tag>编程</tag>
         <tag>C/C++</tag>
         <tag>Linux</tag>
-        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -499,8 +499,8 @@
         <category>编程</category>
       </categories>
       <tags>
-        <tag>编程</tag>
         <tag>java</tag>
+        <tag>编程</tag>
       </tags>
   </entry>
   <entry>
@@ -524,8 +524,8 @@
       </categories>
       <tags>
         <tag>编程</tag>
-        <tag>设计模式</tag>
         <tag>JAVA</tag>
+        <tag>设计模式</tag>
       </tags>
   </entry>
   <entry>
@@ -537,8 +537,8 @@
       </categories>
       <tags>
         <tag>算法</tag>
-        <tag>C/C++</tag>
         <tag>编程</tag>
+        <tag>C/C++</tag>
       </tags>
   </entry>
 </search>
