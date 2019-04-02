@@ -30,9 +30,6 @@ def parse_exmp(serial_exmp):
     label = tf.cast(features['label'], tf.int32)
     img = tf.decode_raw(features['image_raw'], tf.uint8)
 
-    # img = tf.cast(img, tf.float32)
-    img = tf.reshape(img, [500, 500, 3])
-
     # print(img.shape)
     img = tf.reshape(img, [224, 224, 3])
     # 归一化处理
@@ -43,7 +40,7 @@ def parse_exmp(serial_exmp):
 
 
 # TFrecord文件路径
-train_list = ['./images/test/hbr-train-0.tfrecords']
+train_list = ['./images/test/train-0.tfrecords']
 
 train_set = tf.data.TFRecordDataset(train_list)
 train_set = train_set.map(parse_exmp).repeat().batch(1).shuffle(buffer_size=50)
