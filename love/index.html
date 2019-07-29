@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1, minimum-scale=1, maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>阿鱼</title>
+
+    <link rel="stylesheet" href="/love/css/ayu.css">
+    <link rel="stylesheet" href="/love/css/txt.wav.css">
+    <link rel="stylesheet" href="/love/css/animate.css">
+    <link rel="stylesheet" href="/love/css/normalize.css">
+
+</head>
+<body>
+    <!-- 转场 -->
+    <canvas class="iriswipe" id="iriswipe"></canvas>
+    <div id="fireworks"></div>
+    <div id="container" class="container">
+        
+        <!-- 第一页 -->
+        <div id="page0" class="page">
+
+
+            <!-- 气球 -->
+            <img id="balloon" src="images/balloon.png">
+
+            <!-- 云 -->
+            <div class="cloud">
+                <img id="cloud0" src="images/page0_cloud.png">
+                <img id="cloud1" src="images/page0_cloud.png">
+                <img id="cloud2" src="images/page0_cloud.png">
+            </div>
+
+            <!-- 花 -->
+            <img id="start" class="flower" src="images/page0_flower.png">
+
+            <!-- 点击开始 -->
+            <div class="txtwav flip">
+                点击开始......
+            </div>
+
+            <!-- 底部 -->
+            <img class="footer" src="images/page0_bottom.png">
+
+        </div>
+
+        <!-- 第二页 -->
+        <div id="page1" class="page animated fadeInLeft">
+            <!-- 瓶子 -->
+            <div class="vase animated bounceInDown">
+                <img class="vase1" src="images/vase1.png">
+                <img class="vase2" src="images/vase2.png">
+            </div>
+            
+            <!-- 树叶 -->
+            <div class="leaf animated fadeInDown">
+                <img class="leaf1" src="images/leaf1.png">
+                <img class="leaf2" src="images/leaf2.png">
+            </div>
+
+            <!-- 主要内容 -->
+            <div id="content" class="content">
+                <!-- 边框 -->
+                <img class="border" src="images/border.png">
+
+                <!-- 心（上） -->
+                <img class="top_hearts animated fadeInDown" src="images/hearts.png">
+
+                <!-- 我情真意切的文字 -->
+                <div id="word" class="word">
+                    <!-- 文字 -->
+                    <span id="txt"></span>
+                    <!-- 光标 -->
+                    <span id="guang"></span>
+                </div>
+
+                <!-- 左边的小鸟和笼子 -->
+                <img class="bird1 animated fadeInDown" src="images/bird1.png">
+                <img class="cage animated flipInX" src="images/cage.png">
+
+
+                <!-- 右边的小鸟和树枝 -->
+                <img class="bird2 animated fadeInDown" src="images/bird2.png">
+                <img class="leaf_bird2 animated flipInX" src="images/leaf_bird2.png">
+
+                <img class="bottom_hearts animated fadeInUp" src="images/hearts.png">
+            </div>
+
+            <div class="txtwav flip name">By Ansore</div>
+
+            <div id="fireworks" class="fireworks"></div>
+        </div>
+    </div>
+    <audio id="music" src="audio/shenhua.mp3" loop="-1"></audio>
+<script src="/love/js/jquery.min.js"></script>
+<script src="/love/js/jquery.aniview.min.js"></script>
+<script src="/love/js/anime.min.js"></script>
+<script src="/love/js/iriswipe.js"></script>
+<script src="/love/js/txt.wav.min.js"></script>
+<script src="/love/js/fireworks.js"></script>
+<script src="/love/js/ayu.js"></script>
+</body>
+
+</html>
