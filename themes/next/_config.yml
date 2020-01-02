@@ -96,7 +96,7 @@ menu:
   tags: /tags/ || tags
   categories: /categories/ || th
   archives: /archives/ || archive
-  photos: /photos/ || photo
+  #photos: /photos/ || photo
   music: /music/ || music
   causerie: /causerie/ || heart
   about: /about/ || user
