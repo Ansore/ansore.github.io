@@ -166,6 +166,7 @@ $(document).ready(function(e) {
 
 var sumTime = 0;
 function start() {
+
     setTimeout(function () {
         $('#page1').show();
     }, sumTime += 1000);
@@ -226,91 +227,47 @@ function start() {
             }
         }
     });
-    setTimeout(function () {
-        var bird1TouchSum = 0;
-        $(".bird1").on("touchstart", function (event) {
-            bird1TouchSum++;
-            if (bird1TouchSum % 5 == 0) {
-                $.dispalyText("  ████     唯愿岁月可回首██        且以深情共白头███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 18000);
-            }
-        });
 
-        var topHeartTouchSum = 0;
-        $(".top_hearts").on("touchstart", function (event) {
-            topHeartTouchSum++;
-            if (topHeartTouchSum % 5 == 0) {
-                $.dispalyText("  ████     你可知██       这世间所有流水桃花██        都美不过你隔花眺望而来的眼███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 20000);
-            }
-        });
+    //  
+    // setTimeout(function () {
+    //     console.log(dispalyTextTime);
+    //     var bird1TouchSum = 0;
+    //     $(".bird1").on("touchstart", function (event) {
+    //         bird1TouchSum++;
+    //         if (bird1TouchSum % 5 == 0) {
+    //             $.dispalyText("  ████     唯愿岁月可回首██        且以深情共白头███");
+    //             setTimeout(function () {
+    //                 clearInterval(echo);
+    //                 clearInterval(guang);
+    //             }, 18000);
+    //         }
+    //     });
 
-        var bottomHeartTouchSum = 0;
-        $(".bottom_hearts").on("touchstart", function (event) {
-            bottomHeartTouchSum++;
-            if (bottomHeartTouchSum % 5 == 0) {
-                $.dispalyText("  ████     人活着本来就没有什么意义██       但只有活下去██        才能找到有趣的事██       就像你找到了这朵花██       就像我找到了你███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 28000);
-            }
-        });
-    }, sumTime + 2000);
-    var bird2TouchSum = 0;
-    $(".bird2").on("touchstart", function (event) {
-        bird2TouchSum++;
-        if (bird2TouchSum % 2 == 0) {
-            if ($('#fireworks').is(":hidden")) {
-                $('#fireworks').show();
-            } else {
-                $('#fireworks').hide();
-            }
-        }
-    });
-    setTimeout(function () {
-        var bird1TouchSum = 0;
-        $(".bird1").on("touchstart", function (event) {
-            bird1TouchSum++;
-            if (bird1TouchSum % 5 == 0) {
-                $.dispalyText("  ████     唯愿岁月可回首██        且以深情共白头███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 18000);
-            }
-        });
+    //     var topHeartTouchSum = 0;
+    //     $(".top_hearts").on("touchstart", function (event) {
+    //         topHeartTouchSum++;
+    //         if (topHeartTouchSum % 5 == 0) {
+    //             $.dispalyText("  ████     你可知██       这世间所有流水桃花██        都美不过你隔花眺望而来的眼███");
+    //             setTimeout(function () {
+    //                 clearInterval(echo);
+    //                 clearInterval(guang);
+    //             }, 20000);
+    //         }
+    //     });
 
-        var topHeartTouchSum = 0;
-        $(".top_hearts").on("touchstart", function (event) {
-            topHeartTouchSum++;
-            if (topHeartTouchSum % 5 == 0) {
-                $.dispalyText("  ████     你可知██       这世间所有流水桃花██        都美不过你隔花眺望而来的眼███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 20000);
-            }
-        });
+    //     var bottomHeartTouchSum = 0;
+    //     $(".bottom_hearts").on("touchstart", function (event) {
+    //         bottomHeartTouchSum++;
+    //         if (bottomHeartTouchSum % 5 == 0) {
+    //             $.dispalyText("  ████     人活着本来就没有什么意义██       但只有活下去██        才能找到有趣的事██       就像你找到了这朵花██       就像我找到了你███");
+    //             setTimeout(function () {
+    //                 clearInterval(echo);
+    //                 clearInterval(guang);
+    //             }, 28000);
+    //         }
+    //     });
+    // }, sumTime + 2000);
 
-        var bottomHeartTouchSum = 0;
-        $(".bottom_hearts").on("touchstart", function (event) {
-            bottomHeartTouchSum++;
-            if (bottomHeartTouchSum % 5 == 0) {
-                $.dispalyText("  ████     人活着本来就没有什么意义██       但只有活下去██        才能找到有趣的事██       就像你找到了这朵花██       就像我找到了你███");
-                setTimeout(function () {
-                    clearInterval(echo);
-                    clearInterval(guang);
-                }, 28000);
-            }
-        });
-    }, sumTime + 2000);
 }
 
 function dispaly() {
@@ -321,7 +278,7 @@ function dispaly() {
     data.push("██      因为你,     我爱上了这个世界 █      如果不曾遇到你█       我不知该怎么面对这物是人非██     和你在一起很开心,     也很快乐█       渐渐发现自己已经离不开你了█       有自卑,     无奈,     甚至......  恐惧██        有时候█       抓住幸福比忍耐痛苦█        真的更需要勇气 ██ ");
 
     data.push("██      生命总是有太多遗憾█      也许你说的很对█       人生从来就不该畏首畏尾██     我给不了你太多感动█       但我还是想陪在你身边█       从此便是一生██         虽然不知道未来在哪儿█      但我一定会尽自己最大的努力█   爱你,  保护你,  让你开心,   幸福██ ");
-    data.push("███      以后,         我陪你,           好吗?    ███  To:      杜丰怡  ██  By:      向启怀 ██  二零一九年七月初七  ███");
+    data.push("███      以后,         我陪你,           好吗?    ███  To:      杜丰怡  ██  By:      向启怀 ██  二零一九年七月初七 ███");
 
     sumTime = 0;
     for (var i = 0; i < data.length; i++) {
@@ -345,6 +302,8 @@ function dispaly() {
             }, sumTime += 2000);
         }
     }
+
+    return sumTime;
 }
 
 $.dispalyText = function (text) {
