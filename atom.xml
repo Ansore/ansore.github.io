@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="/"/>
-  <updated>2020-06-16T09:19:17.558Z</updated>
+  <updated>2020-07-19T04:00:41.552Z</updated>
   <id>/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>悲观锁和乐观锁</title>
+    <link href="/posts/ec8a5210/"/>
+    <id>/posts/ec8a5210/</id>
+    <published>2020-07-19T03:56:50.000Z</published>
+    <updated>2020-07-19T04:00:41.552Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h1><p>悲观锁是利用数据库本身的锁机制来实现，会锁记录。</p><p>以一种预防的姿态在修改数据之前先把数据锁住，然后再对数据进行操作，在它释放锁之前任何人都不能对其数据进行操作，知道前面一个释放锁，后面才能对数据进行加锁，然后才可以对苏话剧进行操作。</p><p>特点：可以保证数据的独占性和正确性，因为每次请求都会先对数据进行加锁，然后再进行操作，最后再解锁，然而加锁释放锁的过程会造成消耗，所以性能不高。</p><p>实现方式：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> t_table <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span></span><br></pre></td></tr></table></figure><p>要使用悲观锁，我们必须关闭MySQL数据库的自动提交属性。因为MySQL默认使用autocommit模式，也就是说，当我们执行一个更新操作后，MySQL会立刻将结果进行提交。（sql语句：set autocommit=0）</p><p>以下单过程为例：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// 开始事务</span><br><span class="line"><span class="keyword">begin</span>;</span><br><span class="line">// 查询商品库存信息</span><br><span class="line"><span class="keyword">select</span> quantity <span class="keyword">from</span> items <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">for</span> <span class="keyword">update</span>;</span><br><span class="line">// 修改商品库存为2</span><br><span class="line"><span class="keyword">update</span> items <span class="keyword">set</span> quantity = <span class="number">2</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line">// 提交事务</span><br><span class="line"><span class="keyword">commit</span>;</span><br></pre></td></tr></table></figure><p>在修改id=1的记录之前，先用for update进行加锁操作，然后修改</p><p>如果以上修改库存的代码发生并发，同一时间只有一个线程可以开启事务并获得id=1的锁，其它的事务必须等本次事务提交之后才能执行。这样我们可以保证当前的数据不会被其它事务修改。</p><p>MySQL InnoDB默认行级锁。行级锁都是基于索引的，如果一条SQL语句用不到索引是不会使用行级锁的，会使用表级锁把整张表锁住。</p><h1 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h1><p>使用乐观锁就不需要借助数据库的锁机制了，主要就是两个步骤：冲突检测和数据更新。其实现方式有一种比较典型的就是CAS(Compare and Swap)。CAS是项乐观锁技术，当多个线程尝试使用CAS同时更新同一个变量时，只有其中一个线程能更新变量的值，而其它线程都失败，失败的线程并不会被挂起，而是被告知这次竞争中失败，并可以再次尝试。</p><p>扣减库存：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 查询出商品信息，</span><br><span class="line"><span class="keyword">select</span> quantity <span class="keyword">from</span> items <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line">// 修改商品库存为2</span><br><span class="line"><span class="keyword">update</span> items <span class="keyword">set</span> quantity = <span class="number">2</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">and</span> quantity = <span class="number">3</span>;</span><br></pre></td></tr></table></figure><p>在更新之前，先查询一下库存表中当前库存数（quantity），然后在做update的时候，以库存数作为一个修改条件。当我们提交更新的时候，判断数据库表对应记录的当前库存数与第一次取出来的库存数进行比对，如果数据库表当前库存数与第一次取出来的库存数相等，则予以更新，否则认为是过期数据.</p><p>但是存在一个问题，即传说中的<strong>ABA问题。</strong></p><p>比如说一个线程one从数据库中取出库存数3，这时候另一个线程two也从数据库中取出库存数3，并且two进行了一些操作变成了2，然后two又将库存数变成3，这时候线程one进行CAS操作发现数据库中仍然是3，然后one操作成功。尽管线程one的CAS操作成功，但是不代表这个过程就是没有问题的。</p><p>有一个比较好的办法可以解决ABA问题，那就是通过一个单独的可以顺序递增的version字段。改为以下方式即可：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 查询出商品信息，version=1</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> items <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span>;</span><br><span class="line">// 修改商品库存</span><br><span class="line"><span class="keyword">update</span> items <span class="keyword">set</span> quantity = <span class="number">2</span>, <span class="keyword">version</span> = <span class="number">3</span> <span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">and</span> <span class="keyword">version</span> = <span class="number">2</span>;</span><br></pre></td></tr></table></figure><p>乐观锁每次在执行数据的修改操作时，都会带上一个版本号，一旦版本号和数据的版本号一致就可以执行修改操作并对版本号执行+1操作，否则就执行失败。因为每次操作的版本号都会随之增加，所以不会出现ABA问题，因为版本号只会增加不会减少。</p><p>除了version以外，还可以使用时间戳，因为时间戳天然具有顺序递增性。</p><p>以上SQL其实还是有一定的问题的，就是一旦遇上高并发的时候，就只有一个线程可以修改成功，那么就会存在大量的失败。</p><p>对于像淘宝这样的电商网站，高并发是常有的事，总让用户感知到失败显然是不合理的。所以，还是要想办法减少乐观锁的粒度的。</p><p>有一条比较好的建议，可以减小乐观锁力度，最大程度的提升吞吐率，提高并发能力！如下：</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">// 修改商品库存</span><br><span class="line"><span class="keyword">update</span> item</span><br><span class="line"><span class="keyword">set</span> quantity = quantity - <span class="number">1</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1</span> <span class="keyword">and</span> quantity - <span class="number">1</span> &gt; <span class="number">0</span></span><br></pre></td></tr></table></figure><p>以上SQL语句中，如果用户下单数为1，则通过quantity - 1 &gt; 0的方式进行乐观锁控制。</p><p>以上update语句，在执行过程中，会在一次原子操作中自己查询一遍quantity的值，并将其扣减掉1。</p><p>高并发环境下锁粒度把控是一门重要的学问，选择一个好的锁，在保证数据安全的情况下，可以大大提升吞吐率，进而提升性能。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;悲观锁&quot;&gt;&lt;a href=&quot;#悲观锁&quot; class=&quot;headerlink&quot; title=&quot;悲观锁&quot;&gt;&lt;/a&gt;悲观锁&lt;/h1&gt;&lt;p&gt;悲观锁是利用数据库本身的锁机制来实现，会锁记录。&lt;/p&gt;
+&lt;p&gt;以一种预防的姿态在修改数据之前先把数据锁住，然后再对数据进行操作，在
+      
+    
+    </summary>
+    
+      <category term="编程" scheme="/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="数据库" scheme="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
   
   <entry>
     <title>十大排序算法</title>
@@ -548,33 +576,6 @@
       <category term="大学" scheme="/tags/%E5%A4%A7%E5%AD%A6/"/>
     
       <category term="心情" scheme="/tags/%E5%BF%83%E6%83%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mxnet自动求梯度</title>
-    <link href="/posts/7b9a92a9/"/>
-    <id>/posts/7b9a92a9/</id>
-    <published>2018-12-30T06:06:21.000Z</published>
-    <updated>2018-12-30T06:56:09.492Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="求梯度实例"><a href="#求梯度实例" class="headerlink" title="求梯度实例"></a>求梯度实例</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, nd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 对函数y=2x(转置)x 求列向量x的梯度</span></span><br><span class="line">x = nd.arange(<span class="number">4</span>).reshape(<span class="number">4</span>,<span class="number">1</span>)</span><br><span class="line">print(x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调取attach_grad函数申请计算存储梯度所需的内存</span></span><br><span class="line">x.attach_grad()</span><br><span class="line"></span><br><span class="line"><span class="comment"># record 函数要求mxnet记录求梯度相关的计算</span></span><br><span class="line"><span class="keyword">with</span> autograd.record():</span><br><span class="line">    y = <span class="number">2</span> * nd.dot(x.T, x)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 调用backward自动求梯度</span></span><br><span class="line">y.backward()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 梯度应该为4x 验证梯度是否正确</span></span><br><span class="line"><span class="keyword">assert</span> (x.grad - <span class="number">4</span> * x).norm().asscalar() == <span class="number">0</span></span><br><span class="line"></span><br><span class="line">print(x.grad)</span><br></pre></td></tr></table></figure><h3 id="训练模式和预测模式"><a href="#训练模式和预测模式" class="headerlink" title="训练模式和预测模式"></a>训练模式和预测模式</h3><p>调用record函数后，mxnet会记录并计算梯度。此外还将运行模式从预测模式转为训练模式。</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd</span><br><span class="line"></span><br><span class="line">print(autograd.is_training())</span><br><span class="line"><span class="keyword">with</span> autograd.record():</span><br><span class="line">    print(autograd.is_training())</span><br></pre></td></tr></table></figure><h3 id="对python控制流求梯度"><a href="#对python控制流求梯度" class="headerlink" title="对python控制流求梯度"></a>对python控制流求梯度</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> mxnet <span class="keyword">import</span> autograd, nd</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">(a)</span>:</span></span><br><span class="line">    b = a * <span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> b.norm().asscalar() &lt; <span class="number">1000</span>:</span><br><span class="line">        b = b * <span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span> b.sum().asscalar() &gt; <span class="number">0</span>:</span><br><span class="line">        c = b</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        c = <span class="number">100</span> * b</span><br><span class="line">    <span class="keyword">return</span> c</span><br><span class="line"></span><br><span class="line">a = nd.random.normal(shape=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">a.attach_grad()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> autograd.record():</span><br><span class="line">    c = f(a)</span><br><span class="line"></span><br><span class="line">c.backward()</span><br><span class="line">print(a.grad == c / a)</span><br></pre></td></tr></table></figure><p>上面定义的函数$f$。给定任意的a，其输出必然是$f(a) = x * a$的形式，其中标量西施x的值取决于输入a，由于$c = f(a)$有段a的梯度为x，且值为c/a。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;求梯度实例&quot;&gt;&lt;a href=&quot;#求梯度实例&quot; class=&quot;headerlink&quot; title=&quot;求梯度实例&quot;&gt;&lt;/a&gt;求梯度实例&lt;/h3&gt;&lt;figure class=&quot;highlight python&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter
-      
-    
-    </summary>
-    
-      <category term="机器学习" scheme="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-      <category term="机器学习" scheme="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="mxnet" scheme="/tags/mxnet/"/>
     
   </entry>
   
