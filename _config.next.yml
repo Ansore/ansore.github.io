@@ -93,10 +93,10 @@ menu:
   tags: /tags/ || fa fa-tags
   categories: /categories/ || fa fa-th
   archives: /archives/ || fa fa-archive
+  about: /about/ || fa fa-user
   #music: /music/ || music
   #causerie: /causerie/ || heart
-  about: /about/ || fa fa-user
-  sitemap: /sitemap.xml || fa fa-sitemap
+  #sitemap: /sitemap.xml || fa fa-sitemap
   #commonweal: /404/ || fa fa-heartbeatS
   #schedule: /schedule/ || fa fa-calendar
 
