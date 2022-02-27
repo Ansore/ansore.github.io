@@ -1,6 +1,4 @@
 #!/bin/bash
-git checkout hexo
-
 hexo clean
 hexo g
 gulp
