@@ -37,15 +37,15 @@ linux内核中使用`task_struct`结构来描述一个PCB（`linux/kernel/sched.
 	container_of(ptr, type, member)
 
 /**
- * list_last_entry - get the last element from a list
+ * list_first_entry - get the first element from a list
  * @ptr:	the list head to take the element from.
  * @type:	the type of the struct this is embedded in.
  * @member:	the name of the list_head within the struct.
  *
  * Note, that list is expected to be not empty.
  */
-#define list_last_entry(ptr, type, member) \
-	list_entry((ptr)->prev, type, member)
+#define list_first_entry(ptr, type, member) \
+	list_entry((ptr)->next, type, member)
 
 /**
  * list_for_each_entry	-	iterate over list of given type
@@ -60,6 +60,44 @@ linux内核中使用`task_struct`结构来描述一个PCB（`linux/kernel/sched.
 ```
 
 `list_head`没有数据，所以它经常被嵌套在其他的结构体中。pos指向包含`list_struct`结构的结构体，head为`list_head`类型的指针，我们可以使用链表中任意一个结点的指针；member即为list_head类型的变量名。
+
+获取列表里的内容：
+
+```c
+#define list_entry(ptr, type, member) \
+    container_of(ptr, type, member)
+```
+
+使用了三个参数：
+
+- ptr - 指向链表头的指针；
+- type - 结构体类型;
+- member - 在结构体内类型为 `list_head` 的变量的名字；
+
+```c
+#define list_entry(ptr, type, member) \
+    container_of(ptr, type, member)
+```
+
+调用了宏`container_of`：
+
+```c
+#define container_of(ptr, type, member) ({                      \
+    const typeof( ((type *)0)->member ) *__mptr = (ptr);    \
+    (type *)( (char *)__mptr - offsetof(type,member) );})
+```
+
+编译器会执行花括号内的全部语句，然后返回最后的表达式的值。
+
+`typeof`返回给定变量的类型。`container_of` 中的 0巧妙的计算了从结构体特定变量的偏移，这里的0刚好就是位宽里的零偏移。
+
+下一个宏 `offsetof` 会计算从结构体的某个变量的相对于结构体起始地址的偏移。它的实现和上面类似：
+
+```c
+#define offsetof(TYPE, MEMBER) ((size_t) &((TYPE *)0)->MEMBER)
+```
+
+只需要知道结构体里面类型为 `list_head` 的变量的名字和结构体容器的类型，它可以通过结构体的变量 `list_head` 获得结构体的起始地址。在宏定义的第一行，声明了一个指向结构体成员变量 `ptr` 的指针 `__mptr` ，并且把 `ptr` 的地址赋给它。现在 `ptr` 和 `__mptr` 指向了同一个地址。从技术上讲我们并不需要这一行，但是它可以方便的进行类型检查。第一行保证了特定的结构体（参数 `type`）包含成员变量 `member`。第二行代码会用宏 `offsetof` 计算成员变量相对于结构体起始地址的偏移，然后从结构体的地址减去这个偏移，最后就得到了结构体的起始地址。
 
 `pos`为指向`task_struct`类型的指针，我们通过遍历宏即得到每个进程对应的`task_struct`类型的指针。我们将`current_head`赋予遍历宏中的第二个参数，current是一个宏，即为系统内正在运行的进程；由于`list_struct`结构在`task_struct`结构中的变量明为`tasks`，因此我们将`tasks`传递给遍历宏的第三个参数。
 
