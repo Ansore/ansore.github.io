@@ -1,0 +1,258 @@
+---
+title: Kernel中的哈希表
+tags:
+  - Kernel
+categories:
+  - Kernel
+abbrlink: 466f0e1b
+date: 2022-03-07 22:35:45
+---
+
+# 哈表表的定义
+
+哈希表，是根据键值（key）而直接访问在内存存储位置的数据结构。也就是说，它通过计算一个关于键值的函数，将所需查询的数据映射到表中的一个位置来访问记录，加快了查找速度。这个映射函数就叫做散列函数，存放记录的数组称作散列列表。
+
+```c
+// 哈希头
+struct hlist_head {
+	struct hlist_node *first;
+};
+// 哈希节点
+struct hlist_node {
+	struct hlist_node *next, **pprev;
+};
+```
+
+哈希表包含两个数据结构，一个是哈希链表节点`hlist_node`，另一个是哈希表头`hlist_head`。可以看到哈希节点`hlist_node`和内核普通双向链表的节点唯一的区别就在于，前向节点`pprev`是个两级指针。同时并没有使用`hlist_node`作为哈希表头，而是重新定义了`hlist_head`结构体，这是因为哈希链表并不需要双向循环，为了节省空间使用一个指针first指向该哈希表的第一个节点就可以了。整个哈希表结构如下图所示，其中`ppre`是个二级指针，它指向前一个节点的第一个指针变量，例如`node1`的`ppre`指向`mylist`的`first`指针，`node2`的`ppre`指向`node1`的next指针。
+
+之所以使用`ppre`二级指针是为了避免在首节点之后插入删除节点和在其他位置插入删除节点实现逻辑的不同，读者可以将`ppre`改成一级指针指向前一个节点，就可以发现实现逻辑的不同。
+
+![img](https://s2.loli.net/2022/03/07/jWPVSyJKr97dZOw.png)
+
+![image-20220308232120796](https://s2.loli.net/2022/03/08/vrB19jd5bt34GQ6.png)
+
+# 哈希表的初始化
+
+```c
+/*
+ * Double linked lists with a single pointer list head.
+ * Mostly useful for hash tables where the two pointer list head is
+ * too wasteful.
+ * You lose the ability to access the tail in O(1).
+ */
+
+#define HLIST_HEAD_INIT { .first = NULL }
+#define HLIST_HEAD(name) struct hlist_head name = {  .first = NULL }
+#define INIT_HLIST_HEAD(ptr) ((ptr)->first = NULL)
+```
+
+这三个初始化宏都是建立一个hlist_head结构体，并把first成员设置为NULL。
+
+初始化hlist_node结构体，把两个成员变量赋值为NULL。
+
+```c'
+static inline void INIT_HLIST_NODE(struct hlist_node *h)
+{
+	h->next = NULL;
+	h->pprev = NULL;
+}
+```
+
+# 哈希表操作
+
+## 增加节点
+
+```c
+/**
+ * hlist_add_head - add a new entry at the beginning of the hlist
+ * @n: new entry to be added
+ * @h: hlist head to add it after
+ *
+ * Insert a new entry after the specified head.
+ * This is good for implementing stacks.
+ */
+static inline void hlist_add_head(struct hlist_node *n, struct hlist_head *h)
+{
+	struct hlist_node *first = h->first;
+	WRITE_ONCE(n->next, first);
+	if (first)
+		WRITE_ONCE(first->pprev, &n->next);
+	WRITE_ONCE(h->first, n);
+	WRITE_ONCE(n->pprev, &h->first);
+}
+
+/**
+ * hlist_add_before - add a new entry before the one specified
+ * @n: new entry to be added
+ * @next: hlist node to add it before, which must be non-NULL
+ */
+static inline void hlist_add_before(struct hlist_node *n,
+				    struct hlist_node *next)
+{
+	WRITE_ONCE(n->pprev, next->pprev);
+	WRITE_ONCE(n->next, next);
+	WRITE_ONCE(next->pprev, &n->next);
+	WRITE_ONCE(*(n->pprev), n);
+}
+
+/**
+ * hlist_add_behind - add a new entry after the one specified
+ * @n: new entry to be added
+ * @prev: hlist node to add it after, which must be non-NULL
+ */
+static inline void hlist_add_behind(struct hlist_node *n,
+				    struct hlist_node *prev)
+{
+	WRITE_ONCE(n->next, prev->next);
+	WRITE_ONCE(prev->next, n);
+	WRITE_ONCE(n->pprev, &prev->next);
+
+	if (n->next)
+		WRITE_ONCE(n->next->pprev, &n->next);
+}
+/**
+ * hlist_add_fake - create a fake hlist consisting of a single headless node
+ * @n: Node to make a fake list out of
+ *
+ * This makes @n appear to be its own predecessor on a headless hlist.
+ * The point of this is to allow things like hlist_del() to work correctly
+ * in cases where there is no list.
+ */
+static inline void hlist_add_fake(struct hlist_node *n)
+{
+	n->pprev = &n->next;
+}
+```
+
+`hlist_add_head`是把一个哈希链表的节点插入到哈希链表的头节点的后边，也就是头插法。传入了哈希表头h和待插入的节点n，首先得到`hlist_head`的`first`成员，就是后边的节点的指针，这个节点可能是`NULL`，然后新插入的节点的next指向first后边的节点，如果`first`不为空，也就是后边有节点存在，`head`的后边的节点的`pprev`成员就指向新插入的节点的next成员的地址，`head`的`first`就指向新插入的节点，新插入节点的`pprev`成员指向`head`的`first`成员的地址。
+
+![img](https://s2.loli.net/2022/03/08/c7vjLQhZfCWk493.png)
+
+`hlist_add_before`作用是把一个节点插入到一个哈希链表的节点的前边，首先把将要插入的节点的`pprev`成员变量指向`next`的前边的节点，要插入的节点的`next`指向下一个节点，然后`next`节点的`pprev`就要指向已经插入的节点的`next`节点的地址，已经插入的节点的`pprev`指向的前一个节点的值就要变成已经插入节点的地址。
+
+## 节点删除
+
+```c
+#define __WRITE_ONCE(x, val)						\
+do {									\
+	*(volatile typeof(x) *)&(x) = (val);				\
+} while (0)
+
+#define WRITE_ONCE(x, val)						\
+do {									\
+	compiletime_assert_rwonce_type(x);				\
+	__WRITE_ONCE(x, val);						\
+} while (0)
+
+static inline void __hlist_del(struct hlist_node *n)
+{
+	struct hlist_node *next = n->next;
+	struct hlist_node **pprev = n->pprev;
+
+	WRITE_ONCE(*pprev, next);  // *pprev=next
+	if (next)
+		WRITE_ONCE(next->pprev, pprev);  // next->pprev=pprev
+}
+
+/**
+ * hlist_del - Delete the specified hlist_node from its list
+ * @n: Node to delete.
+ *
+ * Note that this function leaves the node in hashed state.  Use
+ * hlist_del_init() or similar instead to unhash @n.
+ */
+static inline void hlist_del(struct hlist_node *n)
+{
+	__hlist_del(n);
+	n->next = LIST_POISON1;
+	n->pprev = LIST_POISON2;
+}
+
+/**
+ * hlist_del_init - Delete the specified hlist_node from its list and initialize
+ * @n: Node to delete.
+ *
+ * Note that this function leaves the node in unhashed state.
+ */
+static inline void hlist_del_init(struct hlist_node *n)
+{
+	if (!hlist_unhashed(n)) {
+		__hlist_del(n);
+		INIT_HLIST_NODE(n);
+	}
+}
+```
+
+
+
+`__hlist_del`将删除节点的前驱的`next`指针指向后继(`*pprev=next`)，如果将要删除的`next`指针不为空，则将后继的`pprev`指针指向前驱的`next`指针
+
+
+
+![Screenshot_20220308_232224](https://s2.loli.net/2022/03/08/rO7NF9Ui5c8ElWG.png)
+
+## 判断节点是否经过哈希
+
+```c
+/**
+ * hlist_unhashed - Has node been removed from list and reinitialized?
+ * @h: Node to be checked
+ *
+ * Not that not all removal functions will leave a node in unhashed
+ * state.  For example, hlist_nulls_del_init_rcu() does leave the
+ * node in unhashed state, but hlist_nulls_del() does not.
+ */
+static inline int hlist_unhashed(const struct hlist_node *h)
+{
+	return !h->pprev;
+}
+```
+
+判断一个`hlist_node`节点是否经过hash，如果没有经过hash，那么`pprev`指针为空，返回`true`，反之亦然。
+
+## 判断哈希表是否为空
+
+```c
+/**
+ * hlist_empty - Is the specified hlist_head structure an empty hlist?
+ * @h: Structure to check.
+ */
+static inline int hlist_empty(const struct hlist_head *h)
+{
+	return !READ_ONCE(h->first);
+}
+```
+
+判断头结点是否为空，如果为空，那么对应的hash表也为空。
+
+## 遍历哈希表
+
+```c
+#define hlist_for_each(pos, head) \
+	for (pos = (head)->first; pos ; pos = pos->next)
+```
+
+这个宏是对哈希链表进行遍历的宏，`pos`代表一个`hlist_node`结构体指针，`head`代表`hlist_head`结构体，就是哈希链表的头。得到`pos`后，在宏展开后就可以在循环体中取到结构体具体的数值。
+
+## 获取哈希表中的数据实体
+
+```c
+
+/**
+ * container_of - cast a member of a structure out to the containing structure
+ * @ptr:	the pointer to the member.
+ * @type:	the type of the container struct this is embedded in.
+ * @member:	the name of the member within the struct.
+ *
+ */
+#define container_of(ptr, type, member) ({				\
+	void *__mptr = (void *)(ptr);					\
+	static_assert(__same_type(*(ptr), ((type *)0)->member) ||	\
+		      __same_type(*(ptr), void),			\
+		      "pointer type mismatch in container_of()");	\
+	((type *)(__mptr - offsetof(type, member))); })
+
+#define hlist_entry(ptr, type, member) container_of(ptr,type,member)
+```
+
+`member`为在该结构体中的成员名称
