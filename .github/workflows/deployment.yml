@@ -16,7 +16,6 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: hexo
-        submodules: true
 
     - name: Use Node.js ${{ matrix.node_version }}
       uses: actions/setup-node@v1
