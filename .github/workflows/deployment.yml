@@ -1,0 +1,46 @@
+name: Deployment
+
+on:
+  push:
+    branches: 
+      - hexo
+
+jobs:
+  hexo-deployment:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v2
+      with:
+        ref: hexo
+        submodules: true
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@v1
+      with:
+        version: ${{ matrix.node_version }}
+
+    - name: Configration hexo repo
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.HEXO_DEPLOY_PRI }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo "$ACTION_DEPLOY_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          git config --global user.email "aansore@outlook.com"
+          git config --global user.name "Ansore"
+
+    - name: Install dependencies
+      run: |
+        node -v
+        npm i -g hexo-cli
+        npm i
+
+    - name: Deploy to Github Pages
+      run: |
+        hexo clean
+        hexo d
