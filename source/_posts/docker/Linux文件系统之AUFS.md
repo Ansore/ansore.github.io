@@ -6,7 +6,7 @@ tags:
   - 文件系统
 categories:
   - Linux
-cover: https://images.ansore.top/i/2022/04/25/6266c3868adea.png
+cover: https://images.ansore.top/i/2022/04/26/626803b75f8df.jpg
 abbrlink: cdaf4fa3
 date: 2022-04-20 20:31:11
 ---

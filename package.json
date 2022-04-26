@@ -29,6 +29,6 @@
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^3.0.0",
     "hexo-theme-butterfly": "^4.1.0",
-    "hexo-word-counter": "^0.0.3"
+    "hexo-wordcount": "^6.0.1"
   }
 }
