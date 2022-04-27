@@ -6,6 +6,7 @@ tags:
   - 设计模式
 categories:
   - 编程
+cover: https://images.ansore.top/i/2022/04/27/626944743c474.jpg
 abbrlink: eaa7cc98
 date: 2016-09-17 23:39:50
 ---

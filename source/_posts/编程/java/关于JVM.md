@@ -5,6 +5,7 @@ tags:
   - jvm
 categories:
   - 编程
+cover: https://images.ansore.top/i/2022/04/27/6269303eae58b.jpg
 abbrlink: df4b4949
 date: 2017-11-28 20:52:44
 ---

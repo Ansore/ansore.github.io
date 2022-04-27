@@ -5,6 +5,7 @@ tags:
   - 编程
 categories:
   - 编程
+cover: https://images.ansore.top/i/2022/04/27/6269303eae58b.jpg
 abbrlink: dccbf65
 date: 2016-09-26 18:19:05
 ---

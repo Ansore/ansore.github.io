@@ -4,6 +4,7 @@ tags:
   - cmake
 categories:
   - 编程
+cover: https://images.ansore.top/i/2022/04/27/626930c198398.jpg
 abbrlink: 72bbddf7
 date: 2022-03-20 09:52:44
 ---
