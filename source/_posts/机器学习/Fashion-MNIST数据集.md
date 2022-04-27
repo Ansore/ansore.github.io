@@ -6,6 +6,7 @@ tags:
   - fashion-mnist
 categories:
   - 机器学习
+cover: https://images.ansore.top/i/2022/04/27/6269450f149fc.jpg
 abbrlink: 7e7e4a71
 date: 2019-01-05 09:30:59
 ---

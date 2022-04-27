@@ -6,6 +6,7 @@ tags:
   - cifar
 categories:
   - 机器学习
+cover: https://images.ansore.top/i/2022/04/28/626969f586f24.jpg
 abbrlink: 4c3e71da
 date: 2018-03-29 16:23:32
 ---

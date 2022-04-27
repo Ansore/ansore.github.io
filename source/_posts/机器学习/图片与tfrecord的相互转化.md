@@ -5,6 +5,7 @@ tags:
   - tensorflow
 categories:
   - 机器学习
+cover: https://images.ansore.top/i/2022/04/28/626969f586f24.jpg
 abbrlink: 7931261f
 date: 2019-03-01 08:49:25
 ---

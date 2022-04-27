@@ -6,6 +6,7 @@ tags:
   - 线性回归
 categories:
   - 机器学习
+cover: https://images.ansore.top/i/2022/04/28/6269696188c94.jpg
 abbrlink: 593cfb3c
 date: 2019-01-01 13:18:12
 ---
