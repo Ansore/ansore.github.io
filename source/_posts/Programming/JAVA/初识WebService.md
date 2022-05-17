@@ -5,7 +5,7 @@ tags:
   - WebService
 categories:
   - java
-cover: https://images.ansore.top/i/2022/04/27/6269303eae58b.jpg
+cover: https://img.ansore.top/2022/04/27/6269303eae58b.jpg
 abbrlink: 2d791364
 date: 2017-03-07 16:46:52
 ---

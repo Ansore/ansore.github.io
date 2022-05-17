@@ -5,7 +5,7 @@ tags:
   - java
 categories:
   - java
-cover: https://images.ansore.top/i/2022/04/27/6269303eae58b.jpg
+cover: https://img.ansore.top/2022/04/27/6269303eae58b.jpg
 abbrlink: de06556f
 date: 2017-11-01 19:19:46
 ---

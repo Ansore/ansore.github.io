@@ -4,7 +4,7 @@ tags:
   - c
 categories:
   - c
-cover: 'https://images.ansore.top/i/2022/05/04/627266bb421cf.jpg'
+cover: 'https://img.ansore.top/2022/05/04/627266bb421cf.jpg'
 abbrlink: 1d6a3c99
 date: 2021-10-02 14:20:31
 ---

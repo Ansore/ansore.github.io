@@ -5,7 +5,7 @@ tags:
   - 多线程
 categories:
   - java
-cover: https://images.ansore.top/i/2022/04/27/6269303eae58b.jpg
+cover: https://img.ansore.top/2022/04/27/6269303eae58b.jpg
 abbrlink: b5ea2dc8
 date: 2017-07-28 15:18:29
 ---

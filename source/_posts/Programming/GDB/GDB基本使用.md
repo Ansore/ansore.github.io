@@ -4,7 +4,7 @@ tags:
   - gdb
 categories:
   - gdb
-cover: 'https://images.ansore.top/i/2022/05/04/627267e1dfdc4.jpg'
+cover: 'https://img.ansore.top/2022/05/04/627267e1dfdc4.jpg'
 abbrlink: f0f6c8c9
 date: 2021-02-20 09:52:44
 ---

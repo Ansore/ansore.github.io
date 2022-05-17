@@ -4,7 +4,7 @@ tags:
   - Archlinux
 categories:
   - Archlinux
-cover: https://images.ansore.top/i/2022/05/05/6272a869843cd.png
+cover: https://img.ansore.top/2022/05/05/6272a869843cd.png
 abbrlink: 66617a24
 date: 2022-04-22 23:15:41
 ---

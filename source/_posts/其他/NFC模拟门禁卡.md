@@ -4,7 +4,7 @@ tags:
   - NFC
 categories:
   - 编程
-cover: https://images.ansore.top/i/2022/04/27/62693efeaa7b8.jpg
+cover: https://img.ansore.top/2022/04/27/62693efeaa7b8.jpg
 abbrlink: 81ba4516
 date: 2017-05-02 17:02:42
 ---
