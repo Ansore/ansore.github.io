@@ -4,7 +4,7 @@ tags:
   - Kernel
 categories:
   - Kernel
-cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
+cover: 'https://img.ansore.top/2022/04/27/62692c1359d83.jpg'
 abbrlink: 3be91ca
 date: 2022-03-13 23:13:10
 ---
