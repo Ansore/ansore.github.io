@@ -631,7 +631,7 @@ aside:
       link: https://github.com/Ansore
   card_announcement:
     enable: true
-    content: 从Notion迁移笔记ing...
+    content: 一枕邯郸，一生荒唐
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
