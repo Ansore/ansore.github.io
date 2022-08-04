@@ -17,7 +17,7 @@ date: 2022-04-21 23:15:41
 
 `PKGBUILD` 文件由变量和函数组成，所有这些都是用来定义软件包本身，以及如何构建它。
 
-为了从 `PKGBUILD` 中创建一个软件包，需要使用 **[makepkg](https://mp.weixin.qq.com/s/QRnrBKU5ybWp1PoF6bcZxw)** 命令行工具。在获得 `PKGBUILD` 文件后，你只需在包含 `PKGBUILD` 的目录中运行 `makepkg'，就可以得到一个可安装的软件包了。
+为了从 `PKGBUILD` 中创建一个软件包，需要使用 **[makepkg](https://mp.weixin.qq.com/s/QRnrBKU5ybWp1PoF6bcZxw)** 命令行工具。在获得 `PKGBUILD` 文件后，你只需在包含 `PKGBUILD` 的目录中运行 `makepkg`，就可以得到一个可安装的软件包了。
 
 # 制作软件包例子
 

@@ -34,6 +34,6 @@ add Lock = Caps_Lock
 
 # KDE系统设置
 
-后来发现KDE系统设置里内置了设置两个键交换的选项：
+后来发现KDE系统设置里可以设置两个键交换的选项：
 
-System Settings > Input Devices > Keyboard > Advanced >  Config keyboard options > caps lock behavior > Swap Esc and Caps Lock
+`System Settings > Input Devices > Keyboard > Advanced >  Config keyboard options > caps lock behavior > Swap Esc and Caps Lock`
