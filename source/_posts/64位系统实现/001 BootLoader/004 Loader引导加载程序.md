@@ -1,11 +1,11 @@
 ---
-title: Loader引导加载程序
+title: 64位操作系统-Loader引导加载程序
 tags:
   - 64位系统实现
   - 操作系统
 categories:
   - 操作系统
-cover: 'https://img.ansore.top/2022/04/27/62692c1359d83.jpg'
+cover: 'https://img.ansore.top/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png'
 abbrlink: de9aab27
 date: 2022-07-24 01:27:12
 ---
