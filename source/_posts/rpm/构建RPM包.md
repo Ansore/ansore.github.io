@@ -5,7 +5,7 @@ tags:
 categories:
   - RPM
 cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
-date: 2022-04-21 23:15:41
+date: 2022-09-10 23:15:41
 ---
 
 # Archlinux下安装RPM包管理工具
