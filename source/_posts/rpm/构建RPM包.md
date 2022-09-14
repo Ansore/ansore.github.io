@@ -4,7 +4,8 @@ tags:
   - RPM
 categories:
   - RPM
-cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
+cover: 'https://img.ansore.top/2022/04/27/62692c1359d83.jpg'
+abbrlink: 722c5981
 date: 2022-09-10 23:15:41
 ---
 
