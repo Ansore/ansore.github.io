@@ -7,7 +7,6 @@ tags:
 categories:
   - Linux
 cover: https://img.ansore.top/2022/04/26/626803b75f8df.jpg
-abbrlink: cdaf4fa3
 date: 2022-04-20 20:31:11
 ---
 
