@@ -431,7 +431,7 @@ microsoft_clarity: bmljz8fd92
 
 # Google Adsense (谷歌廣告)
 google_adsense:
-  enable: true
+  enable: false
   auto_ads: true
   js: https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js
   client: ca-pub-5371728450390652
@@ -826,6 +826,8 @@ css_prefix: true
 # 插入代码到头部 </head> 之前 和 底部 </body> 之前
 inject:
   head:
+    - <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652"
+     crossorigin="anonymous"></script>
     # - <link rel="stylesheet" href="/xxx.css">
   bottom:
     # - <script src="xxxx"></script>
