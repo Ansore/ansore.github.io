@@ -6,7 +6,7 @@ categories:
   - Archlinux
 cover: https://img.ansore.top/2022/04/27/626944741bcd8.jpg
 abbrlink: fb00bd86
-date: 2022-04-20 23:15:48
+date: 2022-04-20 23:15:49
 ---
 
 不知不觉使用Archlinux已经五六年了，一直使用Archlinux+KDE桌面的组合，从之前的三天一小崩、五天一大崩，到现在已经基本不会出现崩溃的情况（除非很久不更新）。用心去维护一个自己的系统也挺有意思的，感觉就像养个孩子似的。
