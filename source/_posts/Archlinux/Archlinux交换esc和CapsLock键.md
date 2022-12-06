@@ -6,7 +6,7 @@ categories:
   - Archlinux
 cover: https://img.ansore.top/2022/05/05/6272a869843cd.png
 abbrlink: 66617a24
-date: 2022-04-22 23:15:41
+date: 2022-04-22 23:15:42
 ---
 
 作为一个neovim重度用户，实在觉得ESC键太远了，而且CapsLock键没啥用还占了个黄金位置，所以就交换了两个键的位置。
