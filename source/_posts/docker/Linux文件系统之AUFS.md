@@ -8,7 +8,7 @@ categories:
   - Linux
 cover: 'https://img.ansore.top/2022/04/26/626803b75f8df.jpg'
 abbrlink: cdaf4fa3
-date: 2022-04-20 20:31:11
+date: 2022-04-20 20:31:12
 ---
 
 AUFS(advanced multi-layered unification filesystem, 高级多层统一文件系统)，用于为Linux文件系统实现联合挂载。AUFS没有合入Linux主线，但是ubuntu中有该文件系统
