@@ -7,7 +7,7 @@ categories:
   - 操作系统
 cover: 'https://img.ansore.top/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png'
 abbrlink: ea957129
-date: 2022-07-12 00:06:06
+date: 2022-07-12 00:06:08
 ---
 
 # 写一个BOOT引导程序
