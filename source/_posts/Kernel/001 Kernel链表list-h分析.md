@@ -7,7 +7,7 @@ categories:
   - Kernel
 cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
 abbrlink: ad3383b3
-date: 2022-03-06 17:30:18
+date: 2022-03-06 17:30:20
 ---
 
 # Kernel中链表的声明和初始化
