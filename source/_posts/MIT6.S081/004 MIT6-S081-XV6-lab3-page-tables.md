@@ -7,7 +7,7 @@ categories:
   - 操作系统
 cover: https://img.ansore.top/2022/04/26/6268057a7560c.jpg
 abbrlink: 800f9d20
-date: 2022-04-11 22:34:32
+date: 2022-04-11 22:34:30
 ---
 
 # Speed up system calls
