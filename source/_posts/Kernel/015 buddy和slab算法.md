@@ -4,7 +4,7 @@ tags:
   - Kernel
 categories:
   - Kernel
-cover: 'https://img.ansore.top/2022/04/27/62692c1359d83.jpg'
+cover: 'https://img.ansore.de/2022/04/27/62692c1359d83.jpg'
 abbrlink: 9bde40d5
 date: 2022-06-16 00:02:56
 ---
@@ -52,7 +52,7 @@ slab为这样的对象创建一个cache，即缓存。每个cache所占的内存
 
 尽管英文中使用了Cache这个词，但实际上指的是内存中的区域，而不是指硬件高速缓存
 
-![slab](https://img.ansore.top/2022/06/06/03498bdf04627edc92657e10e76abbcf.png)
+![slab](https://img.ansore.de/2022/06/06/03498bdf04627edc92657e10e76abbcf.png)
 
 最高层是 cache_chain,这是一个 slab 缓存的链接列表。可以用来查找最适合所需要的分配大小的缓存（遍历列表）
 cache_chain 的每个元素都是一个 kmem_cache 结构的引用（称为一个 cache）。它定义了一个要管理的给定大小的对象池。

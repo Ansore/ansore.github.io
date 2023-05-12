@@ -6,7 +6,7 @@ tags:
   - softmax
 categories:
   - 机器学习
-cover: https://img.ansore.top/2022/04/28/6269696188c94.jpg
+cover: https://img.ansore.de/2022/04/28/6269696188c94.jpg
 abbrlink: c643d6ee
 date: 2019-01-05 19:46:19
 ---

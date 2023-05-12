@@ -4,7 +4,7 @@ tags:
   - 设计模式
 categories:
   - 设计模式
-cover: https://img.ansore.top/2022/04/27/626944777b7d1.jpg
+cover: https://img.ansore.de/2022/04/27/626944777b7d1.jpg
 abbrlink: 5db9b4b7
 date: 2016-10-31 18:47:37
 ---

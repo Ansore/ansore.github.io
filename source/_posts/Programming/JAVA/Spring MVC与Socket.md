@@ -5,7 +5,7 @@ tags:
   - Spring
 categories:
   - java
-cover: https://img.ansore.top/2022/04/27/6269303eae58b.jpg
+cover: https://img.ansore.de/2022/04/27/6269303eae58b.jpg
 abbrlink: dccbf65
 date: 2016-09-26 18:19:05
 ---

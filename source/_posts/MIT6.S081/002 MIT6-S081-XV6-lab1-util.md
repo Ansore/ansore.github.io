@@ -5,7 +5,7 @@ tags:
   - 操作系统
 categories:
   - 操作系统
-cover: https://img.ansore.top/2022/04/26/6268057a7560c.jpg
+cover: https://img.ansore.de/2022/04/26/6268057a7560c.jpg
 abbrlink: d01b0b88
 date: 2022-04-05 14:42:04
 ---
@@ -77,7 +77,7 @@ int main(int argc, char *argv[])
 
 求素数方法，第一个进程打印第一个素数，然后删除这个素数以及这个素数的倍数，然后将剩下的数交给下一个进程处理，以此类推。
 
-![img](https://img.ansore.top/2022/05/01/626e29962235d.gif)
+![img](https://img.ansore.de/2022/05/01/626e29962235d.gif)
 
 代码如下：
 

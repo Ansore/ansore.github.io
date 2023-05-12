@@ -5,7 +5,7 @@ tags:
   - 分布式
 categories:
   - 算法
-cover: https://img.ansore.top/2022/04/27/62692f1609241.jpg
+cover: https://img.ansore.de/2022/04/27/62692f1609241.jpg
 abbrlink: aca386f3
 date: 2018-07-31 17:31:23
 ---

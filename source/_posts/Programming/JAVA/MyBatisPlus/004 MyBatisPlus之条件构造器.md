@@ -5,7 +5,7 @@ tags:
   - java
 categories:
   - java
-cover: 'https://img.ansore.top/2022/05/04/627260e19ba56.jpg'
+cover: 'https://img.ansore.de/2022/05/04/627260e19ba56.jpg'
 abbrlink: 96d74952
 date: 2021-02-22 18:20:46
 ---
@@ -14,7 +14,7 @@ date: 2021-02-22 18:20:46
 
 # Wapper
 
-![Wapper](https://img.ansore.top/2022/05/04/627262378e3a3.png)
+![Wapper](https://img.ansore.de/2022/05/04/627262378e3a3.png)
 
 Wrapper ： 条件构造抽象类，最顶端父类
 

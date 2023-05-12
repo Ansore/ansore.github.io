@@ -5,7 +5,7 @@ tags:
   - 操作系统
 categories:
   - 操作系统
-cover: 'https://img.ansore.top/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png'
+cover: 'https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png'
 abbrlink: de9aab27
 date: 2022-07-24 01:27:12
 ---
@@ -275,7 +275,7 @@ KillMotor:
 
 关闭软驱马达是通过向I/O端口`0x3f2`写入控制命令实现的，此端口控制着软盘驱动器的不少硬件功能
 
-![Screenshot_20220709_004852](https://img.ansore.top/2022/07/9/24e2e9db417aec58589dbbc4e5ad08fd.png)
+![Screenshot_20220709_004852](https://img.ansore.de/2022/07/9/24e2e9db417aec58589dbbc4e5ad08fd.png)
 
 内核程序从软盘加载到内存，可以向此I/O端口写入0关闭全部软盘驱动器。在使用OUT汇编指令操作I/O端口时，需要注意8位端口与16位端口的使用区别。
 
@@ -404,7 +404,7 @@ DisplauAL:
 
 这段程序设置了SVGA芯片的显示模式， `0x180` 和 `0x143`是显示模式：
 
-![Screenshot_20220713_225659](https://img.ansore.top/2022/07/13/537f8ad772fe8226b1538fc74de3e000.png)
+![Screenshot_20220713_225659](https://img.ansore.de/2022/07/13/537f8ad772fe8226b1538fc74de3e000.png)
 
 ## 切换保护模式需要的系统数据结构
 

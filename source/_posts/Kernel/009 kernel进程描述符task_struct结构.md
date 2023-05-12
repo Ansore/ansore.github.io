@@ -4,7 +4,7 @@ tags:
   - Kernel
 categories:
   - Kernel
-cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
+cover: https://img.ansore.de/2022/04/27/62692c1359d83.jpg
 abbrlink: 7173398c
 date: 2022-03-21 20:13:10
 ---
@@ -113,7 +113,7 @@ int				exit_signal;
 
 新的睡眠状态允许 `TASK_UNINTERRUPTIBLE` 响应致命信号
 
-![进程状态转换图](https://img.ansore.top/2022/05/01/626e2787b349a.gif)
+![进程状态转换图](https://img.ansore.de/2022/05/01/626e2787b349a.gif)
 
 ## 任务ID
 

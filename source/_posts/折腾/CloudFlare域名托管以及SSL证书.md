@@ -5,7 +5,7 @@ tags:
   - CloudFlare
 categories:
   - 折腾
-cover: https://img.ansore.top/2022/04/27/6269445e09cbc.jpg
+cover: https://img.ansore.de/2022/04/27/6269445e09cbc.jpg
 abbrlink: f2bb7cec
 date: 2022-05-04 23:43:48
 ---

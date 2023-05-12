@@ -5,7 +5,7 @@ tags:
   - 操作系统
 categories:
   - 操作系统
-cover: https://img.ansore.top/2022/04/26/6268057a7560c.jpg
+cover: https://img.ansore.de/2022/04/26/6268057a7560c.jpg
 abbrlink: 295fae46
 date: 2022-04-05 22:42:04
 ---

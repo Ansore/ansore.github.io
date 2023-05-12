@@ -4,7 +4,7 @@ tags:
   - 算法
 categories:
   - 算法
-cover: https://img.ansore.top/2022/04/27/62692f1609241.jpg
+cover: https://img.ansore.de/2022/04/27/62692f1609241.jpg
 abbrlink: da8e22a5
 date: 2017-11-12 00:11:16
 ---

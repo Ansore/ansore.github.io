@@ -4,7 +4,7 @@ tags:
   - markdown
 categories:
   - 编程
-cover: https://img.ansore.top/2022/04/27/62693efe96c1e.jpg
+cover: https://img.ansore.de/2022/04/27/62693efe96c1e.jpg
 abbrlink: e2fad57a
 date: 2018-02-23 15:20:54
 ---

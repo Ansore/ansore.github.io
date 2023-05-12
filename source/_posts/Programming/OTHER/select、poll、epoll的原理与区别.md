@@ -4,7 +4,7 @@ tags:
   - io
 categories:
   - progam
-cover: 'https://img.ansore.top/2022/04/27/626944741bcd8.jpg'
+cover: 'https://img.ansore.de/2022/04/27/626944741bcd8.jpg'
 abbrlink: '63893811'
 date: 2021-05-17 14:20:31
 ---
@@ -13,7 +13,7 @@ date: 2021-05-17 14:20:31
 
 1. select 同步多路IO复用
 
-![select](https://img.ansore.top/2022/05/04/62726c8f19252.png)
+![select](https://img.ansore.de/2022/05/04/62726c8f19252.png)
 
 时间复杂度:O(n)
 
@@ -41,7 +41,7 @@ fd_set(监听的端口个数)：32位机默认是1024个，64位机默认是2048
 
 同步多路IO复用
 
-![select](https://img.ansore.top/2022/05/04/62726c92eae21.png)
+![select](https://img.ansore.de/2022/05/04/62726c92eae21.png)
 
 时间复杂度:O(1)
 

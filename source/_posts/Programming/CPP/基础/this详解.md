@@ -4,7 +4,7 @@ tags:
   - cpp
 categories:
   - cpp
-cover: 'https://img.ansore.top/2022/05/04/62726e24621a5.jpg'
+cover: 'https://img.ansore.de/2022/05/04/62726e24621a5.jpg'
 abbrlink: 8ff26f14
 date: 2021-03-31 16:20:31
 ---

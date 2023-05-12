@@ -4,7 +4,7 @@ tags:
   - Kernel
 categories:
   - Kernel
-cover: https://img.ansore.top/2022/04/27/62692c1359d83.jpg
+cover: https://img.ansore.de/2022/04/27/62692c1359d83.jpg
 abbrlink: 466f0e1b
 date: 2022-03-07 22:35:30
 ---
@@ -28,9 +28,9 @@ struct hlist_node {
 
 之所以使用`ppre`二级指针是为了避免在首节点之后插入删除节点和在其他位置插入删除节点实现逻辑的不同，读者可以将`ppre`改成一级指针指向前一个节点，就可以发现实现逻辑的不同。
 
-![img](https://img.ansore.top/2022/05/01/626e297753dac.png)
+![img](https://img.ansore.de/2022/05/01/626e297753dac.png)
 
-![image-20220308232120796](https://img.ansore.top/2022/05/01/626e29750ffeb.png)
+![image-20220308232120796](https://img.ansore.de/2022/05/01/626e29750ffeb.png)
 
 # 哈希表的初始化
 
@@ -127,7 +127,7 @@ static inline void hlist_add_fake(struct hlist_node *n)
 
 `hlist_add_head`是把一个哈希链表的节点插入到哈希链表的头节点的后边，也就是头插法。传入了哈希表头h和待插入的节点n，首先得到`hlist_head`的`first`成员，就是后边的节点的指针，这个节点可能是`NULL`，然后新插入的节点的next指向first后边的节点，如果`first`不为空，也就是后边有节点存在，`head`的后边的节点的`pprev`成员就指向新插入的节点的next成员的地址，`head`的`first`就指向新插入的节点，新插入节点的`pprev`成员指向`head`的`first`成员的地址。
 
-![img](https://img.ansore.top/2022/05/01/626e25f966b70.png)
+![img](https://img.ansore.de/2022/05/01/626e25f966b70.png)
 
 `hlist_add_before`作用是把一个节点插入到一个哈希链表的节点的前边，首先把将要插入的节点的`pprev`成员变量指向`next`的前边的节点，要插入的节点的`next`指向下一个节点，然后`next`节点的`pprev`就要指向已经插入的节点的`next`节点的地址，已经插入的节点的`pprev`指向的前一个节点的值就要变成已经插入节点的地址。
 
@@ -190,7 +190,7 @@ static inline void hlist_del_init(struct hlist_node *n)
 
 
 
-![Screenshot_20220308_232224](https://img.ansore.top/2022/05/01/626e26617eb37.png)
+![Screenshot_20220308_232224](https://img.ansore.de/2022/05/01/626e26617eb37.png)
 
 ## 判断节点是否经过哈希
 

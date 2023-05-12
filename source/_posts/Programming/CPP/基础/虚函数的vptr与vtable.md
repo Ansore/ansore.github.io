@@ -4,7 +4,7 @@ tags:
   - cpp
 categories:
   - cpp
-cover: 'https://img.ansore.top/2022/05/04/62726e24621a5.jpg'
+cover: 'https://img.ansore.de/2022/05/04/62726e24621a5.jpg'
 abbrlink: 783ca4e1
 date: 2021-04-01 11:20:31
 ---
@@ -21,7 +21,7 @@ date: 2021-04-01 11:20:31
 
 # 实现与内部结构
 
-![Screenshot](https://img.ansore.top/2022/05/04/62726f9dc2795.png)
+![Screenshot](https://img.ansore.de/2022/05/04/62726f9dc2795.png)
 
 ```cpp
 #include <iostream>

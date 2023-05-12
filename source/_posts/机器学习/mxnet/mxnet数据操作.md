@@ -5,7 +5,7 @@ tags:
   - mxnet
 categories:
   - 机器学习
-cover: https://img.ansore.top/2022/04/28/6269696188c94.jpg
+cover: https://img.ansore.de/2022/04/28/6269696188c94.jpg
 abbrlink: 81968f16
 date: 2018-12-30 12:48:36
 ---

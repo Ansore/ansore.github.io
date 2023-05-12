@@ -6,7 +6,7 @@ tags:
   - cpp
 categories:
   - cpp
-cover: 'https://img.ansore.top/2022/05/04/62726e24621a5.jpg'
+cover: 'https://img.ansore.de/2022/05/04/62726e24621a5.jpg'
 abbrlink: 98a6c896
 date: 2021-04-04 08:16:31
 ---
@@ -73,7 +73,7 @@ int *p = new(buff) int(0);
 
 **我们用buff地址开始申请的对象, 就尽量不要用buff了, 因为buff的数据被重新的修改了, 使用buff可能就会出现奇怪的数据**
 
-![new](https://img.ansore.top/2022/05/04/6272719d4fce7.png)
+![new](https://img.ansore.de/2022/05/04/6272719d4fce7.png)
 
 ![new](new%E5%AE%9E%E7%8E%B0%202f66fa759e2840af87a98909d7813fa5/Untitled%201.png)
 

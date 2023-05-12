@@ -5,7 +5,7 @@ tags:
   - 算法
 categories:
   - 算法
-cover: https://img.ansore.top/2022/04/27/62692f1609241.jpg
+cover: https://img.ansore.de/2022/04/27/62692f1609241.jpg
 abbrlink: 891d221b
 date: 2020-08-24 13:51:02
 ---
@@ -14,11 +14,11 @@ date: 2020-08-24 13:51:02
 
 普通链表查找需要顺序比较，复杂度较高，而折半查找可以将复杂度降到$O(\log n)$，跳表就是利用折半的思想，建立索引，以空间换时间，优化后的空间约为原来所占空间的2倍。
 
-![Screenshot_20200824_135818](https://img.ansore.top/2022/05/01/626e3217b5ff8.png)
+![Screenshot_20200824_135818](https://img.ansore.de/2022/05/01/626e3217b5ff8.png)
 
 跳表的结构类似：
 
-![Screenshot_20200824_140040](https://img.ansore.top/2022/05/01/626e321fc0477.png)
+![Screenshot_20200824_140040](https://img.ansore.de/2022/05/01/626e321fc0477.png)
 
 # C语言实现
 

@@ -4,7 +4,7 @@ tags:
   - git
 categories:
   - 编程
-cover: https://img.ansore.top/2022/04/26/626812e016480.jpg
+cover: https://img.ansore.de/2022/04/26/626812e016480.jpg
 abbrlink: 3b2f1e44
 date: 2017-07-28 20:09:18
 ---
