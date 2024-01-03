@@ -1,0 +1,278 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>6.哈夫曼树与哈夫曼编码 | Ansore</title><meta name="keywords" content="数据结构"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="哈夫曼树通常的编码方法有固定长度和不等长度编码两种。最优编码方案的目的是使总码长度最短。利用字符的使用频率来编码，是不等长编码方法，使得经常使用的字符编码较短，不常使用的字符编码较长。如果采用等长的编码方案，假设所有字符的编码都等长，则表示n个不同的字符需要位。例如三个不同的字符a,b,c，至少需要2位二进制数表示：a:00，b:01，c:10。如果每个字符的使用频率相等的话，固定长度编码是空间效">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.哈夫曼树与哈夫曼编码">
+<meta property="og:url" content="https://blog.ansore.top/posts/ff8e2396.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="哈夫曼树通常的编码方法有固定长度和不等长度编码两种。最优编码方案的目的是使总码长度最短。利用字符的使用频率来编码，是不等长编码方法，使得经常使用的字符编码较短，不常使用的字符编码较长。如果采用等长的编码方案，假设所有字符的编码都等长，则表示n个不同的字符需要位。例如三个不同的字符a,b,c，至少需要2位二进制数表示：a:00，b:01，c:10。如果每个字符的使用频率相等的话，固定长度编码是空间效">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/04/27/62692f1609241.jpg">
+<meta property="article:published_time" content="2020-08-24T06:02:05.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.108Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="数据结构">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/04/27/62692f1609241.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/ff8e2396"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '6.哈夫曼树与哈夫曼编码',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/04/27/62692f1609241.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">6.哈夫曼树与哈夫曼编码</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-24T06:02:05.000Z" title="发表于 2020-08-24 14:02:05">2020-08-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.108Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.5k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>5分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="6.哈夫曼树与哈夫曼编码"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="哈夫曼树"><a href="#哈夫曼树" class="headerlink" title="哈夫曼树"></a>哈夫曼树</h1><p>通常的编码方法有固定长度和不等长度编码两种。<br>最优编码方案的目的是使总码长度最短。利用字符的使用频率来编码，是不等长编码方法，使得经常使用的字符编码较短，不常使用的字符编码较长。如果采用等长的编码方案，假设所有字符的编码都等长，则表示n个不同的字符需要位。例如三个不同的字符a,b,c，至少需要2位二进制数表示：a:00，b:01，c:10。如果每个字符的使用频率相等的话，固定长度编码是空间效率最高的方法。</p>
+<p>不等长编码方法需要解决两个关键问题：</p>
+<ol>
+<li>编码尽可能的短。使用频率高的字符编码较短，使用频率低的编码较长，可提高压缩率，节省空间，也能提高运算和通信速度。即频率越高，编码越短。</li>
+<li>不能有二义性。解决的办法是：任何一个字符的编码不能是另一个字符编码的前缀，即前缀码特性。</li>
+</ol>
+<p>设二叉树具有n个带权值的叶节点，那么从根节点到各个节点的路径长度与相应节点权值的乘积的和，叫做二叉树的<strong>带权路径长度WPL(Weighted Path Length)</strong></p>
+<p>$$WPL &#x3D; \sum_{i&#x3D;1}^nW_il_i$$</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e334c5b322.png" alt="Screenshot_20200818_134025"></p>
+<p><strong>具有最小带权路径的二叉树称为哈夫曼树（也称最优树）</strong><br><strong>哈夫曼算法采取的贪心策略是每次从树的集合中取出没有双亲且权值最小的两棵树作为左右子树，构造一棵新树，新树根节点的权值为其左右孩子结点权值之和，将新树插入到树的集合中。</strong></p>
+<h2 id="构造哈夫曼树的原则"><a href="#构造哈夫曼树的原则" class="headerlink" title="构造哈夫曼树的原则"></a>构造哈夫曼树的原则</h2><ul>
+<li><p>权值越大的叶节点越靠近根节点</p>
+</li>
+<li><p>权值越小的叶节点越远离根节点</p>
+</li>
+</ul>
+<h2 id="构造哈夫曼树的过程"><a href="#构造哈夫曼树的过程" class="headerlink" title="构造哈夫曼树的过程"></a>构造哈夫曼树的过程</h2><ol>
+<li><p>给定n个权值${W_1,W_2,…,W_n}$构造n棵树只有一个叶节点的二叉树，从而得到一个二叉树的集合$F&#x3D;{T_1,T_2,…,T_3}$</p>
+</li>
+<li><p>在F中选取根节点的<strong>权值最小和次小</strong>的两棵二叉树作为左、右子树构造一棵新的二叉树，这可二叉树根节点的权值作为其左、右子树根节点权值之和</p>
+</li>
+<li><p>在集合F中删除作为左、右子树的两棵二叉树，并将新建立的二叉树加入到集合F中<img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e334fbad26.png" alt="Screenshot_20200818_135158"></p>
+</li>
+</ol>
+<h1 id="哈夫曼编码"><a href="#哈夫曼编码" class="headerlink" title="哈夫曼编码"></a>哈夫曼编码</h1><p>规定哈夫曼树中的<strong>左分支为0，右分支为1</strong>，则从根节点到每个叶节点锁经过的分支对应的0和1组成序列便为该节点对应字符的编码。这样的编码称为<strong>哈夫曼编码</strong>。</p>
+<p>哈夫曼编码的特点：<strong>权值越大的字符编码越短，反之越长</strong><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e3357446a9.png" alt="Screenshot_20200818_135758"></p>
+<p>在一组字符的哈夫曼编码中，不可能出现一个字符的哈夫曼编码是另一个哈夫曼编码的前缀。</p>
+<p>例如 $100,001,0,1$ 不是哈夫曼编码</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXVALUE 10000</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXBIT 100</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXLEAF 30</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> MAXNODE MAXLEAF*2-1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 定义哈夫曼树的节点</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HuffmanNode</span> &#123;</span></span><br><span class="line">  <span class="comment">// 值</span></span><br><span class="line">  <span class="type">char</span> value;</span><br><span class="line">  <span class="comment">// 权值</span></span><br><span class="line">  <span class="type">int</span> weight;</span><br><span class="line">  <span class="comment">// 父节点的数组下标</span></span><br><span class="line">  <span class="type">int</span> parent;</span><br><span class="line">  <span class="comment">// 左孩子的数组下标</span></span><br><span class="line">  <span class="type">int</span> left;</span><br><span class="line">  <span class="comment">// 右孩子的数组下标</span></span><br><span class="line">  <span class="type">int</span> right;</span><br><span class="line">&#125; HuffmanNode, *PtrHuffmanNode;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">HuffmanCode</span> &#123;</span></span><br><span class="line">  <span class="type">int</span> bit[MAXBIT];</span><br><span class="line">  <span class="type">int</span> start;</span><br><span class="line">&#125; HuffmanCode, *PtrHuffmanCode;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">createNode</span><span class="params">(PtrHuffmanNode node, <span class="type">int</span> weight, <span class="type">char</span> value)</span> &#123;</span><br><span class="line">  node-&gt;value = value;</span><br><span class="line">  node-&gt;weight = weight;</span><br><span class="line">  node-&gt;parent = <span class="number">-1</span>;</span><br><span class="line">  node-&gt;left = <span class="number">-1</span>;</span><br><span class="line">  node-&gt;right = <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入n个叶子节点</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">initialHuffmanTree</span><span class="params">(PtrHuffmanNode huffmanNode, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">  <span class="comment">// m1,m2最小的两个权值节点</span></span><br><span class="line">  <span class="comment">// x1,x2两个最小权值在数组中的序号</span></span><br><span class="line">  <span class="type">int</span> i, j, m1, m2, x1, x2;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 循环构造哈夫曼树</span></span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n<span class="number">-1</span>; i ++) &#123;</span><br><span class="line">    m1 = m2 = MAXVALUE;</span><br><span class="line">    x1 = x2 = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 找出所有节点中权值最小,无父节点的两个节点,并合并成为一棵二叉树</span></span><br><span class="line">    <span class="keyword">for</span>(j = <span class="number">0</span>; j &lt; n+i; j ++) &#123;</span><br><span class="line">      <span class="keyword">if</span>(huffmanNode[j].weight &lt; m1 &amp;&amp; huffmanNode[j].parent == <span class="number">-1</span>) &#123;</span><br><span class="line">        m2 = m1;</span><br><span class="line">        x2 = x1;</span><br><span class="line">        m1 = huffmanNode[j].weight;</span><br><span class="line">        x1 = j;</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span>(huffmanNode[j].weight &lt; m2 &amp;&amp; huffmanNode[j].parent == <span class="number">-1</span>) &#123;</span><br><span class="line">        m2 = huffmanNode[j].weight;</span><br><span class="line">        x2 = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/* printf(&quot;x1:%d, x2:%d.\n&quot;, huffmanNode[x1].weight, huffmanNode[x2].weight); */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 设置找到来两个个子节点x1,x2的父节点信息</span></span><br><span class="line">    huffmanNode[x1].parent = n+i;</span><br><span class="line">    huffmanNode[x2].parent = n+i;</span><br><span class="line">    huffmanNode[n+i].weight = m1+m2;</span><br><span class="line">    huffmanNode[n+i].left = x1;</span><br><span class="line">    huffmanNode[n+i].right = x2;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span> (<span class="string">&quot;x1.weight and x2.weight in round %d: %d, %d\n&quot;</span>, i+<span class="number">1</span>, huffmanNode[x1].weight, huffmanNode[x2].weight);  <span class="comment">/* 用于测试 */</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 哈夫曼编码</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">huffmanDecode</span><span class="params">(PtrHuffmanNode huffNode, PtrHuffmanCode huffCode, <span class="type">int</span> n)</span> &#123;</span><br><span class="line">  HuffmanCode cd;</span><br><span class="line">  <span class="type">int</span> i, j, c, p;</span><br><span class="line">  <span class="keyword">for</span>(i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">    cd.start = n<span class="number">-1</span>;</span><br><span class="line">    c = i;</span><br><span class="line">    p = huffNode[c].parent;</span><br><span class="line">    <span class="keyword">while</span>(p != <span class="number">-1</span>) &#123;</span><br><span class="line">      <span class="keyword">if</span>(huffNode[p].left == c) cd.bit[cd.start] = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">else</span> cd.bit[cd.start] = <span class="number">1</span>;</span><br><span class="line">      cd.start --;</span><br><span class="line">      c = p;</span><br><span class="line">      p = huffNode[c].parent;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 把叶子节点的编码从临时cd中复制出来,放入编码结构体</span></span><br><span class="line">    <span class="keyword">for</span>(j = cd.start+<span class="number">1</span>; j &lt; n; j ++) &#123;</span><br><span class="line">      huffCode[i].bit[j] = cd.bit[j];</span><br><span class="line">    &#125;</span><br><span class="line">    huffCode[i].start = cd.start;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">  HuffmanNode node[<span class="number">100</span>];</span><br><span class="line">  HuffmanCode code[<span class="number">100</span>];</span><br><span class="line">  <span class="type">int</span> n = <span class="number">8</span>;</span><br><span class="line">  <span class="comment">/* 初始化存放哈夫曼树数组 HuffNode[] 中的结点 */</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>; i&lt;<span class="number">2</span>*n<span class="number">-1</span>; i++)</span><br><span class="line">  &#123;</span><br><span class="line">    node[i].weight=<span class="number">0</span>;<span class="comment">//权值</span></span><br><span class="line">    node[i].parent=<span class="number">-1</span>;</span><br><span class="line">    node[i].left=<span class="number">-1</span>;</span><br><span class="line">    node[i].right=<span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  createNode(&amp;node[<span class="number">0</span>], <span class="number">3</span>, <span class="string">&#x27;A&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">1</span>], <span class="number">5</span>, <span class="string">&#x27;B&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">2</span>], <span class="number">11</span>, <span class="string">&#x27;C&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">3</span>], <span class="number">23</span>, <span class="string">&#x27;D&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">4</span>], <span class="number">29</span>, <span class="string">&#x27;E&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">5</span>], <span class="number">14</span>, <span class="string">&#x27;F&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">6</span>], <span class="number">7</span>, <span class="string">&#x27;G&#x27;</span>);</span><br><span class="line">  createNode(&amp;node[<span class="number">7</span>], <span class="number">8</span>, <span class="string">&#x27;H&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  initialHuffmanTree(node, n);</span><br><span class="line">  huffmanDecode(node, code, n);</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i ++) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%c:huffman code is:&quot;</span>, node[i].value);</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> j = code[i].start+<span class="number">1</span>; j &lt; n; j ++) &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;%d&quot;</span>, code[i].bit[j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/ff8e2396.html">https://blog.ansore.top/posts/ff8e2396.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">数据结构</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/04/27/62692f1609241.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/b812386b.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">7.图的存储</div></div></a></div><div class="next-post pull-right"><a href="/posts/891d221b.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">跳表SkipList以及实现</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/2f375fe4.html" title="1.算法基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">1.算法基础</div></div></a></div><div><a href="/posts/afe8c0e1.html" title="2.链表"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">2.链表</div></div></a></div><div><a href="/posts/b9075bb3.html" title="3.队列和栈"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">3.队列和栈</div></div></a></div><div><a href="/posts/b8285542.html" title="4.字符串"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">4.字符串</div></div></a></div><div><a href="/posts/6d7a1835.html" title="5.二叉树"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-20</div><div class="title">5.二叉树</div></div></a></div><div><a href="/posts/b812386b.html" title="7.图的存储"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-08-25</div><div class="title">7.图的存储</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91"><span class="toc-number">1.</span> <span class="toc-text">哈夫曼树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E5%8E%9F%E5%88%99"><span class="toc-number">1.1.</span> <span class="toc-text">构造哈夫曼树的原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%84%E9%80%A0%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">构造哈夫曼树的过程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81"><span class="toc-number">2.</span> <span class="toc-text">哈夫曼编码</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0"><span class="toc-number">3.</span> <span class="toc-text">实现</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/04/27/62692f1609241.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

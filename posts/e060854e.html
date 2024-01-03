@@ -1,0 +1,270 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Archlinux安装btrfs文件系统 | Ansore</title><meta name="keywords" content="Archlinux"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="以北外镜像站为例，在&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件最开头添加这样一行： 1Server &#x3D; https:&#x2F;&#x2F;mirrors.bfsu.edu.cn&#x2F;archlinux&#x2F;$repo&#x2F;os&#x2F;$arch 硬盘分区如下： 123456789$ lsblkNAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTSsda      8:0    0 465.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Archlinux安装btrfs文件系统">
+<meta property="og:url" content="https://blog.ansore.top/posts/e060854e.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="以北外镜像站为例，在&#x2F;etc&#x2F;pacman.d&#x2F;mirrorlist文件最开头添加这样一行： 1Server &#x3D; https:&#x2F;&#x2F;mirrors.bfsu.edu.cn&#x2F;archlinux&#x2F;$repo&#x2F;os&#x2F;$arch 硬盘分区如下： 123456789$ lsblkNAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTSsda      8:0    0 465.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/04/25/6266bea760d6c.png">
+<meta property="article:published_time" content="2023-12-03T14:42:08.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.104Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="Archlinux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/04/25/6266bea760d6c.png"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/e060854e"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Archlinux安装btrfs文件系统',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/04/25/6266bea760d6c.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Archlinux安装btrfs文件系统</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.104Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Archlinux/">Archlinux</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">995</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>3分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Archlinux安装btrfs文件系统"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>以北外镜像站为例，在<code>/etc/pacman.d/mirrorlist</code>文件最开头添加这样一行：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch</span><br></pre></td></tr></table></figure>
+<p>硬盘分区如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ lsblk</span><br><span class="line">NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS</span><br><span class="line">sda      8:0    0 465.8G  0 disk</span><br><span class="line">├─sda1   8:1    0   512M  0 part /boot</span><br><span class="line">├─sda2   8:2    0    16G  0 part [SWAP]</span><br><span class="line">└─sda3   8:3    0 449.3G  0 part /home</span><br><span class="line">                                 /var/log</span><br><span class="line">                                 /var/cache/pacman/pkg</span><br><span class="line">                                 /</span><br></pre></td></tr></table></figure>
+<p>格式化分区:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkfs.fat -F 32 /dev/sda1    # 格式化 boot 分区</span><br><span class="line">mkswap /dev/sda2    # 格式化 swap 分区</span><br><span class="line">mkfs.btrfs /dev/sda3    # 格式化主分区</span><br></pre></td></tr></table></figure>
+<p>然后是挂载分区，btrfs 分区的挂载比较复杂，首先挂载整个 btrfs 分区到 <code>/mnt</code>，这样才可以创建子卷：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mount /dev/sda3 /mnt    # 挂载分区</span><br><span class="line"># 创建子卷</span><br><span class="line">btrfs subvolume create /mnt/@</span><br><span class="line">btrfs subvolume create /mnt/@home</span><br><span class="line">btrfs subvolume create /mnt/@log</span><br><span class="line">btrfs subvolume create /mnt/@pkg</span><br><span class="line">umount /dev/sda3    # 卸载分区</span><br></pre></td></tr></table></figure>
+<p>于子卷的划分，我打算使用 Timeshift 来管理快照，而 Timeshift 只支持 Ubuntu 类型的子卷布局，也就是根目录挂载在 @ 子卷上，<code>/home</code> 目录挂载在 @home 子卷上；另外我还打算使用 grub-btrfs来为快照自动创建 grub 目录，grub-btrfs 要求 <code>/var/log</code> 挂载在单独的子卷上；还有 @pkg 子卷挂载在 <code>/var/cache/pacman/pkg</code> 目录下，这个目录下保存的是下载的软件包缓存，也没什么保存快照的必要，所以也单独划分了个子卷。<br>接下来就是挂载子卷了，使用 <code>subvol</code> 挂载选项来指定挂载的子卷：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载根目录</span></span><br><span class="line">mount /dev/sda3 /mnt -o subvol=@,noatime,discard=async,compress=zstd</span><br><span class="line"><span class="comment"># 挂载家目录</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/home</span><br><span class="line">mount /dev/sda3 /mnt/home -o subvol=@home,noatime,discard=async,compress=zstd</span><br><span class="line"><span class="comment"># 挂载 /var/log 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /mnt/var/log</span><br><span class="line">mount /dev/sda3 /mnt/var/log -o subvol=@<span class="built_in">log</span>,noatime,discard=async,compress=zstd</span><br><span class="line"><span class="comment"># 挂载 /var/cache/pacman/pkg 目录</span></span><br><span class="line"><span class="built_in">mkdir</span> -p /mnt/var/cache/pacman/pkg</span><br><span class="line">mount /dev/sda3 /mnt/var/cache/pacman/pkg -o subvol=@pkg,noatime,discard=async,compress=zstd</span><br></pre></td></tr></table></figure>
+<p>除了 <code>subvol</code> 选项用来指定挂载的子卷，我还添加了其他的挂载选项用于优化 btrfs 文件系统的性能：<code>noatime</code> 选项可以降低数据读取和写入的访问时间；<code>discard=async</code> 选项可以在闲时释放磁盘中未使用的区块，也就是 TRIM，另外也可以不添加这个选项，而是在系统安装完成后启用 <code>fstrim.timer</code> 服务从而定时执行 TRIM，可以根据自己的喜好选择；<code>compress</code> 选项可以在数据写入前进行压缩，减少磁盘的写入量，增加磁盘寿命，在某些场景下还能优化一些性能，支持的压缩算法有 <code>zlib</code>、<code>lzo</code> 和 <code>zstd</code>，<code>zstd</code> 算法是最快的。在系统安装完成后也可以编辑 <code>/etc/fstab</code> 文件修改挂载选项。<br>接下来挂载其他分区：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 挂载 boot 分区</span></span><br><span class="line"><span class="built_in">mkdir</span> /mnt/boot</span><br><span class="line">mount /dev/sda1 /mnt/boot</span><br><span class="line"><span class="comment"># 启用 swap 分区</span></span><br><span class="line">swapon /dev/sda2</span><br></pre></td></tr></table></figure>
+<p>生成fstab文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genfstab -U /mnt &gt;&gt; /mnt/etc/fstab</span><br></pre></td></tr></table></figure>
+<p>因为 <code>/var/log</code> 和 <code>/var/cache/pacman/pkg</code> 在将来并不会被保存快照，也可以选择为这两个目录禁用写时复制：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chattr +C /mnt/var/log</span><br><span class="line">chattr +C /mnt/var/cache/pacman/pkg</span><br></pre></td></tr></table></figure>
+<p>管理 btrfs 文件系统，比较推荐安装 btrfs-progs，其包含了很多用于管理 btrfs 文件系统的命令，前文用到的 <code>btrfs subvolume create</code> 命令就是来自这个软件包，Arch 官方的的安装镜像已经集成了这个软件包。可以在 <code>pacstrap</code> 步骤中安装这个包，我一般会在这个步骤装上如下的软件包：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pacstrap -K /mnt base base-devel linux-lts linux-lts-headers linux-firmware neovim btrfs-progs intel-ucode</span><br></pre></td></tr></table></figure>
+<p>使用<code>arch-chroot</code>进入系统，对于 btrfs 文件系统，需要编辑 mkinitcpio 文件，通常位于 <code>/etc/mkinitcpio.conf</code>，找到 <code>MODULES=()</code> 一行，在括号中添加 btrfs，这是为了在系统启动时提前加载 btrfs 内核模块，从而正常启动系统。记得每次编辑完 mkinitcpio 文件后都需要手动重新生成 initramfs：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkinitcpio -P</span><br></pre></td></tr></table></figure>
+<p>配置完成后，再进行安装GRUB:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">pacman -S grub</span><br><span class="line">grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=Arch</span><br><span class="line">grub-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/e060854e.html">https://blog.ansore.top/posts/e060854e.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Archlinux/">Archlinux</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/04/25/6266bea760d6c.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/posts/18aaf2d9.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">KVM与实体机共享目录</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/66617a24.html" title="Archlinux交换esc和CapsLock键"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/05/6272a869843cd.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-22</div><div class="title">Archlinux交换esc和CapsLock键</div></div></a></div><div><a href="/posts/d20bd34e.html" title="Archlinux软件包制作"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/05/6272a869843cd.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-21</div><div class="title">Archlinux软件包制作</div></div></a></div><div><a href="/posts/fb00bd86.html" title="我与Archlinux"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/626944741bcd8.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-04-20</div><div class="title">我与Archlinux</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/04/25/6266bea760d6c.png')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

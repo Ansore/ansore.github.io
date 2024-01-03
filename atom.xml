@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ansore</title>
+  <icon>https://blog.ansore.top/icon.png</icon>
+  <subtitle>Take My Hand</subtitle>
+  <link href="https://blog.ansore.top/atom.xml" rel="self"/>
+  
+  <link href="https://blog.ansore.top/"/>
+  <updated>2024-01-03T14:54:50.104Z</updated>
+  <id>https://blog.ansore.top/</id>
+  
+  <author>
+    <name>Ansore</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Archlinux安装btrfs文件系统</title>
+    <link href="https://blog.ansore.top/posts/e060854e.html"/>
+    <id>https://blog.ansore.top/posts/e060854e.html</id>
+    <published>2023-12-03T14:42:08.000Z</published>
+    <updated>2024-01-03T14:54:50.104Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;以北外镜像站为例，在&lt;code&gt;/etc/pacman.d/mirrorlist&lt;/code&gt;文件最开头添加这样一行：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;硬盘分区如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ lsblk&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sda      8:0    0 465.8G  0 disk&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├─sda1   8:1    0   512M  0 part /boot&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;├─sda2   8:2    0    16G  0 part [SWAP]&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;└─sda3   8:3    0 449.3G  0 part /home&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 /var/log&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 /var/cache/pacman/pkg&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                                 /&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;格式化分区:&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="Archlinux" scheme="https://blog.ansore.top/categories/Archlinux/"/>
+    
+    
+    <category term="Archlinux" scheme="https://blog.ansore.top/tags/Archlinux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>KVM与实体机共享目录</title>
+    <link href="https://blog.ansore.top/posts/18aaf2d9.html"/>
+    <id>https://blog.ansore.top/posts/18aaf2d9.html</id>
+    <published>2023-05-06T14:43:03.000Z</published>
+    <updated>2024-01-03T14:54:50.112Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;virtiofs&quot;&gt;&lt;a href=&quot;#virtiofs&quot; class=&quot;headerlink&quot; title=&quot;virtiofs&quot;&gt;&lt;/a&gt;virtiofs&lt;/h1&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;filesystem&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;mount&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;accessmode&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;passthrough&amp;quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;driver&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;virtiofs&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;binary&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;path&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;/usr/lib/virtiofsd&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;dir&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;/home/ansore/DATADISK/DISK3/virt_mount/project&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;target&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;dir&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;/home/ansore/project&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;alias&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;fs0&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;address&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;pci&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;domain&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;0x0000&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;bus&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;0x08&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;slot&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;0x00&amp;quot;&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;function&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&amp;quot;0x0&amp;quot;&lt;/span&gt;/&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;filesystem&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;挂载目录：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;mount -t virtiofs myfs /mnt&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;9P&quot;&gt;&lt;a href=&quot;#9P&quot; class=&quot;headerlink&quot; title=&quot;9P&quot;&gt;&lt;/a&gt;9P&lt;/h1&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="https://blog.ansore.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.ansore.top/tags/Linux/"/>
+    
+    <category term="编程" scheme="https://blog.ansore.top/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux中找到并删除重复文件的工具</title>
+    <link href="https://blog.ansore.top/posts/4cb3e1a1.html"/>
+    <id>https://blog.ansore.top/posts/4cb3e1a1.html</id>
+    <published>2023-02-11T12:44:11.000Z</published>
+    <updated>2024-01-03T14:54:50.112Z</updated>
+    
+    
+    <summary type="html">&lt;ol&gt;
+&lt;li&gt;Rdfind&lt;/li&gt;
+&lt;li&gt;Fdupes&lt;/li&gt;
+&lt;li&gt;FSlint&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;Rdfind&quot;&gt;&lt;a href=&quot;#Rdfind&quot; class=&quot;headerlink&quot; title=&quot;Rdfind&quot;&gt;&lt;/a&gt;Rdfind&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;Rdfind&lt;/strong&gt; 意即 &lt;strong&gt;r&lt;/strong&gt;edundant &lt;strong&gt;d&lt;/strong&gt;ata &lt;strong&gt;find&lt;/strong&gt;（冗余数据查找），是一个通过访问目录和子目录来找出重复文件的自由开源的工具。它是基于文件内容而不是文件名来比较。Rdfind 使用&lt;strong&gt;排序&lt;/strong&gt;算法来区分原始文件和重复文件。如果你有两个或者更多的相同文件，Rdfind 会很智能的找到原始文件并认定剩下的文件为重复文件。一旦找到副本文件，它会向你报告。你可以决定是删除还是使用&lt;a href=&quot;https://link.zhihu.com/?target=https://www.ostechnix.com/explaining-soft-link-and-hard-link-in-linux-with-examples/&quot;&gt;硬链接或者符号（软）链接&lt;/a&gt;代替它们。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装 Rdfind&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Rdfind 存在于 &lt;a href=&quot;https://link.zhihu.com/?target=https://aur.archlinux.org/packages/rdfind/&quot;&gt;AUR&lt;/a&gt; 中。因此，在基于 Arch 的系统中，你可以像下面一样使用任一如 &lt;a href=&quot;https://link.zhihu.com/?target=https://www.ostechnix.com/yay-found-yet-another-reliable-aur-helper/&quot;&gt;Yay&lt;/a&gt; AUR 程序助手安装它。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="https://blog.ansore.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.ansore.top/tags/Linux/"/>
+    
+    <category term="编程" scheme="https://blog.ansore.top/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>QEMU搭建ARM32环境</title>
+    <link href="https://blog.ansore.top/posts/28e97253.html"/>
+    <id>https://blog.ansore.top/posts/28e97253.html</id>
+    <published>2023-01-03T14:40:02.000Z</published>
+    <updated>2024-01-03T14:54:50.112Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;环境基于ubuntu18.04&lt;/p&gt;
+&lt;h1 id=&quot;编译内核&quot;&gt;&lt;a href=&quot;#编译内核&quot; class=&quot;headerlink&quot; title=&quot;编译内核&quot;&gt;&lt;/a&gt;编译内核&lt;/h1&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#获取内核源码&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;wget https://mirrors.tuna.tsinghua.edu.cn/kernel/v5.x/linux-5.4.18.tar.xz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;tar -vxf linux-5.4.18.tar.xz&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#编译内核&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;mkdir -p output&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;KERNEL_OUT=$PWD/output&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;cd linux-5.4.18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;export ARCH=arm&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;export CROSS_COMPILE=/usr/local/arm/gcc-arm-11.2-2022.02-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make O=$KERNEL_OUT vexpress_defconfig&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make O=$KERNEL_OUT zImage -j12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make O=$KERNEL_OUT modules -j12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;make O=$KERNEL_OUT dtbs -j12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;等待编译完成&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;内核镜像在：arch/arm/boot/zImage&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;设备树文件在：arch/arm/boot/dts/vexpress-v2p-ca9.dtb&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;</summary>
+    
+    
+    
+    <category term="编程" scheme="https://blog.ansore.top/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+    <category term="Linux" scheme="https://blog.ansore.top/tags/Linux/"/>
+    
+    <category term="编程" scheme="https://blog.ansore.top/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-地址空间</title>
+    <link href="https://blog.ansore.top/posts/330229db.html"/>
+    <id>https://blog.ansore.top/posts/330229db.html</id>
+    <published>2022-09-18T02:31:20.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;虚拟地址&quot;&gt;&lt;a href=&quot;#虚拟地址&quot; class=&quot;headerlink&quot; title=&quot;虚拟地址&quot;&gt;&lt;/a&gt;虚拟地址&lt;/h1&gt;&lt;p&gt;虚拟地址是抽象的地址统称，大多数不能独立为物理地址，像逻辑地址、有效地址、线性地址和平坦地址皆属于虚拟地址的管理范畴。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;逻辑地址。通常格式位&lt;code&gt;Segment:Offset&lt;/code&gt;。段内偏移地址Offset也叫做有效地址，在C语言或其他高级编程语言里，获取变量或函数的地址就是获取其有效地址。逻辑地址最终都会转换位线性地址，但不同运行模式下的 转换过程各不相同。&lt;/li&gt;
+&lt;li&gt;线性地址。通过逻辑地址中的段基地址与段内偏移地址组合而成，这使得程序无法直接访问线性地址。平坦地址作为一种的线性地址，将段基地址和段长度覆盖了整个线性地址空间，而非线性地址空间的某一部分区域。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;物理地址&quot;&gt;&lt;a href=&quot;#物理地址&quot; class=&quot;headerlink&quot; title=&quot;物理地址&quot;&gt;&lt;/a&gt;物理地址&lt;/h1&gt;&lt;p&gt;物理地址空间中不仅包含物理内存（RAM、ROM）还有硬件设备。在处理器开启分页机制的情况下，线性地址需要经过页表映射才能转换为物理地址；否则线性地址将直接映射为物理地址。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-处理器架构</title>
+    <link href="https://blog.ansore.top/posts/466215f.html"/>
+    <id>https://blog.ansore.top/posts/466215f.html</id>
+    <published>2022-09-14T01:26:12.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;运行模式&quot;&gt;&lt;a href=&quot;#运行模式&quot; class=&quot;headerlink&quot; title=&quot;运行模式&quot;&gt;&lt;/a&gt;运行模式&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;实模式&lt;/li&gt;
+&lt;li&gt;保护模式。32位处理器的主要模式。&lt;/li&gt;
+&lt;li&gt;系统管理模式。&lt;/li&gt;
+&lt;li&gt;虚拟8086模式&lt;/li&gt;
+&lt;li&gt;IA-32e模式。64位吃处理器的主要运行模式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;体系结构各运行模式间切换过程：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/09/12/3b13f20d9cb2462c00546ac43816fe9e.png&quot; alt=&quot;Screenshot_20220912_203300&quot;&gt;&lt;/p&gt;
+&lt;p&gt;处理器上电或重启之后首先运行实模式。&lt;code&gt;CR0&lt;/code&gt;控制寄存器的PE标志位控制处理器运行在实模式或者保护模式。&lt;code&gt;EFLAGS&lt;/code&gt;标志寄存器的&lt;code&gt;VM&lt;/code&gt;标志位可使处理器在保护模式可使处理器在保护模式与虚拟8086模式间切换，切换过程往往通过任务切换或中断&amp;#x2F;异常返回程序实现。 在开启分页机制的保护模式下，置位&lt;code&gt;IA32-EFER&lt;/code&gt;寄存器的&lt;code&gt;LME&lt;/code&gt;标志位（位于&lt;code&gt;IA32-EFER&lt;/code&gt;寄存器的第8位）可使处理器进入&lt;code&gt;IA-32e&lt;/code&gt;模式。通过&lt;code&gt;IA32-EFER&lt;/code&gt;寄存器的&lt;code&gt;LMA&lt;/code&gt;标志位（位于&lt;code&gt;IA32-EFER&lt;/code&gt;寄存器的第10位）可以判断处理器是否运行在&lt;code&gt;IA-32e&lt;/code&gt;模式下。当前处理器运行与&lt;code&gt;IA-32e&lt;/code&gt;模式，代码段描述符的&lt;code&gt;L&lt;/code&gt;标志位可确定处理器运行于64位模式还是兼容模式。不管处理器正处于什么模式，一旦收到&lt;code&gt;SMI&lt;/code&gt;信号便会进入&lt;code&gt;SMM&lt;/code&gt;模式。只有在执行&lt;code&gt;RSM&lt;/code&gt;指令后，处理器会返回到产生&lt;code&gt;SMI&lt;/code&gt;信号前。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>构建RPM包</title>
+    <link href="https://blog.ansore.top/posts/722c5981.html"/>
+    <id>https://blog.ansore.top/posts/722c5981.html</id>
+    <published>2022-09-10T15:15:41.000Z</published>
+    <updated>2024-01-03T14:54:50.112Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;Archlinux下安装RPM包管理工具&quot;&gt;&lt;a href=&quot;#Archlinux下安装RPM包管理工具&quot; class=&quot;headerlink&quot; title=&quot;Archlinux下安装RPM包管理工具&quot;&gt;&lt;/a&gt;Archlinux下安装RPM包管理工具&lt;/h1&gt;&lt;p&gt;&lt;code&gt;rpm-tools&lt;/code&gt;是RPM的包管理工具，包括&lt;code&gt;rpm&lt;/code&gt;、&lt;code&gt;rpmbuild&lt;/code&gt;等命令，安装：&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;yay -S rpm-tools&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&quot;准备&quot;&gt;&lt;a href=&quot;#准备&quot; class=&quot;headerlink&quot; title=&quot;准备&quot;&gt;&lt;/a&gt;准备&lt;/h1&gt;&lt;p&gt;下载示例项目：&lt;a href=&quot;https://github.com/opensourceway/how-to-rpm&quot;&gt;https://github.com/opensourceway/how-to-rpm&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="RPM" scheme="https://blog.ansore.top/categories/RPM/"/>
+    
+    
+    <category term="RPM" scheme="https://blog.ansore.top/tags/RPM/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-实现系统调用处理函数</title>
+    <link href="https://blog.ansore.top/posts/b3303f26.html"/>
+    <id>https://blog.ansore.top/posts/b3303f26.html</id>
+    <published>2022-09-09T02:26:33.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt; 实现一个&lt;code&gt;sys_printf&lt;/code&gt;的系统调用：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;sys_printf&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; pt_regs *regs)&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  color_printk(BLACK, WHITE, (&lt;span class=&quot;type&quot;&gt;char&lt;/span&gt;*)regs-&amp;gt;rdi);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;no_system_call&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; pt_regs *regs)&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  color_printk(RED, BLACK, &lt;span class=&quot;string&quot;&gt;&amp;quot;no_system_call is called, NR: %#04x\n&amp;quot;&lt;/span&gt;, regs-&amp;gt;rax);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;system_call_t&lt;/span&gt; system_call_table[MAX_SYSTEM_CALL_NR] = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  [&lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;] = no_system_call,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;] = sys_printf,&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  [&lt;span class=&quot;number&quot;&gt;2&lt;/span&gt; ... MAX_SYSTEM_CALL_NR&lt;span class=&quot;number&quot;&gt;-1&lt;/span&gt;] = no_system_call&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;code&gt;sys_printf&lt;/code&gt;的系统调用向量号是1，内部封装了函数&lt;code&gt;color_printk&lt;/code&gt;函数，并借助&lt;code&gt;RDI&lt;/code&gt;寄存器（参数&lt;code&gt;regs&lt;/code&gt;的&lt;code&gt;rdi&lt;/code&gt;成员变量）向&lt;code&gt;color_printk&lt;/code&gt;传递打印的字符串。&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;user_level_function&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;()&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;long&lt;/span&gt; ret = &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;char&lt;/span&gt; msg[] = &lt;span class=&quot;string&quot;&gt;&amp;quot;Hello World!\n&amp;quot;&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  __asm__ __volatile__(&lt;span class=&quot;string&quot;&gt;&amp;quot;leaq sysexit_return_address(%%rip), %%rdx \n\t&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       &lt;span class=&quot;string&quot;&gt;&amp;quot;movq %%rsp, %%rcx \n\t&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       &lt;span class=&quot;string&quot;&gt;&amp;quot;sysenter \n\t&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       &lt;span class=&quot;string&quot;&gt;&amp;quot;sysexit_return_address: \n\t&amp;quot;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       : &lt;span class=&quot;string&quot;&gt;&amp;quot;=a&amp;quot;&lt;/span&gt;(ret)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       : &lt;span class=&quot;string&quot;&gt;&amp;quot;0&amp;quot;&lt;/span&gt;(&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;), &lt;span class=&quot;string&quot;&gt;&amp;quot;D&amp;quot;&lt;/span&gt;(msg)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                       : &lt;span class=&quot;string&quot;&gt;&amp;quot;memory&amp;quot;&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;将字符串的起始地址保存到&lt;code&gt;rdi&lt;/code&gt;寄存器中，然后执行系统调用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-实现系统调用</title>
+    <link href="https://blog.ansore.top/posts/9a1a7cb4.html"/>
+    <id>https://blog.ansore.top/posts/9a1a7cb4.html</id>
+    <published>2022-09-05T04:26:03.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;SYSENTER指令&quot;&gt;&lt;a href=&quot;#SYSENTER指令&quot; class=&quot;headerlink&quot; title=&quot;SYSENTER指令&quot;&gt;&lt;/a&gt;SYSENTER指令&lt;/h1&gt;&lt;p&gt;&lt;code&gt;SYSENTER&lt;/code&gt;指令可以实现应用层到内核层的跳转。在执行&lt;code&gt;SYSENTER&lt;/code&gt;之前，处理器必须为其提供0特权级的衔接程序以及0特权级的栈空间，这些数据将会保存在&lt;code&gt;MSR&lt;/code&gt;寄存器组和通用寄存器中。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;IA32_SYSENTER_CS&lt;/code&gt;，位于&lt;code&gt;MSR&lt;/code&gt;寄存器组的地址&lt;code&gt;174h&lt;/code&gt;处，这个&lt;code&gt;MSR&lt;/code&gt;寄存器的低16位装载的是0特权级的代码段选择子，该值也用于所以0特权级的栈段选择子（&lt;code&gt;IA32_SYSENTER_CS[15:0]+8&lt;/code&gt;），所以该值不能为NULL&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;IA32_SYSENTER_ESP&lt;/code&gt;，位于&lt;code&gt;MSR&lt;/code&gt;寄存器组的地址&lt;code&gt;175h&lt;/code&gt;处，这个&lt;code&gt;MSR&lt;/code&gt;寄存器里的值会被载入&lt;code&gt;RSP&lt;/code&gt;寄存器中，该值必须是Canonical型地址。在保护模式下，只有寄存器的低32位会被载入&lt;code&gt;RSP寄存器&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;IA32_SYSENTER_EIP&lt;/code&gt;，位于&lt;code&gt;MSR&lt;/code&gt;寄存器组的地址&lt;code&gt;176h&lt;/code&gt;处，这个&lt;code&gt;MSR&lt;/code&gt;寄存器里的值会被载入&lt;code&gt;RIP&lt;/code&gt;寄存器中，该值必须是Canonical型地址。在保护模式下，只有寄存器的低32位会被载入&lt;code&gt;RIP寄存器&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在执行&lt;code&gt;SYSENTER&lt;/code&gt;指令的过程中，处理器会根据&lt;code&gt;IA32_SYSENTER_CS&lt;/code&gt;寄存器的值加载相应的段选择子到&lt;code&gt;CS&lt;/code&gt;和&lt;code&gt;SS&lt;/code&gt;寄存器。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;SYSENTER/SYSEXIT&lt;/code&gt;指令与&lt;code&gt;CALL/RET&lt;/code&gt;指令的不同之处在于，执行&lt;code&gt;SYSENTER&lt;/code&gt;指令时，处理器不会保存用户代码的状态信息（&lt;code&gt;RIP&lt;/code&gt;和&lt;code&gt;RSP&lt;/code&gt;寄存器的值），而且两者均不支持内存参数方式。同时&lt;code&gt;SYSENTER/SYSEXIT&lt;/code&gt;还必须遵循如下规则：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-跳转到应用层</title>
+    <link href="https://blog.ansore.top/posts/d18221ab.html"/>
+    <id>https://blog.ansore.top/posts/d18221ab.html</id>
+    <published>2022-09-03T02:56:22.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;跳转过程&quot;&gt;&lt;a href=&quot;#跳转过程&quot; class=&quot;headerlink&quot; title=&quot;跳转过程&quot;&gt;&lt;/a&gt;跳转过程&lt;/h1&gt;&lt;p&gt; 系统内核位于0特权级，应用程序位于3特权级，如果想从内核层进入应用层，在特权级跳转的过程中必须提供目标代码段和栈段以及其他跳转信息。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;检测目标程序的访问权限，针对段模式的特权级进行检查&lt;/li&gt;
+&lt;li&gt;临时把&lt;code&gt;SS&lt;/code&gt;、&lt;code&gt;ESP&lt;/code&gt;、&lt;code&gt;CS&lt;/code&gt;、&lt;code&gt;EIP&lt;/code&gt;寄存器的当前值保存在处理器内部，以备调用返回使用&lt;/li&gt;
+&lt;li&gt;根据目标代码段的特权级，处理器从&lt;code&gt;TSS&lt;/code&gt;结构中提取处相应特权级的段选择子和栈基地址，并将其作为目标程序的栈空间更新到&lt;code&gt;SS&lt;/code&gt;和&lt;code&gt;ESP&lt;/code&gt;寄存器&lt;/li&gt;
+&lt;li&gt;将步骤2临时保存的&lt;code&gt;SS&lt;/code&gt;和&lt;code&gt;ESP&lt;/code&gt;寄存器存入内目标程序的栈空间&lt;/li&gt;
+&lt;li&gt;根据调用门描述符记录的参数个数，从调用者栈空间复制参数到目标程序栈&lt;/li&gt;
+&lt;li&gt;将步骤2临时保存的&lt;code&gt;CS&lt;/code&gt;和&lt;code&gt;EIP&lt;/code&gt;寄存器值存入目标程序的栈空间&lt;/li&gt;
+&lt;li&gt;将调用门描述符记录的目标代码段选择子和程序的起始地址加载到&lt;code&gt;CS&lt;/code&gt;和&lt;code&gt;EIP&lt;/code&gt;寄存器中&lt;/li&gt;
+&lt;li&gt;处理器在目标代码段特权级下执行程序&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/08/25/b94626e5f111d9ada754d14b3530df21.png&quot; alt=&quot;Screenshot_20220825_200550&quot;&gt;&lt;/p&gt;
+&lt;p&gt;对于相同特权级的程序访问，处理器并不会切换程序的栈空间，所以只有参数、&lt;code&gt;EIP&lt;/code&gt;寄存器以及CS寄存器会存入栈空间&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-进程管理</title>
+    <link href="https://blog.ansore.top/posts/5c82fe62.html"/>
+    <id>https://blog.ansore.top/posts/5c82fe62.html</id>
+    <published>2022-09-01T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;进程管理模块&quot;&gt;&lt;a href=&quot;#进程管理模块&quot; class=&quot;headerlink&quot; title=&quot;进程管理模块&quot;&gt;&lt;/a&gt;进程管理模块&lt;/h1&gt;&lt;p&gt;进程是拥有执行资源的最小单位，它为每个程序维护着运行时的各种资源，如进程ID、进程的页表、进程执行现场的寄存器值、进程各个段地址空间分布信息以及进程执行时的维护信息等，它们在程序的运行期间会被经常或实时更新。这些资源被结构化到PCB（Process Control Block，进程控制结构体）内，PCB作为进程调度的决策信息供调度算法使用。&lt;/p&gt;
+&lt;p&gt;进程调度策略负责将满足运行条件或迫切需要执行的进程到空闲处理器中执行。进程调度策略直接影响程序的执行效率。&lt;/p&gt;
+&lt;h1 id=&quot;PCB&quot;&gt;&lt;a href=&quot;#PCB&quot; class=&quot;headerlink&quot; title=&quot;PCB&quot;&gt;&lt;/a&gt;PCB&lt;/h1&gt;&lt;p&gt;PCB用于记录进程的资源使用情况（包括软件资源是硬件资源）和运行状态等。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-键盘驱动</title>
+    <link href="https://blog.ansore.top/posts/678e8aa.html"/>
+    <id>https://blog.ansore.top/posts/678e8aa.html</id>
+    <published>2022-08-28T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;键盘功能&quot;&gt;&lt;a href=&quot;#键盘功能&quot; class=&quot;headerlink&quot; title=&quot;键盘功能&quot;&gt;&lt;/a&gt;键盘功能&lt;/h1&gt;&lt;p&gt;目前，键盘控制器芯片大多数采用Intel 8042芯片，键盘控制器芯片通过PS&amp;#x2F;2接口或USB接口与外部设备相连。键盘舍内通常会包含一个Intel 8048或兼容芯片，这个芯片会时刻扫描键盘设备的每个按键，并将扫描到的按键进行编码，每个按键的编码是唯一的。8042芯片还负责控制系统的其他功能，如鼠标、A20地址线等。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/08/20/0d2603d675d883788baa1f6954b775a2.png&quot; alt=&quot;Screenshot_20220820_195522&quot;&gt;&lt;/p&gt;
+&lt;p&gt;当8048芯片检测到按键被按下时，它会将按键对应的编码值通过PS&amp;#x2F;2接口发送到8042键盘控制器芯片中。8042键盘控制器在接收到编码值后，会将其解析并转换成统一键盘扫描码（第1套XT扫描码集）。并存放到输出缓冲区等待处理器读取。如果此时还有新键被按下，8042芯片将不再接收新的数据，直到输出缓冲区被清空后，8042芯片才会继续接收编码数据。&lt;/p&gt;
+&lt;p&gt;键盘扫描码共三套，第1套为原始XT扫描码；第2套为AT扫描码；第三套为PS&amp;#x2F;2扫描码。现在键盘默认使用第二套AT扫描码，出于兼容性考虑，第二套扫描码最终都会转换为第一套XT扫描码供处理器使用。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-中断处理</title>
+    <link href="https://blog.ansore.top/posts/ae9beb13.html"/>
+    <id>https://blog.ansore.top/posts/ae9beb13.html</id>
+    <published>2022-08-25T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;8259A-PIC&quot;&gt;&lt;a href=&quot;#8259A-PIC&quot; class=&quot;headerlink&quot; title=&quot;8259A PIC&quot;&gt;&lt;/a&gt;8259A PIC&lt;/h1&gt;&lt;p&gt;通常PC机会采用两片8258A芯片级联的方式，将外部硬件设备的中断请求和引脚与处理器的中断接收引脚关联起来。两个芯片级联如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/08/19/53ce0b946589a2d7d449ea426250b6ed.png&quot; alt=&quot;Screenshot_20220819_222701&quot;&gt;&lt;/p&gt;
+&lt;p&gt;其中一个8259A作为主芯片，与CPU的&lt;code&gt;INTR&lt;/code&gt;引脚相连；另一个作为从芯片，与主芯片的&lt;code&gt;IR2&lt;/code&gt;引脚相连。&lt;/p&gt;
+&lt;p&gt;通常情况下，会按照如下情况与外部设备相连：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-内存管理</title>
+    <link href="https://blog.ansore.top/posts/984d9bff.html"/>
+    <id>https://blog.ansore.top/posts/984d9bff.html</id>
+    <published>2022-08-21T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;获取物理内存信息&quot;&gt;&lt;a href=&quot;#获取物理内存信息&quot; class=&quot;headerlink&quot; title=&quot;获取物理内存信息&quot;&gt;&lt;/a&gt;获取物理内存信息&lt;/h1&gt;&lt;p&gt;之前再Loader阶段通过BIOS中断服务程序&lt;code&gt;int 0x15; ax=0xe820&lt;/code&gt;，包保存到物理地址&lt;code&gt;0x7e00&lt;/code&gt;。此处存储的物理地址空间信息存有若干组，描述计算机平台的地址空间划分情况，数据量回根据当前主板硬件配置和物理内存容量而定，每条物理地址空间信息占用&lt;code&gt;20B&lt;/code&gt;，详细定义如下：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;class&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;struct&lt;/span&gt; &lt;span class=&quot;title&quot;&gt;Memory_E820_Formate&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; address1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; address2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; length1;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; length2;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;type&quot;&gt;unsigned&lt;/span&gt; &lt;span class=&quot;type&quot;&gt;int&lt;/span&gt; type;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;该结构体格式化物理地址&lt;code&gt;0x7e00&lt;/code&gt;处的数据。还必须经过页表映射后才能使用，转换后的线性地址是&lt;code&gt;0xffff800000007e00&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;显示内存信息：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-系统异常</title>
+    <link href="https://blog.ansore.top/posts/70237c47.html"/>
+    <id>https://blog.ansore.top/posts/70237c47.html</id>
+    <published>2022-08-18T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;异常的分类&quot;&gt;&lt;a href=&quot;#异常的分类&quot; class=&quot;headerlink&quot; title=&quot;异常的分类&quot;&gt;&lt;/a&gt;异常的分类&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;错误（fault）：错误是一种可以被修正的以上。只要错误被修正，处理器可将程序或任务的运行环境还原至异常发生前（已在栈中保存的CS和EIP寄存器值），并重新执行产生异常的指令，也就是异常的返回地址指向错误产生的指令，而不是其后的位置&lt;/li&gt;
+&lt;li&gt;陷阱（trap）：陷阱异常同样允许处理器继续执行任务或程序，只不过处理器对跳过产生异常的指令，即陷阱异常的返回地址指向诱发陷阱指令之后的地址&lt;/li&gt;
+&lt;li&gt;终止（abort）：终止异常用于报告非常严重的错误，它往往无法准确提供产生异常的位置，同时页不允许程序或任务继续执行，典型的终止异常有硬件错误或系统表存在不合逻辑、非法值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;INTEL处理器目前支持的异常&amp;#x2F;中断：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/07/22/bc5d1d360c412730acb325004b854618.png&quot; alt=&quot;Screenshot_20220722_234450&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/07/22/f5e1aef9a88a34939d3f9f2b576486f8.png&quot; alt=&quot;Screenshot_20220722_234501&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-屏幕显示</title>
+    <link href="https://blog.ansore.top/posts/6e1a5d82.html"/>
+    <id>https://blog.ansore.top/posts/6e1a5d82.html</id>
+    <published>2022-08-13T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;为了在屏幕上显示颜色，必须通过桢缓冲存储器完成。桢缓冲存储器（Frame Buffer），简称桢缓存或桢存。它是屏幕显示画面的一个内存映像，桢缓存的每个存储单元对应屏幕的一个像素，整个桢缓存对应一幅图像。桢缓存的特点是可对每个像素点进行操作，不仅可以借助它在屏幕上画出屏幕上色彩，还可以在屏幕上用像素点绘制文字以及图片。&lt;/p&gt;
+&lt;p&gt;此前设置说显示芯片的显示模式（模式号：&lt;code&gt;0x180&lt;/code&gt;，分辨率：&lt;code&gt;1400*900&lt;/code&gt;，颜色深度：&lt;code&gt;32bit&lt;/code&gt;），而且内核执行头程序还将桢缓存的物理基地址映射到线性地址&lt;code&gt;0xffff800000000000&lt;/code&gt;和&lt;code&gt;0xa00000&lt;/code&gt;处。&lt;/p&gt;
+&lt;h1 id=&quot;屏幕上显示色彩&quot;&gt;&lt;a href=&quot;#屏幕上显示色彩&quot; class=&quot;headerlink&quot; title=&quot;屏幕上显示色彩&quot;&gt;&lt;/a&gt;屏幕上显示色彩&lt;/h1&gt;&lt;p&gt;桢缓存格式：一个像素点能够显示的颜色值位宽。Loader引导加载程序设置的显示模式可支持32位颜色深度的像素点，其中0~7位代表蓝色，8~15位代表吝啬，16~23位代表红色，24~31位是保留位。&lt;/p&gt;
+&lt;p&gt;如果想设置屏幕上某个像素点的颜色，必须知道这个点在屏幕上的位置，并计算处该点距离屏幕原点的偏移值。屏幕坐标位于左上角。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-内核主程序</title>
+    <link href="https://blog.ansore.top/posts/181cefd9.html"/>
+    <id>https://blog.ansore.top/posts/181cefd9.html</id>
+    <published>2022-08-08T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;内核主程序相当于应用程序的主函数。负责调用各个系统模块的初始化函数，在这些模块初始化结束后，它会创建处系统的第一个&lt;code&gt;init&lt;/code&gt;进程，并将控制权交给&lt;code&gt;init&lt;/code&gt;进程。&lt;/p&gt;
+&lt;p&gt;当前主程序不具备任何功能，只是为了让内核执行头程序有目标跳转而已。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;start_kernel&lt;/code&gt;函数实现：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&lt;span class=&quot;type&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;title function_&quot;&gt;start_kernel&lt;/span&gt;&lt;span class=&quot;params&quot;&gt;(&lt;span class=&quot;type&quot;&gt;void&lt;/span&gt;)&lt;/span&gt; &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;while&lt;/span&gt; (&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;) &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;    ;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;编译脚本：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-lds链接脚本</title>
+    <link href="https://blog.ansore.top/posts/9ed871c4.html"/>
+    <id>https://blog.ansore.top/posts/9ed871c4.html</id>
+    <published>2022-08-04T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt; 系统程序的链接过程使用到链接脚本文件，通常情况下链接器都会使用默认的链接脚本文件。内核程序段的位置需要精心设计，所以默认链接脚本就不能使用，段名往往由操作系统独立命令。&lt;/p&gt;
+&lt;p&gt;链接脚本的主要作用是描述如何输入文件中的各个程序段（数据段、代码段、堆、栈、BSS）部署到输出文件中，并规划输出文件各程序段在内存中的布局。&lt;/p&gt;
+&lt;p&gt;链接脚本：&lt;/p&gt;
+&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;OUTPUT_FORMAT(&amp;quot;elf64-x86-64&amp;quot;, &amp;quot;elf64-x86-64&amp;quot;, &amp;quot;elf64-x86-64&amp;quot;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;OUTPUT_ARCH(i386:x86-64)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;ENTRY(_start)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;SECTIONS&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  . = 0xffff800000000000 + 0x100000;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .text :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _text = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      *(.text)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _etext = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  . = ALIGN(8);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .data :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _data = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      *(.data)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _edata = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .bss :&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _bss = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      *(.bss)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;      _ebss = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  _end = .;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;ul&gt;
+&lt;li&gt;符号&lt;code&gt;.&lt;/code&gt;是一个定位器或位置指针，它用于定位程序的地址或 调整程序的布局位置。&lt;code&gt;. = 0xffff800000000000 + 0x100000&lt;/code&gt;就是将定位器设置这个地址处，这个地址是线性地址。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OUTPUT_FORMAT(DEFAULT,BIG,LITTLE)&lt;/code&gt;。它为链接过程提供&lt;code&gt;DEFAULT&lt;/code&gt;（默认）、&lt;code&gt;BIG&lt;/code&gt;（大端）、&lt;code&gt;LITTLE&lt;/code&gt;（小端）三种输出文件格式。程序链接过程中，若链接使用&lt;code&gt;-EB&lt;/code&gt;选项，那么程序将链接成BIG指定的文件格式；如果链接命令中由&lt;code&gt;-EL&lt;/code&gt;选项，那么程序将链接成LITTLE指定的文件格式；否则链接成默认模式。此脚本执行将文件的三种输出格式设置位&lt;code&gt;elf64-x86-64&lt;/code&gt;格式&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;OUTPUT_ARCH(BFDARCH)&lt;/code&gt;指定输出文件的处理器体系结构。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ENTRY(SYMBOL)&lt;/code&gt;将标识符&lt;code&gt;SYMBOL&lt;/code&gt;设置位程序入口，即程序执行的第一条指令所在的地址。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SECTIONS&lt;/code&gt;关键则负责向链接器描述如何将文件中的各程序段（数据段、代码段、堆、栈、BSS）部署到输出文件中，同时还将规划各程序段在内存中的布局。内核程序的代码段&lt;code&gt;.text&lt;/code&gt;起始于线性地址&lt;code&gt;0xffff800000100000&lt;/code&gt;处，这个线性地址经过页管理机制转换后，对应的物理地址是&lt;code&gt;0x100000&lt;/code&gt;。而链接脚本中的正则表达式&lt;code&gt;*(.text)&lt;/code&gt;说明了输出文件的&lt;code&gt;.text&lt;/code&gt;程序段保存着所有输入文件的&lt;code&gt;.text&lt;/code&gt;程序段。而且&lt;code&gt;.text&lt;/code&gt;程序段还使用了&lt;code&gt;_text&lt;/code&gt;和&lt;code&gt;_etext&lt;/code&gt;标识符来表示&lt;code&gt;.text&lt;/code&gt;程序段的起始线性地址和结束线性地址，这两个标识符可在程序中通过代码&lt;code&gt;extern _text&lt;/code&gt;和&lt;code&gt;extern _etext&lt;/code&gt;进行引用（可以看作全局变量）。此处的符号&lt;code&gt;.&lt;/code&gt;表示程序定位器的当前位置（线性地址）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ALIGN(NUM)&lt;/code&gt;将地址向后按NUM字节对齐&lt;/li&gt;
+&lt;/ul&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-内核头程序</title>
+    <link href="https://blog.ansore.top/posts/d23baf17.html"/>
+    <id>https://blog.ansore.top/posts/d23baf17.html</id>
+    <published>2022-08-02T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt;内核头程序就是内核程序中的一小段汇编代码。内核的线性地址&lt;code&gt;0xffff800000000000&lt;/code&gt;对应物理地址0处，内核程序的起始线性地址位 &lt;code&gt;0xffff800000000000 + 0x100000&lt;/code&gt;处。&lt;/p&gt;
+&lt;h1 id=&quot;描述符和段结构信息&quot;&gt;&lt;a href=&quot;#描述符和段结构信息&quot; class=&quot;headerlink&quot; title=&quot;描述符和段结构信息&quot;&gt;&lt;/a&gt;描述符和段结构信息&lt;/h1&gt;&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;19&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;21&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;22&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;23&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;24&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;25&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;26&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;27&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;29&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;31&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;32&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;33&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;34&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;35&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;36&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;37&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;38&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;39&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;40&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;41&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// GDT Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.section .data&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.global GDT_Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GDT_Table:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x0000000000000000 // 0 null descriptor 00&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x0020980000000000 // 1 kernel code 64bit segment 08&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x0000920000000000 // 2 kernel code 64bit segment 10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x0020f80000000000 // 3 user code 64bit segment 18&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x0000f20000000000 // 4 user data 64bit segment 20&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x00cf9a000000ffff // 5 kernel code 32bit segment 28&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .quad 0x00cf92000000ffff // 6 kernel data 32bit segment 30&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .fill 10, 8, 0 // 8~9 TSS(jmp one segment 7) in long-mode 128bit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GDT_END:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GDT_POINTER:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GDT_LIMIT: .word GDT_END - GDT_Table - 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;GDT_BASE: .quad GDT_Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// IDT Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.global IDT_Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;IDT_Table:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .fill 512, 8, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;IDT_END:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;IDT_POINTER:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;IDT_LIMIT: .word IDT_END - IDT_Table - 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;IDT_BASE: .quad IDT_Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;// TSS64 Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;.global TSS64_Table&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSS64_Table:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;  .fill 13, 8, 0&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSS64_END:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSS64_POINTER:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSS64_LIMIT: .word TSS64_END - TSS64_Table - 1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;TSS64_BASE: .quad TSS64_Table&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;这段程序将全局描述符GDT、中断描述符IDT、任务状态段TSS刚在内核程序的数据段内，并且手动配置全局描述符GDT内的各个段描述符。&lt;/p&gt;
+&lt;p&gt;通过伪指令&lt;code&gt;.global&lt;/code&gt;来修饰标识符&lt;code&gt;GDT_Table&lt;/code&gt;、&lt;code&gt;IDT_Table&lt;/code&gt;、&lt;code&gt;TSS64_Table&lt;/code&gt;表示这三个标识符可以被外部程序引用或访问。它可以保证本程序可以正确配置描述符，同时内核程序其他部分也能够操作这些表舒服表项。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>64位操作系统-控制寄存器</title>
+    <link href="https://blog.ansore.top/posts/ea957129.html"/>
+    <id>https://blog.ansore.top/posts/ea957129.html</id>
+    <published>2022-07-28T02:26:06.000Z</published>
+    <updated>2024-01-03T14:54:50.100Z</updated>
+    
+    
+    <summary type="html">&lt;p&gt; &lt;code&gt;GDT&lt;/code&gt;、&lt;code&gt;LDT&lt;/code&gt;和&lt;code&gt;IDT&lt;/code&gt;表都是描述符表。描述符表是由若干个描述符组成，每个描述符占用8个字节的内存空间，每个描述符表内最多可以有（8K）8129个描述符。描述符是描述一个段的大小，地址及各种状态的。&lt;/p&gt;
+&lt;h1 id=&quot;控制寄存器&quot;&gt;&lt;a href=&quot;#控制寄存器&quot; class=&quot;headerlink&quot; title=&quot;控制寄存器&quot;&gt;&lt;/a&gt;控制寄存器&lt;/h1&gt;&lt;p&gt;CR0～4：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://img.ansore.de/2022/07/25/daa8767af692da6ae6f43fd0008a21a5.png&quot; alt=&quot;Screenshot_20220725_003011&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;GDTR&lt;/code&gt;、&lt;code&gt;IDTR&lt;/code&gt;等：&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+    <category term="操作系统" scheme="https://blog.ansore.top/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/"/>
+    
+    <category term="64位系统实现" scheme="https://blog.ansore.top/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/"/>
+    
+  </entry>
+  
+</feed>

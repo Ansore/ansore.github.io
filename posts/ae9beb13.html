@@ -1,0 +1,327 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>64位操作系统-中断处理 | Ansore</title><meta name="keywords" content="操作系统,64位系统实现"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="8259A PIC通常PC机会采用两片8258A芯片级联的方式，将外部硬件设备的中断请求和引脚与处理器的中断接收引脚关联起来。两个芯片级联如下：  其中一个8259A作为主芯片，与CPU的INTR引脚相连；另一个作为从芯片，与主芯片的IR2引脚相连。 通常情况下，会按照如下情况与外部设备相连：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="64位操作系统-中断处理">
+<meta property="og:url" content="https://blog.ansore.top/posts/ae9beb13.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="8259A PIC通常PC机会采用两片8258A芯片级联的方式，将外部硬件设备的中断请求和引脚与处理器的中断接收引脚关联起来。两个芯片级联如下：  其中一个8259A作为主芯片，与CPU的INTR引脚相连；另一个作为从芯片，与主芯片的IR2引脚相连。 通常情况下，会按照如下情况与外部设备相连：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png">
+<meta property="article:published_time" content="2022-08-25T02:26:06.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.100Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="操作系统">
+<meta property="article:tag" content="64位系统实现">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/ae9beb13"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '64位操作系统-中断处理',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">64位操作系统-中断处理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-08-25T02:26:06.000Z" title="发表于 2022-08-25 10:26:06">2022-08-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.100Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.1k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="64位操作系统-中断处理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="8259A-PIC"><a href="#8259A-PIC" class="headerlink" title="8259A PIC"></a>8259A PIC</h1><p>通常PC机会采用两片8258A芯片级联的方式，将外部硬件设备的中断请求和引脚与处理器的中断接收引脚关联起来。两个芯片级联如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/53ce0b946589a2d7d449ea426250b6ed.png" alt="Screenshot_20220819_222701"></p>
+<p>其中一个8259A作为主芯片，与CPU的<code>INTR</code>引脚相连；另一个作为从芯片，与主芯片的<code>IR2</code>引脚相连。</p>
+<p>通常情况下，会按照如下情况与外部设备相连：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/39e82476075e523d07dd92f9a4494806.png" alt="Screenshot_20220819_223002"></p>
+<p>一个8259A PIC包含两组寄存器，分别是ICW（初始化命令字）寄存器组和OCW（操作控制字）寄存器组。ICW用于初始化中断控制器，OCW用于操作中断控制寄存器。</p>
+<p>PC采用I&#x2F;O地址映射方式，将8259A PIC的寄存器映射到I&#x2F;O端口地址空间，因此必须借助<code>IN</code>和<code>OUT</code>汇编指令才能访问8259A PIC。主8259A芯片的I&#x2F;O端口地址是20h和21h，从8259A芯片的I&#x2F;O端口地址是A0h和A1h。内部结构如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/c4a9a4bf9e3c25ca29eada9d6a2545d9.png" alt="Screenshot_20220819_223439"></p>
+<p>通过I&#x2F;O端口可操作中断控制寄存器的ICW和OCW寄存器组，进而配置IRR、PR、ISR、IMR等寄存器。</p>
+<ul>
+<li>IRR（Interrput Request Register，中断请求寄存器）用来保存IR0~IR7引脚上接收的中断请求，该寄存器有8bit分别对应外部引脚IR0~IR7。</li>
+<li>IMR（Interrupt Mask Register，中断屏蔽寄存器）用于级联屏蔽的外部引脚，该寄存器同样有8位分别对应IRR寄存器中的每一位，当IMR中的某一位或几位被置位时，相应的IR引脚的中断请求信号将会被屏蔽，不处理。</li>
+<li>PR（Priority Resolver，优先级解析器）将从IRR寄存器接收的中断请求中选取最高优先级者，将其发往ISR</li>
+<li>ISR（In-Service Resigter，正在服务寄存器）记录着正在处理的中断请求，同时8259A芯片还会向CPU发送一个INT信号，而CPU在每执行完一条指令后检测是否接收到中断请求信号。如果收到中断请求信号，处理器将不再继续执行指令，转而向8259A芯片发送一个INTA来应答中断请求信号。8259A芯片收到这个应答信号后，便会把这个中断请求保存到ISR中（置位相应寄存器位）。与此同时，复位IRR寄存器中的对应中断请求信号位，以表示中断请求正在处理。随后，CPU还会发送第二个INTA脉冲信号，其作用是通知8259A芯片发送中断向量号，此时8259A性别会把中断向量号（8位数据）发送到数据总线上供CPU读取。当CPU收到中断向量号后，随即跳转到中断描述符表IDT检索向量号对应的门描述符，并自动执行描述符中的处理程序。</li>
+</ul>
+<p>如果8259A芯片采用AEOI（Automatic End of Interrupt，自动结束中断）方式，那么它会在第二个INTA脉冲信号的结尾处复位正在服务寄存器ISR的对应位。如果采用非自动结束方式，那么CPU必须在中断处理程序的结尾处向8259A芯片发送一个EOI（End of Interrupt，结束中断）命令，来复位ISR的对应位。如果中断请求来自级联的8259A芯片，则必须向两个芯片都发送EOI命令。此后8259A继续判断下一个最高优先级的中断，并重复处理过程。</p>
+<h2 id="初始化命令字ICW"><a href="#初始化命令字ICW" class="headerlink" title="初始化命令字ICW"></a>初始化命令字ICW</h2><p>ICW寄存器组共包括ICW1、ICW2、ICW3、ICW4四个寄存器，必须按照ICW1到ICW4顺序初始化。主8259A芯片的ICW1寄存器映射到I&#x2F;O端口的20h地址处，ICW2、ICW3、ICW4寄存器映射到I&#x2F;O端口21h地址处；从8259A芯片的ICW1寄存器映射到I&#x2F;O端口A0h处，ICW2、ICW3、ICW4映射到I&#x2F;O端口A1h地址处。</p>
+<p>对主从性别而初始化顺序可以是先后式（先配置主芯片的ICW寄存器组，再配置从芯片的ICW寄存器组）或交替式（先配置主&#x2F;从芯片的ICW1寄存器，再设置主&#x2F;从芯片的ICW2寄存器，以此类推知道ICW4寄存器）</p>
+<h3 id="ICW1寄存器"><a href="#ICW1寄存器" class="headerlink" title="ICW1寄存器"></a>ICW1寄存器</h3><p>ICW1寄存器共有8位，各个位的功能描述：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/42e8920a671fc02f37e853fb555bd98b.png" alt="Screenshot_20220819_230011"></p>
+<p>主从芯片的ICW1寄存器都固定初始化为00010001B(11h)。</p>
+<h3 id="ICW2寄存器"><a href="#ICW2寄存器" class="headerlink" title="ICW2寄存器"></a>ICW2寄存器</h3><p>ICW2寄存器共有8位，各个位的功能描述：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/ee11ca802d1c1df71f96908ffc596bfb.png" alt="Screenshot_20220819_230204"></p>
+<p>对中断向量号没有特殊要求，通常情况下，主8259A芯片的中断向量号设置位20h（占用中断向量号20h~21h），从8259A芯片的中断向量号设置为28h（占用中断向量号28h~2fh）</p>
+<h3 id="ICW3寄存器"><a href="#ICW3寄存器" class="headerlink" title="ICW3寄存器"></a>ICW3寄存器</h3><p>ICW2寄存器共有8位，对于主&#x2F;从8259A芯片的ICW3寄存器含义不同，主8259A芯片各个位的功能描述：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/7fca25ee780b47fc085dae3712eabdf8.png" alt="Screenshot_20220819_230435"></p>
+<p>主8259A芯片的ICW3寄存器用于记录各IR引脚与从8259A芯片的级联状态。而从8259A芯片的ICW3寄存器则用于级联其与主8259A芯片的级联状态。</p>
+<p>从8259A芯片的ICW3寄存器位：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/a68a345e04d3857d37c36375372aeab5.png" alt="Screenshot_20220819_230652"></p>
+<p>从级联结构可以看出，主8259A芯片的ICW3寄存器值被设置为04h，从8259A芯片的ICW3寄存器被设置为02h。</p>
+<h3 id="ICW4寄存器"><a href="#ICW4寄存器" class="headerlink" title="ICW4寄存器"></a>ICW4寄存器</h3><p>ICW4寄存器有8位，含义如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/3973eb7ce26434507c67c4daf28c2517.png" alt="Screenshot_20220819_230858"></p>
+<p>功能说明：</p>
+<ul>
+<li>AEOI模式：此模式可使用中断控制寄存器收到CPU发来的第2个INTA中断响应脉冲，自动复位ISR寄存器的对应位</li>
+<li>EOI模式：此模式下，处理器执行完中断处理程序后，必须手动向中断控制寄存器发送中断结束EOI指令，来复位ISR寄存器的对应位</li>
+<li>FNM（Fully Nested Mode，全嵌套模式）：此模式下，中断请求的优先级按照引脚名从高到低依次为IR0~IR7。如果从8259A芯片的中断请求正在被处理，那么该从芯片将被主芯片屏蔽直到处理结束，即使从芯片产生更高优先级的中断请求也不会得到执行。</li>
+<li>SFNM（Special Fully Nested Mode，特殊全嵌套模式）：该模式与FNM基本相同，不同点在于主芯片不会屏蔽从芯片，主芯片可以接收来自从芯片更高优先级的中断。在中断处理程序返回时，需要先向从芯片发送EOI命令，并检测从芯片的ISR寄存器值，如果ISR寄存器仍有其他中断请求，则无需向主芯片发送EOI命令。</li>
+</ul>
+<p>通常情况下，只需要将主&#x2F;从芯片的ICW4寄存器设置为01h即可。</p>
+<h2 id="操作控制字OCW"><a href="#操作控制字OCW" class="headerlink" title="操作控制字OCW"></a>操作控制字OCW</h2><p>OCW寄存器组包含OCW1、OCW2、OCW3，用于控制和调整工作期间的中断控制寄存器，这3个寄存器没有操作顺序之分。主8259A芯片的OCW1寄存器映射到I&#x2F;O端口21h地址处，OCW2、OCW3寄存器映射到I&#x2F;O端口20h地址处；从8259A的OCW1寄存器映射到I&#x2F;O端口A1地址处，OCW2、OCW3寄存器映射到I&#x2F;O端口A0h地址处。</p>
+<h3 id="OCW1寄存器"><a href="#OCW1寄存器" class="headerlink" title="OCW1寄存器"></a>OCW1寄存器</h3><p>OCW1是中断屏蔽寄存器，共有8位：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/c88a2ac8f3d0bfc4abaefc85989fd3f2.png" alt="Screenshot_20220819_232621"></p>
+<p>尽量屏蔽不用的中断，防止接收不必要的中断请求，从而导致中断请求过于拥堵。</p>
+<h3 id="OCW2寄存器"><a href="#OCW2寄存器" class="headerlink" title="OCW2寄存器"></a>OCW2寄存器</h3><p>OCW2依然是个8位寄存器：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/23e8d89ee11a25b5ee4e52b68418e021.png" alt="Screenshot_20220819_232753"></p>
+<p>对于OCW2寄存器的D5~D7位，它们可以组合成多种模式：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/80a6f2be08b0f575249a4fe191dcdf2f.png" alt="Screenshot_20220819_232914"></p>
+<p>循环模式（D7&#x3D;1）：8259A芯片使用一个8位循环队列保存各个引脚的中断请求，当一个中断请求结束后，这个引脚的优先级将自动将为最低，然后排入优先级队列的末尾，依次类推</p>
+<p>特殊循环（D7&#x3D;1，D6&#x3D;1）：特殊循环模式在循环模式的基础上，将D0~D2位指定的优先级设置为最低优先级，随后再按照循环模式循环降低中断请求中的优先级。</p>
+<h3 id="OCW3寄存器"><a href="#OCW3寄存器" class="headerlink" title="OCW3寄存器"></a>OCW3寄存器</h3><p>OCW3寄存器也是8位寄存器：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/19/f8b72adc9ccecbbf2048134ea05a3a4a.png" alt="Screenshot_20220819_233343"></p>
+<p>特殊屏蔽模式：在某些场合，中断处理程序能够被更低优先级的中断请求打断，从用特殊屏蔽模式，可在置位IMR寄存器（OCW1寄存器）的同时复位对应的ISR寄存器位，从而可以处理其他优先级的中断请求。</p>
+<h1 id="触发中断"><a href="#触发中断" class="headerlink" title="触发中断"></a>触发中断</h1><p>中断和异常的处理工作都需要保存和还原任务现场</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SAVE_ALL                                                               \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;cld; \n\t&quot;</span>                                                                  \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rax; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rax; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;movq %es, %rax; \n\t&quot;</span>                                                       \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rax; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;movq %ds, %rax; \n\t&quot;</span>                                                       \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rax; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;xorq %rax, %rax; \n\t&quot;</span>                                                      \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rbp; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rdi; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rsi; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rdx; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rcx; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %rbx; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r8; \n\t&quot;</span>                                                            \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r9; \n\t&quot;</span>                                                            \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r10; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r11; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r12; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r13; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r14; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;pushq %r15; \n\t&quot;</span>                                                           \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;movq $0x10, %rdx; \n\t&quot;</span>                                                     \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;movq %rdx, %ds; \n\t&quot;</span>                                                       \</span></span><br><span class="line"><span class="meta">  <span class="string">&quot;movq %rdx, %es; \n\t&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>与<code>entry.S</code>文件的<code>error_code</code>模块极其相似，只不过中断处理程序的调用入口均指向同一中断处理函数<code>do_irq</code>，而且中断触发时不会压入错误码，所以此处无法复用代码。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> IRQ_NAME2(nr) nr##_interrupt(void)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> IRQ_NAME(nr) IRQ_NAME2(IRQ##nr)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> BUILD_IRQ(nr)                                                          \</span></span><br><span class="line"><span class="meta">  void IRQ_NAME(nr);                                                           \</span></span><br><span class="line"><span class="meta">  __asm__(SYMBOL_NAME_STR(IRQ) #nr <span class="string">&quot;_interrupt: \n\t&quot;</span>                          \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;pushq $0x00 \n\t&quot;</span> SAVE_ALL                 \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;movq %rsp, %rdi \n\t&quot;</span>                      \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;leaq ret_from_intr(%rip), %rax \n\t&quot;</span>       \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;pushq %rax \n\t&quot;</span>                           \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;movq $&quot;</span> #nr <span class="string">&quot;, %rsi \n\t&quot;</span>                  \</span></span><br><span class="line"><span class="meta">                                   <span class="string">&quot;jmp do_irq \n\t&quot;</span>);</span></span><br></pre></td></tr></table></figure>
+
+<p><code>##</code>用于连接两个宏值，宏展开过程中，会将操作符两边的内容连接起来，组成一个完整的内容。</p>
+<p><code>#</code>操作符可以将后面的内容强制转换位字符串，</p>
+<p><code>leaq ret_from_intr(%rip), %rax</code>用于取得中断处理程序的返回地址<code>ret_from_intr</code>，并将其保存到中断处理程序栈内。由于<code>SAVE_ALL</code>模块使用<code>JMP</code>指令进入中断处理程序<code>do_irq</code>，所以中断处理程序必须借助栈里的返回地址才能构成完整的调用过程（<code>JMP</code>指令在跳转过程中不会压入返回地址，而<code>RET</code>指令在函数返回时却需要返回地址）。使用<code>JMP</code>指令加放回地址的方法来替代<code>CALL</code>指令，可使函数调用过程更灵活</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">BUILD_IRQ(<span class="number">0x20</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x21</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x22</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x23</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x24</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x25</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x26</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x27</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x28</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x29</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2a</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2b</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2c</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2d</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2e</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x2f</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x30</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x31</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x32</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x33</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x34</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x35</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x36</span>)</span><br><span class="line">BUILD_IRQ(<span class="number">0x37</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> (*interrupt[<span class="number">24</span>])(<span class="type">void</span>) = &#123;</span><br><span class="line">    IRQ0x20_interrupt, IRQ0x21_interrupt, IRQ0x22_interrupt, IRQ0x23_interrupt,</span><br><span class="line">    IRQ0x24_interrupt, IRQ0x25_interrupt, IRQ0x26_interrupt, IRQ0x27_interrupt,</span><br><span class="line">    IRQ0x28_interrupt, IRQ0x29_interrupt, IRQ0x2a_interrupt, IRQ0x2b_interrupt,</span><br><span class="line">    IRQ0x2c_interrupt, IRQ0x2e_interrupt, IRQ0x2f_interrupt, IRQ0x30_interrupt,</span><br><span class="line">    IRQ0x31_interrupt, IRQ0x32_interrupt, IRQ0x33_interrupt, IRQ0x34_interrupt,</span><br><span class="line">    IRQ0x35_interrupt, IRQ0x36_interrupt, IRQ0x37_interrupt&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>使用宏函数<code>BUILD_IRQ</code>声明24个中断处理函数的入口代码片段，同时还定义了一个函数指针数组，数组的每个元素都指向宏函数<code>BUILD_IRQ</code>定义一个中断处理函数入口。</p>
+<p>初始化主&#x2F;从9258A中断控制器和中断描述符表IDT内的各门描述符：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">interrupt_init</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="type">int</span> i;</span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">32</span>; i &lt; <span class="number">56</span>; i++) &#123;</span><br><span class="line">    set_intr_gate(i, <span class="number">2</span>, interrupt[i - <span class="number">32</span>]);</span><br><span class="line">  &#125;</span><br><span class="line">  color_printk(RED, BLACK, <span class="string">&quot;8259A init \n&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 8259A master ICW1-4</span></span><br><span class="line">  io_out8(<span class="number">0x20</span>, <span class="number">0x11</span>);</span><br><span class="line">  io_out8(<span class="number">0x21</span>, <span class="number">0x20</span>);</span><br><span class="line">  io_out8(<span class="number">0x21</span>, <span class="number">0x04</span>);</span><br><span class="line">  io_out8(<span class="number">0x21</span>, <span class="number">0x01</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 8259A slave ICW1-4</span></span><br><span class="line">  io_out8(<span class="number">0xa0</span>, <span class="number">0x11</span>);</span><br><span class="line">  io_out8(<span class="number">0xa1</span>, <span class="number">0x28</span>);</span><br><span class="line">  io_out8(<span class="number">0xa1</span>, <span class="number">0x02</span>);</span><br><span class="line">  io_out8(<span class="number">0xa1</span>, <span class="number">0x01</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 8259A-M/S OCW1</span></span><br><span class="line">  io_out8(<span class="number">0x21</span>, <span class="number">0x00</span>);</span><br><span class="line">  io_out8(<span class="number">0xa1</span>, <span class="number">0x00</span>);</span><br><span class="line"></span><br><span class="line">  sti();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用函数<code>set_intr_gate</code>将中断向量、中断处理函数配置到对应的门描述符中。外部硬件设备的中断向量号从32开始。主&#x2F;从8259A中断控制器进行初始化赋值：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/20/dfab1f38bafdfd900c732b6281a8c5ac.png" alt="Screenshot_20220820_193524"></p>
+<p>最后复位主&#x2F;从8259A中断控制器的中断屏蔽寄存器<code>IMR</code>全部中断屏蔽位，并使能中断（置位<code>EFLAGS</code>标志寄存器中的中断标志位<code>IF</code>）</p>
+<p>中断处理函数<code>do_irq</code>负责分发中断请求到各个中断处理函数，当前进打印中断向量号，表明处理器正在处理中断处理函数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">do_irq</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> regs, <span class="type">unsigned</span> <span class="type">long</span> nr)</span> &#123; <span class="comment">// regs: rep, nr</span></span><br><span class="line">  color_printk(RED, BLACK, <span class="string">&quot;do_irq:%#08x\t&quot;</span>, nr);</span><br><span class="line">  io_out8(<span class="number">0x20</span>, <span class="number">0x20</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其主要功能是显示当前中断请求的中断向量号，并向主8259A中断控制器发送EOI命令复位ISR寄存器。</p>
+<p>程序运行的瞬间结束：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/08/20/b110a0c21bffa1942585437b5a471436.png" alt="Screenshot_20220820_194709"></p>
+<p><code>0x20</code>号中断是时钟中断，在没有配置时钟控制器之前开启时钟中断，从而导致不断有中断请求产生。</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/ae9beb13.html">https://blog.ansore.top/posts/ae9beb13.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">操作系统</a><a class="post-meta__tags" href="/tags/64%E4%BD%8D%E7%B3%BB%E7%BB%9F%E5%AE%9E%E7%8E%B0/">64位系统实现</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/678e8aa.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">64位操作系统-键盘驱动</div></div></a></div><div class="next-post pull-right"><a href="/posts/984d9bff.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">64位操作系统-内存管理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/ea957129.html" title="64位操作系统-写一个BOOT引导程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-12</div><div class="title">64位操作系统-写一个BOOT引导程序</div></div></a></div><div><a href="/posts/86db78d0.html" title="64位操作系统-FAT12文件系统"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-14</div><div class="title">64位操作系统-FAT12文件系统</div></div></a></div><div><a href="/posts/9afe7748.html" title="64位操作系统-BOOT加载LOADER"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-17</div><div class="title">64位操作系统-BOOT加载LOADER</div></div></a></div><div><a href="/posts/de9aab27.html" title="64位操作系统-Loader引导加载程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-07-24</div><div class="title">64位操作系统-Loader引导加载程序</div></div></a></div><div><a href="/posts/d23baf17.html" title="64位操作系统-内核头程序"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-02</div><div class="title">64位操作系统-内核头程序</div></div></a></div><div><a href="/posts/9ed871c4.html" title="64位操作系统-lds链接脚本"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-08-04</div><div class="title">64位操作系统-lds链接脚本</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#8259A-PIC"><span class="toc-number">1.</span> <span class="toc-text">8259A PIC</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%91%BD%E4%BB%A4%E5%AD%97ICW"><span class="toc-number">1.1.</span> <span class="toc-text">初始化命令字ICW</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ICW1%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.1.</span> <span class="toc-text">ICW1寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICW2%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.2.</span> <span class="toc-text">ICW2寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICW3%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.3.</span> <span class="toc-text">ICW3寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ICW4%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.1.4.</span> <span class="toc-text">ICW4寄存器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%93%8D%E4%BD%9C%E6%8E%A7%E5%88%B6%E5%AD%97OCW"><span class="toc-number">1.2.</span> <span class="toc-text">操作控制字OCW</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OCW1%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.2.1.</span> <span class="toc-text">OCW1寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OCW2%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">OCW2寄存器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OCW3%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">1.2.3.</span> <span class="toc-text">OCW3寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%A7%A6%E5%8F%91%E4%B8%AD%E6%96%AD"><span class="toc-number">2.</span> <span class="toc-text">触发中断</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

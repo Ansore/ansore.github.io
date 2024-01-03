@@ -1,0 +1,404 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C++之Const详解 | Ansore</title><meta name="keywords" content="cpp"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Const详解const含义常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。 const作用 可以定义常量">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++之Const详解">
+<meta property="og:url" content="https://blog.ansore.top/posts/532077f8.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="Const详解const含义常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。 const作用 可以定义常量">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/05/04/62726e24621a5.jpg">
+<meta property="article:published_time" content="2021-03-31T06:20:31.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.104Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="cpp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/05/04/62726e24621a5.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/532077f8"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++之Const详解',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/05/04/62726e24621a5.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C++之Const详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-03-31T06:20:31.000Z" title="发表于 2021-03-31 14:20:31">2021-03-31</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.104Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/cpp/">cpp</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>10分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C++之Const详解"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="Const详解"><a href="#Const详解" class="headerlink" title="Const详解"></a>Const详解</h1><h1 id="const含义"><a href="#const含义" class="headerlink" title="const含义"></a>const含义</h1><p>常类型是指使用类型修饰符const说明的类型，常类型的变量或对象的值是不能被更新的。</p>
+<h1 id="const作用"><a href="#const作用" class="headerlink" title="const作用"></a>const作用</h1><ol>
+<li>可以定义常量</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> a=<span class="number">100</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>类型检查</li>
+</ol>
+<p>const常量与#define宏定义常量的区别： <strong>const常量具有类型，编译器可以进行安全检查；#define宏定义没有数据类型，只是简单的字符串替换，不能进行安全检查</strong>。</p>
+<ol start="3">
+<li>防止修改，起保护作用，增加程序健壮性</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">f</span><span class="params">(<span class="type">const</span> <span class="type">int</span> i)</span></span>&#123;</span><br><span class="line">    i++; <span class="comment">//error!</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>可以节省空间，避免不必要的内存分配</li>
+</ol>
+<p>const定义常量从汇编的角度来看，只是给出了对应的内存地址，而不是像#define一样给出的是立即数，所以，const定义的常量在程序运行过程中只有一份拷贝，而#define定义的常量在内存中有若干个拷贝。</p>
+<h1 id="const对象默认为文件局部变量"><a href="#const对象默认为文件局部变量" class="headerlink" title="const对象默认为文件局部变量"></a>const对象默认为文件局部变量</h1><p>非const变量默认为extern。要使const变量能够在其他文件中访问，必须在文件中显式地指定它为extern</p>
+<p>未被const修饰的变量在不同文件的访问：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// file1.cpp</span></span><br><span class="line"><span class="type">int</span> ext</span><br><span class="line"><span class="comment">// file2.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * by 光城</span></span><br><span class="line"><span class="comment"> * compile: g++ -o file file2.cpp file1.cpp</span></span><br><span class="line"><span class="comment"> * execute: ./file</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> ext;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt;(ext+<span class="number">10</span>)&lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>const常量在不同文件的访问：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//extern_file1.cpp</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">int</span> ext=<span class="number">12</span>;</span><br><span class="line"><span class="comment">//extern_file2.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * by 光城</span></span><br><span class="line"><span class="comment"> * compile: g++ -o file const_file2.cpp const_file1.cpp</span></span><br><span class="line"><span class="comment"> * execute: ./file</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">const</span> <span class="type">int</span> ext;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    std::cout&lt;&lt;ext&lt;&lt;std::endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现未被const修饰的变量不需要extern显式声明！而const常量需要显式声明extern，并且需要做初始化！因为常量在定义后就不能被修改，所以定义时必须初始化。</p>
+<h1 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> b = <span class="number">10</span>;</span><br><span class="line">b = <span class="number">0</span>; <span class="comment">// error: assignment of read-only variable ‘b’</span></span><br><span class="line"><span class="type">const</span> string s = <span class="string">&quot;helloworld&quot;</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> i,j=<span class="number">0</span> <span class="comment">// error: uninitialized const ‘i’</span></span><br></pre></td></tr></table></figure>
+
+<p>上述有两个错误：</p>
+<ol>
+<li>b为常量，不可更改</li>
+<li>i为常量，必须进行初始化！(因为常量在定义后就不能被修改，所以定义时必须初始化。)</li>
+</ol>
+<h1 id="指针与const"><a href="#指针与const" class="headerlink" title="指针与const"></a>指针与const</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">char</span> * a; <span class="comment">//指向const对象的指针或者说指向常量的指针。</span></span><br><span class="line"><span class="type">char</span> <span class="type">const</span> * a; <span class="comment">//同上</span></span><br><span class="line"><span class="type">char</span> * <span class="type">const</span> a; <span class="comment">//指向类型对象的const指针。或者说常指针、const指针。</span></span><br><span class="line"><span class="type">const</span> <span class="type">char</span> * <span class="type">const</span> a; <span class="comment">//指向const对象的const指针。</span></span><br></pre></td></tr></table></figure>
+
+<p>如果const位于的左侧，则const就是用来修饰指针所指向的变量，即指针指向为常量；如果const位于的右侧，const就是修饰指针本身，即指针本身是常量。</p>
+<p>具体使用如下：</p>
+<ol>
+<li>指向常量的指针</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> *ptr;</span><br><span class="line">*ptr = <span class="number">10</span>; <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<p>ptr是一个指向int类型const对象的指针，const定义的是int类型，也就是ptr所指向的对象类型，而不是ptr本身，所以ptr可以不用赋初始值。但是不能通过ptr去修改所指对象的值。</p>
+<p>除此之外，也不能使用void指针保存const对象的地址，必须使用const void类型的指针保存const对象的地址。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> p = <span class="number">10</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">void</span> * vp = &amp;p;</span><br><span class="line"><span class="type">void</span> *vp = &amp;p; <span class="comment">//error</span></span><br></pre></td></tr></table></figure>
+
+<p>另外一个重点是：<strong>允许把非const对象的地址赋给指向const对象的指针。</strong></p>
+<p>将非const对象的地址赋给const对象的指针:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> *ptr;</span><br><span class="line"><span class="type">int</span> val = <span class="number">3</span>;</span><br><span class="line">ptr = &amp;val; <span class="comment">//ok</span></span><br></pre></td></tr></table></figure>
+
+<p>我们不能通过ptr指针来修改val的值，即使它指向的是非const对象!</p>
+<p>我们不能使用指向const对象的指针修改基础对象，然而如果该指针指向了非const对象，可用其他方式修改其所指的对象。可以修改const指针所指向的值的，但是不能通过const对象指针来进行而已！如下修改：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *ptr1 = &amp;val;</span><br><span class="line">*ptr1=<span class="number">4</span>;</span><br><span class="line">cout&lt;&lt;*ptr&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+
+<p>对于指向常量的指针，不能通过指针来修改对象的值。</p>
+<p>也不能使用void<code>*</code>指针保存const对象的地址，必须使用const void<code>*</code>类型的指针保存const对象的地址。</p>
+<p>允许把非const对象的地址赋值给const对象的指针，如果要修改指针所指向的对象值，必须通过其他方式修改，不能直接通过当前指针直接修改。</p>
+<ol start="2">
+<li>常指针</li>
+</ol>
+<p>const指针必须进行初始化，且const指针的值不能修改。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> * <span class="type">const</span> ptr=&amp;num; <span class="comment">//const指针必须初始化！且const指针的值不能修改</span></span><br><span class="line">    <span class="type">int</span> * t = &amp;num;</span><br><span class="line">    *t = <span class="number">1</span>;</span><br><span class="line">    cout&lt;&lt;*ptr&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述修改ptr指针所指向的值，可以通过非const指针来修改。</p>
+<p>最后，当把一个const常量的地址赋值给ptr时候，由于ptr指向的是一个变量，而不是const常量，所以会报错，出现：const int * -&gt; int * 错误！</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="type">int</span> * <span class="type">const</span> ptr=&amp;num; <span class="comment">//error! const int* -&gt; int*</span></span><br><span class="line">    cout&lt;&lt;*ptr&lt;&lt;endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上述若改为 const int *ptr或者改为const int *const ptr，都可以正常！</p>
+<ol start="3">
+<li>指向常量的常指针</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> p = <span class="number">3</span>;</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> * <span class="type">const</span> ptr = &amp;p;</span><br></pre></td></tr></table></figure>
+
+<p>ptr是一个const指针，然后指向了一个int 类型的const对象。</p>
+<h1 id="函数中使用const"><a href="#函数中使用const" class="headerlink" title="函数中使用const"></a>函数中使用const</h1><aside>
+💡 cost修饰函数返回值
+
+</aside>
+
+<p>这个跟const修饰普通变量以及指针的含义基本相同：</p>
+<ol>
+<li>const int</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> <span class="type">int</span> <span class="title">func1</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个本身无意义，因为参数返回本身就是赋值给其他的变量！</p>
+<ol start="2">
+<li>const int*</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">const</span> <span class="type">int</span>* <span class="title">func2</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>指针指向的内容不变。</p>
+<ol start="3">
+<li>int *const</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> *<span class="type">const</span> <span class="title">func2</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>指针本身不可变。</p>
+<aside>
+💡 const修饰函数参数
+
+</aside>
+
+<ol>
+<li>传递过来的参数及指针本身在函数内不可变，无意义！</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">const</span> <span class="type">int</span> var)</span></span>; <span class="comment">// 传递过来的参数不可变</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">int</span> *<span class="type">const</span> var)</span></span>; <span class="comment">// 指针本身不可变</span></span><br></pre></td></tr></table></figure>
+
+<p>表明参数在函数体内不能被修改，但此处没有任何意义，var本身就是形参，在函数内不会改变。包括传入的形参是指针也是一样。</p>
+<p>输入参数采用“值传递”，由于函数将自动产生临时变量用于复制该参数，该输入参数本来就无需保护，所以不要加const 修饰。</p>
+<ol start="2">
+<li>参数指针所指内容为常量不可变</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">StringCopy</span><span class="params">(<span class="type">char</span> *dst, <span class="type">const</span> <span class="type">char</span> *src)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>其中src 是输入参数，dst 是输出参数。给src加上const修饰后，如果函数体内的语句试图改动src的内容，编译器将指出错误。这就是加了const的作用之一。</p>
+<ol start="3">
+<li>参数为引用，为了增加效率同时防止修改。</li>
+</ol>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">func</span><span class="params">(<span class="type">const</span> A &amp;a)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>对于非内部数据类型的参数而言，象void func(A a) 这样声明的函数注定效率比较低。因为函数体内将产生A 类型的临时对象用于复制参数a，而临时对象的构造、复制、析构过程都将消耗时间。</p>
+<p>为了提高效率，可以将函数声明改为void func(A &amp;a)，因为“引用传递”仅借用一下参数的别名而已，不需要产生临时对象。但是函数void func(A &amp;a) 存在一个缺点：</p>
+<p>“引用传递”有可能改变参数a，这是我们不期望的。解决这个问题很容易，加const修饰即可，因此函数最终成为 void func(const A &amp;a)。以此类推，是否应将void func(int x) 改写为void func(const int &amp;x)，以便提高效率？完全没有必要，因为内部数据类型的参数不存在构造、析构的过程，而复制也非常快，“值传递”和“引用传递”的效率几乎相当。</p>
+<p><strong>对于非内部数据类型的输入参数，应该将“值传递”的方式改为“const 引用传递”，目的是提高效率。例如将void func(A a) 改为void func(const A &amp;a)。</strong></p>
+<p><strong>对于内部数据类型的输入参数，不要将“值传递”的方式改为“const 引用传递”。否则既达不到提高效率的目的，又降低了函数的可理解性。例如void func(int x) 不应该改为void func(const int &amp;x)。</strong></p>
+<p>以上解决了两个面试问题：</p>
+<p>（1）如果函数需要传入一个指针，是否需要为该指针加上const，把const加在指针不同的位置有什么区别；</p>
+<p>（2）如果写的函数需要传入的参数是一个复杂类型的实例，传入值参数或者引用参数有什么区别，什么时候需要为传入的引用参数加上const。</p>
+<h1 id="类中使用const"><a href="#类中使用const" class="headerlink" title="类中使用const"></a>类中使用const</h1><p>在一个类中，任何不会修改数据成员的函数都应该声明为const类型。如果在编写const成员函数时，不慎修改数据成员，或者调用了其它非const成员函数，编译器将指出错误，这无疑会提高程序的健壮性。使用const关字进行说明的成员函数，称为常成员函数。只有常成员函数才有资格操作常量或常对象，没有使用const关键字明的成员函数不能用来操作常对象。</p>
+<p>对于类中的const成员变量必须通过初始化列表进行初始化，如下所示：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Apple</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="type">int</span> i); </span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> apple_number;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="type">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>const对象只能访问const成员函数,而非const对象可以访问任意的成员函数,包括const成员函数.</p>
+<p>例如：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//apple.cpp</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Apple</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> people[<span class="number">100</span>];</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">Apple</span>(<span class="type">int</span> i); </span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> apple_number;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">take</span><span class="params">(<span class="type">int</span> num)</span> <span class="type">const</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> num)</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">add</span><span class="params">(<span class="type">int</span> num)</span> <span class="type">const</span></span>;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">getCount</span><span class="params">()</span> <span class="type">const</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//main.cpp</span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span><span class="string">&quot;apple.cpp&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line">Apple::<span class="built_in">Apple</span>(<span class="type">int</span> i):<span class="built_in">apple_number</span>(i)</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Apple::add</span><span class="params">(<span class="type">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Apple::add</span><span class="params">(<span class="type">int</span> num)</span> <span class="type">const</span></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(num);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Apple::take</span><span class="params">(<span class="type">int</span> num)</span> <span class="type">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout&lt;&lt;<span class="string">&quot;take func &quot;</span>&lt;&lt;num&lt;&lt;endl;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">Apple::getCount</span><span class="params">()</span> <span class="type">const</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="built_in">take</span>(<span class="number">1</span>);</span><br><span class="line"><span class="comment">//    add(); //error</span></span><br><span class="line">    <span class="keyword">return</span> apple_number;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="function">Apple <span class="title">a</span><span class="params">(<span class="number">2</span>)</span></span>;</span><br><span class="line">    cout&lt;&lt;a.<span class="built_in">getCount</span>()&lt;&lt;endl;</span><br><span class="line">    a.<span class="built_in">add</span>(<span class="number">10</span>);</span><br><span class="line">    <span class="function"><span class="type">const</span> Apple <span class="title">b</span><span class="params">(<span class="number">3</span>)</span></span>;</span><br><span class="line">    b.<span class="built_in">add</span>(<span class="number">100</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//编译： g++ -o main main.cpp apple.cpp</span></span><br><span class="line"><span class="comment">//结果</span></span><br><span class="line">take func <span class="number">1</span></span><br><span class="line"><span class="number">2</span></span><br><span class="line">take func <span class="number">10</span></span><br><span class="line">take func <span class="number">100</span></span><br></pre></td></tr></table></figure>
+
+<p>上面getCount()方法中调用了一个add方法，而add方法并非const修饰，所以运行报错。也就是说const对象只能访问const成员函数。而add方法又调用了const修饰的take方法，证明了非const对象可以访问任意的成员函数,包括const成员函数。除此之外，我们也看到add的一个重载函数，也输出了两个结果，说明const对象默认调用const成员函数。我们除了上述的初始化const常量用初始化列表方式外，也可以通过下面方法：</p>
+<p>第一：将常量定义与static结合，也就是：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">int</span> apple_number</span><br></pre></td></tr></table></figure>
+
+<p>第二：在外面初始化：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">const</span> <span class="type">int</span> Apple::apple_number=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>当然，如果你使用c++11进行编译，直接可以在定义出初始化，可以直接写成：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">const</span> <span class="type">int</span> apple_number=<span class="number">10</span>;</span><br><span class="line">或者</span><br><span class="line"><span class="type">const</span> <span class="type">int</span> apple_number=<span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>编译的时候加上<code>-std=c++11</code>即可！</p>
+<p>这里提到了static，下面简单的说一下：</p>
+<p>在C++中，static静态成员变量不能在类的内部初始化。在类的内部只是声明，定义必须在类定义体的外部，通常在类的实现文件中初始化。</p>
+<p>在类中声明：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">static</span> <span class="type">int</span> ap;</span><br></pre></td></tr></table></figure>
+
+<p>在类实现文件中使用：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> Apple::ap=<span class="number">666</span></span><br></pre></td></tr></table></figure>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/532077f8.html">https://blog.ansore.top/posts/532077f8.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/cpp/">cpp</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/a13f6528.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">C++之sizeof详解</div></div></a></div><div class="next-post pull-right"><a href="/posts/1c5b22a6.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/626930c198398.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">cmake之编译多个目录、多个源文件</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/8ab7ae33.html" title="C++之堆、栈、RAII:C++里该如何管理资源"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">C++之堆、栈、RAII:C++里该如何管理资源</div></div></a></div><div><a href="/posts/7ca70fd1.html" title="C++之实现C++的智能指针"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-15</div><div class="title">C++之实现C++的智能指针</div></div></a></div><div><a href="/posts/a3242318.html" title="C++之std::move和std::forward"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-17</div><div class="title">C++之std::move和std::forward</div></div></a></div><div><a href="/posts/5fed6d8e.html" title="C++之inline详解"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-31</div><div class="title">C++之inline详解</div></div></a></div><div><a href="/posts/a13f6528.html" title="C++之sizeof详解"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-31</div><div class="title">C++之sizeof详解</div></div></a></div><div><a href="/posts/34ffe6e9.html" title="C++之static详解"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-03-31</div><div class="title">C++之static详解</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Const%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">Const详解</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E5%90%AB%E4%B9%89"><span class="toc-number">2.</span> <span class="toc-text">const含义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E4%BD%9C%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">const作用</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#const%E5%AF%B9%E8%B1%A1%E9%BB%98%E8%AE%A4%E4%B8%BA%E6%96%87%E4%BB%B6%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="toc-number">4.</span> <span class="toc-text">const对象默认为文件局部变量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E5%B8%B8%E9%87%8F"><span class="toc-number">5.</span> <span class="toc-text">定义常量</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%8C%87%E9%92%88%E4%B8%8Econst"><span class="toc-number">6.</span> <span class="toc-text">指针与const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E4%B8%AD%E4%BD%BF%E7%94%A8const"><span class="toc-number">7.</span> <span class="toc-text">函数中使用const</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E4%B8%AD%E4%BD%BF%E7%94%A8const"><span class="toc-number">8.</span> <span class="toc-text">类中使用const</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/05/04/62726e24621a5.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

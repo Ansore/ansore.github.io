@@ -1,0 +1,275 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Kernel中的地址转换 | Ansore</title><meta name="keywords" content="Kernel"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="在Linux中的地址转换如下图所示，逻辑地址通过段选择子查询GDT得到段描述，然后加上偏移得到线性地址（虚拟地址），而在Linux中并没有完整的使用分段机制，它让所有的段都指向相同的地址范围，段的基地址都为0，也就是说逻辑地址和线性地址在数值上就相同了。在由分页机制将线性地址转换为物理地址  在Linux系统中，为了兼容32位和64位，它需要一个统一的页面地址模型，目前常用的是4级页表模型。包括P">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kernel中的地址转换">
+<meta property="og:url" content="https://blog.ansore.top/posts/3be91ca.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="在Linux中的地址转换如下图所示，逻辑地址通过段选择子查询GDT得到段描述，然后加上偏移得到线性地址（虚拟地址），而在Linux中并没有完整的使用分段机制，它让所有的段都指向相同的地址范围，段的基地址都为0，也就是说逻辑地址和线性地址在数值上就相同了。在由分页机制将线性地址转换为物理地址  在Linux系统中，为了兼容32位和64位，它需要一个统一的页面地址模型，目前常用的是4级页表模型。包括P">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/04/27/62692c1359d83.jpg">
+<meta property="article:published_time" content="2022-03-13T15:13:10.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.104Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="Kernel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/04/27/62692c1359d83.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/3be91ca"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Kernel中的地址转换',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/04/27/62692c1359d83.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Kernel中的地址转换</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2022-03-13T15:13:10.000Z" title="发表于 2022-03-13 23:13:10">2022-03-13</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.104Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Kernel/">Kernel</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Kernel中的地址转换"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>在Linux中的地址转换如下图所示，逻辑地址通过段选择子查询GDT得到段描述，然后加上偏移得到线性地址（虚拟地址），而在Linux中并没有完整的使用分段机制，它让所有的段都指向相同的地址范围，段的基地址都为0，也就是说逻辑地址和线性地址在数值上就相同了。在由分页机制将线性地址转换为物理地址</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e276143e9b.png" alt="Screenshot_20220313_223502"></p>
+<p>在Linux系统中，为了兼容32位和64位，它需要一个统一的页面地址模型，目前常用的是4级页表模型。包括PGD页全局目录、PUD页上级目录、PMD页中级目的、PTE页表。根据情况某些页表不会被使用，每个页表项的大小会根据计算机体系结构的不同做相应的改变。例如没有启用物理地址扩展的32位系统来说，两级页表页表就够了，那么Linux会在线性地址中，会让PUD和PMD索引置为0，从根本上取消了这两个字段，但是这两个页目录在指针序列中的位置仍然被保留下来，也就是说在寻址过程中不能通过PUD和PMD直接都页表，内核会将这两个页目录表项都置为1。</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e29585cc08.png" alt="Screenshot_20220313_224447"></p>
+<p>由于64位系统硬件限制，实际的地址线有48条，所以线性地址实际使用也只有48位。在64位Linux中使用了4级页表结构。线性地址划分如下：</p>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/01/626e2761c3efb.png" alt="Screenshot_20220313_224507"></p>
+<p>PGD、PUD、PMD、PTE索引分别占了9位，页内偏移占了12位，总计48位，剩下高位保留。页面的大小都为4kb，每一个页表项大小为8bit，整个页面可以映射的空间是256TB。而新的Intel芯片的MMU硬件规定可以进行5级的页表映射，所以在4.15的内核中，在PGD和PUD之间又新增了一个新的页目录，叫做P4D页目录。这个页目录同32位中的情况还未使用，它的页目录项只有一个，线性地址中也没有它的索引。</p>
+<p>CR3寄存器是一系列CPU控制寄存器之一，这些寄存器主要用来保存和控制系统级别操作的数据和信息。其中这个CR3寄存器用来保存当前进程的页全局目录的地址。寻页就是从页全局目录开始，内核在创建一个进程的时候就会为它分配一个页全局目录。</p>
+<p>在进程描述符<code>task_struct</code>结构体中有一个指向<code>mm_struct</code>结构的<code>mm</code>指针，而<code>mm_struct</code>结构用来描述进程的虚拟地址空间，在<code>mm_struct</code>中有一个<code>PGD</code>字段就是用来保存该进程的页全局目录的（物理）地址。所以在进程切换的时候，操作系统通过访问<code>mm_struct</code>结构体<code>PGD</code>字段取得新进程的页全局目录地址填充到CR3寄存器中，就完成了页表的切换。</p>
+<p>代码演示如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/init.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/module.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/sched.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/mm.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/mm_types.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;linux/export.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">unsigned</span> <span class="type">long</span> cr0, cr3;</span><br><span class="line"><span class="type">static</span> <span class="type">unsigned</span> <span class="type">long</span> vaddr = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> <span class="title function_">get_pgtable_macro</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  cr0 = read_cr0();</span><br><span class="line">  cr3 = read_cr3_pa();</span><br><span class="line"></span><br><span class="line">  printk(<span class="string">&quot;cr0 = 0x%lx, cr3 = 0x%lx\n&quot;</span>, cr0, cr3);</span><br><span class="line">  printk(<span class="string">&quot;PGDIR_SHIFT = %d\n&quot;</span>, PGDIR_SHIFT);</span><br><span class="line">  printk(<span class="string">&quot;P4D_SHIFT = %d\n&quot;</span>, P4D_SHIFT);</span><br><span class="line">  printk(<span class="string">&quot;PUD_SHIFT = %d\n&quot;</span>, PUD_SHIFT);</span><br><span class="line">  printk(<span class="string">&quot;PMD_SHIFT = %d\n&quot;</span>, PMD_SHIFT);</span><br><span class="line">  printk(<span class="string">&quot;PAGE_SHIFT = %d\n&quot;</span>, PAGE_SHIFT);</span><br><span class="line"></span><br><span class="line">  printk(<span class="string">&quot;PTRS_PER_PGD = %d\n&quot;</span>, PTRS_PER_PGD);</span><br><span class="line">  printk(<span class="string">&quot;PTRS_PER_P4D = %d\n&quot;</span>, PTRS_PER_P4D);</span><br><span class="line">  printk(<span class="string">&quot;PTRS_PER_PUD = %d\n&quot;</span>, PTRS_PER_PUD);</span><br><span class="line">  printk(<span class="string">&quot;PTRS_PER_PMD = %d\n&quot;</span>, PTRS_PER_PMD);</span><br><span class="line">  printk(<span class="string">&quot;PTRS_PER_PTE = %d\n&quot;</span>, PTRS_PER_PTE);</span><br><span class="line">  printk(<span class="string">&quot;PAGE_MASK = 0x%lx\n&quot;</span>, PAGE_MASK);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">unsigned</span> <span class="type">long</span> <span class="title function_">vaddr2paddr</span><span class="params">(<span class="type">unsigned</span> <span class="type">long</span> vaddr)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">pgd_t</span> *pgd;</span><br><span class="line">  <span class="type">p4d_t</span> *p4d;</span><br><span class="line">  <span class="type">pud_t</span> *pud;</span><br><span class="line">  <span class="type">pmd_t</span> *pmd;</span><br><span class="line">  <span class="type">pte_t</span> *pte;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> paddr = <span class="number">0</span>;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> page_addr = <span class="number">0</span>;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> page_offset = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  pgd = pgd_offset(current-&gt;mm, vaddr);</span><br><span class="line">  printk(<span class="string">&quot;pgd_val = 0x%lx, pgd_index = %lu\n&quot;</span>, pgd_val(*pgd), pgd_index(vaddr));</span><br><span class="line">  <span class="keyword">if</span> (pgd_none(*pgd)) &#123;</span><br><span class="line">    printk(<span class="string">&quot;not mapped in pgd\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  p4d = p4d_offset(pgd, vaddr);</span><br><span class="line">  printk(<span class="string">&quot;p4d_val = 0x%lx, p4d_index = %lu\n&quot;</span>, p4d_val(*p4d), p4d_index(vaddr));</span><br><span class="line">  <span class="keyword">if</span> (p4d_none(*p4d)) &#123;</span><br><span class="line">    printk(<span class="string">&quot;not mapped in p4d\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pud = pud_offset(p4d, vaddr);</span><br><span class="line">  printk(<span class="string">&quot;pud_val = 0x%lx, pud_index = %lu\n&quot;</span>, pud_val(*pud), pud_index(vaddr));</span><br><span class="line">  <span class="keyword">if</span> (pud_none(*pud)) &#123;</span><br><span class="line">    printk(<span class="string">&quot;not mapped in pud\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pmd = pmd_offset(pud, vaddr);</span><br><span class="line">  printk(<span class="string">&quot;pmd_val = 0x%lx, pmd_index = %lu\n&quot;</span>, pmd_val(*pmd), pmd_index(vaddr));</span><br><span class="line">  <span class="keyword">if</span> (pmd_none(*pmd)) &#123;</span><br><span class="line">    printk(<span class="string">&quot;not mapped in pmd\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  pte = pte_offset_kernel(pmd, vaddr);</span><br><span class="line">  printk(<span class="string">&quot;pte_val = 0x%lx, pte_index = %lu\n&quot;</span>, pte_val(*pte), pte_index(vaddr));</span><br><span class="line">  <span class="keyword">if</span> (pte_none(*pte)) &#123;</span><br><span class="line">    printk(<span class="string">&quot;not mapped in pte\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  page_addr = pte_val(*pte) &amp; PAGE_MASK;</span><br><span class="line">  page_offset = vaddr &amp; ~PAGE_MASK;</span><br><span class="line">  paddr = page_addr | page_offset;</span><br><span class="line">  printk(<span class="string">&quot;page_addr = 0x%lx, page_offset = 0x%lx\n&quot;</span>, page_addr, page_offset);</span><br><span class="line">  printk(<span class="string">&quot;vaddr = 0x%lx, paddr = 0x%lx\n&quot;</span>, vaddr, paddr);</span><br><span class="line">  <span class="keyword">return</span> paddr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">int</span> __init <span class="title function_">v2p_init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> vaddr = <span class="number">0</span>;</span><br><span class="line">  printk(<span class="string">&quot;vaddr to paddr module is running..\n&quot;</span>);</span><br><span class="line">  get_pgtable_macro();</span><br><span class="line">  printk(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  vaddr = __get_free_page(GFP_KERNEL);</span><br><span class="line">  <span class="keyword">if</span> (vaddr == <span class="number">0</span>) &#123;</span><br><span class="line">    printk(<span class="string">&quot;__get_free_page failed..\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">sprintf</span>((<span class="type">char</span> *) vaddr, <span class="string">&quot;Hello world from kernel&quot;</span>);</span><br><span class="line">  printk(<span class="string">&quot;get_age_addr = 0x%lx\n&quot;</span>, vaddr);</span><br><span class="line">  vaddr2paddr(vaddr);</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">static</span> <span class="type">void</span> __exit <span class="title function_">v2p_exit</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">  printk(<span class="string">&quot;vaddr to paddr module is exiting..\n&quot;</span>);</span><br><span class="line">  free_page(vaddr);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(v2p_init);</span><br><span class="line">module_exit(v2p_exit);</span><br><span class="line">MODULE_LICENSE(<span class="string">&quot;GPL&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>Makefile文件：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ifneq ($(KERNELRELEASE),)</span><br><span class="line">obj-m := v2p.o</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">PWD := $(shell pwd)</span><br><span class="line">KERNEL_VERSION := $(shell uname -r)</span><br><span class="line">KDIR := /lib/modules/`uname -r`/build</span><br><span class="line">all:</span><br><span class="line">	make -C $(KDIR) M=$(PWD)</span><br><span class="line">clean:</span><br><span class="line">	rm -rf *.o *.ko *.mod.c *.symvers *.c~ *~</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
+
+<p>编译后加载进内核：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">sudo insmod v2p.ko</span></span><br></pre></td></tr></table></figure>
+
+<p>移出内核：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">sudo rmmod v2p</span></span><br></pre></td></tr></table></figure>
+
+<p>查看内核输出：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$ </span><span class="language-bash">sudo dmesg</span></span><br></pre></td></tr></table></figure>
+
+<p>最后输出结果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[ 9026.990307] vaddr to paddr module is running..</span><br><span class="line">[ 9026.990311] cr0 = 0x80050033, cr3 = 0x1b60a0000</span><br><span class="line">[ 9026.990312] PGDIR_SHIFT = 39</span><br><span class="line">[ 9026.990313] P4D_SHIFT = 39</span><br><span class="line">[ 9026.990313] PUD_SHIFT = 30</span><br><span class="line">[ 9026.990314] PMD_SHIFT = 21</span><br><span class="line">[ 9026.990314] PAGE_SHIFT = 12</span><br><span class="line">[ 9026.990315] PTRS_PER_PGD = 512</span><br><span class="line">[ 9026.990315] PTRS_PER_P4D = 1</span><br><span class="line">[ 9026.990315] PTRS_PER_PUD = 512</span><br><span class="line">[ 9026.990316] PTRS_PER_PMD = 512</span><br><span class="line">[ 9026.990317] PTRS_PER_PTE = 512</span><br><span class="line">[ 9026.990317] PAGE_MASK = 0xfffffffffffff000</span><br><span class="line"></span><br><span class="line">[ 9026.990318] get_age_addr = 0xffff9f95d83cd000</span><br><span class="line">[ 9026.990319] pgd_val = 0x71001067, pgd_index = 319</span><br><span class="line">[ 9026.990320] p4d_val = 0x71001067, p4d_index = 0</span><br><span class="line">[ 9026.990321] pud_val = 0x1daf88063, pud_index = 87</span><br><span class="line">[ 9026.990322] pmd_val = 0x1d82f5063, pmd_index = 193</span><br><span class="line">[ 9026.990323] pte_val = 0x80000001d83cd163, pte_index = 461</span><br><span class="line">[ 9026.990323] page_addr = 0x80000001d83cd000, page_offset = 0x0</span><br><span class="line">[ 9026.990324] vaddr = 0xffff9f95d83cd000, paddr = 0x80000001d83cd000</span><br><span class="line">[ 9032.670145] vaddr to paddr module is exiting..</span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/3be91ca.html">https://blog.ansore.top/posts/3be91ca.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Kernel/">Kernel</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/3bfc9898.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Kernel中的红黑树</div></div></a></div><div class="next-post pull-right"><a href="/posts/8c7f7ee7.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">操作系统之段页式内存管理</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/99e7a00f.html" title="Kernel中的命名空间"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-24</div><div class="title">Kernel中的命名空间</div></div></a></div><div><a href="/posts/ad3383b3.html" title="Kernel链表list.h分析"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-06</div><div class="title">Kernel链表list.h分析</div></div></a></div><div><a href="/posts/93e3e2a6.html" title="遍历kernel进程链表"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-06</div><div class="title">遍历kernel进程链表</div></div></a></div><div><a href="/posts/466f0e1b.html" title="Kernel中的哈希表"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-07</div><div class="title">Kernel中的哈希表</div></div></a></div><div><a href="/posts/15f5ac65.html" title="操作系统之保护模式"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-13</div><div class="title">操作系统之保护模式</div></div></a></div><div><a href="/posts/94c81492.html" title="操作系统之中断和异常处理"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692c1359d83.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-03-13</div><div class="title">操作系统之中断和异常处理</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/04/27/62692c1359d83.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

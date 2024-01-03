@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C语言-字符串操作 | Ansore</title><meta name="keywords" content="c"><meta name="author" content="Ansore"><meta name="copyright" content="Ansore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="字符测试函数字符测试函数，由头文件&quot;ctype.h&quot;定义 数字或字母测试函数isalnum1int isalnum(int c)  检查c是否为英文或者阿拉伯数字，若是返回真，否则返回假">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C语言-字符串操作">
+<meta property="og:url" content="https://blog.ansore.top/posts/750880bf.html">
+<meta property="og:site_name" content="Ansore">
+<meta property="og:description" content="字符测试函数字符测试函数，由头文件&quot;ctype.h&quot;定义 数字或字母测试函数isalnum1int isalnum(int c)  检查c是否为英文或者阿拉伯数字，若是返回真，否则返回假">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.ansore.de/2022/05/04/627266bb421cf.jpg">
+<meta property="article:published_time" content="2020-08-02T06:20:11.000Z">
+<meta property="article:modified_time" content="2024-01-03T14:54:50.104Z">
+<meta property="article:author" content="Ansore">
+<meta property="article:tag" content="c">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.ansore.de/2022/05/04/627266bb421cf.jpg"><link rel="shortcut icon" href="/images/favicon.ico"><link rel="canonical" href="https://blog.ansore.top/posts/750880bf"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//www.clarity.ms"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" media="print" onload="this.media='all'"><script>(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "bmljz8fd92");</script><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C语言-字符串操作',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-01-03 22:54:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5371728450390652" crossorigin="anonymous"></script><meta name="generator" content="Hexo 6.0.0"><link rel="alternate" href="/atom.xml" title="Ansore" type="application/atom+xml">
+</head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="spinner-box"><div class="configure-border-1"><div class="configure-core"></div></div><div class="configure-border-2"><div class="configure-core"></div></div><div class="loading-word">加载中...</div></div></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data is-center"><div class="data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://img.ansore.de/2022/05/04/627266bb421cf.jpg')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Ansore</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-th"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-user"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">C语言-字符串操作</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-08-02T06:20:11.000Z" title="发表于 2020-08-02 14:20:11">2020-08-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-01-03T14:54:50.104Z" title="更新于 2024-01-03 22:54:50">2024-01-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/c/">c</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="C语言-字符串操作"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="字符测试函数"><a href="#字符测试函数" class="headerlink" title="字符测试函数"></a>字符测试函数</h1><p>字符测试函数，由头文件<code>&quot;ctype.h&quot;</code>定义</p>
+<h5 id="数字或字母测试函数isalnum"><a href="#数字或字母测试函数isalnum" class="headerlink" title="数字或字母测试函数isalnum"></a>数字或字母测试函数<code>isalnum</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isalnum</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p>检查c是否为英文或者阿拉伯数字，若是返回真，否则返回假</p>
+<h5 id="字母测试函数isalpha"><a href="#字母测试函数isalpha" class="headerlink" title="字母测试函数isalpha"></a>字母测试函数<code>isalpha</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isalpha</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p>测试一个字符是不是英文字母，包括大小写</p>
+<h5 id="可打印字符测试函数isgraph"><a href="#可打印字符测试函数isgraph" class="headerlink" title="可打印字符测试函数isgraph"></a>可打印字符测试函数<code>isgraph</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isgrath</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p>不可打印指的是转义字符、格式控制或特殊作用的字符</p>
+<h5 id="大小写测试函数islower和isupper"><a href="#大小写测试函数islower和isupper" class="headerlink" title="大小写测试函数islower和isupper"></a>大小写测试函数<code>islower</code>和<code>isupper</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">islower</span><span class="params">(<span class="type">int</span> c)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">isupper</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>islower</code>用于测试一个字符是不是小写字符，<code>isupper</code>用于测试是不是大写字符</p>
+<h5 id="数字测试函数isxdigit"><a href="#数字测试函数isxdigit" class="headerlink" title="数字测试函数isxdigit"></a>数字测试函数<code>isxdigit</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">isdigit</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p>测试一个字母是不是0~9之间的阿拉伯数字</p>
+<h5 id="符号测试函数ispunct"><a href="#符号测试函数ispunct" class="headerlink" title="符号测试函数ispunct"></a>符号测试函数<code>ispunct</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">ispunct</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<p>测试一个字符是否为标点符号作者特殊符号</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;ctype.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> s[] = <span class="string">&quot;123adfa0QsdQDSDF923;sdfa\nsdf;;\tsdfas&quot;</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; s[i] != <span class="literal">NULL</span>; i ++) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">isalnum</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a number or character.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">isalpha</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a character.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">isgraph</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a printable character.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">islower</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a islower character.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">isupper</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a upper character.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">isxdigit</span>(s[i])) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">&quot;%c is a number.\n&quot;</span>, s[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="字符串转换"><a href="#字符串转换" class="headerlink" title="字符串转换"></a>字符串转换</h1><h5 id="字符串转化为浮点型函数atof"><a href="#字符串转化为浮点型函数atof" class="headerlink" title="字符串转化为浮点型函数atof"></a>字符串转化为浮点型函数<code>atof</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">atof</span><span class="params">(<span class="type">char</span> *nptr)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串转化为浮点数strtod"><a href="#字符串转化为浮点数strtod" class="headerlink" title="字符串转化为浮点数strtod"></a>字符串转化为浮点数<code>strtod</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">double</span> <span class="title function_">strtod</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *nptr, <span class="type">char</span> **endptr)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串转化为整型函数atoi"><a href="#字符串转化为整型函数atoi" class="headerlink" title="字符串转化为整型函数atoi"></a>字符串转化为整型函数<code>atoi</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">atoi</span><span class="params">(<span class="type">char</span> *nptr)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串转化为长整型函数atol"><a href="#字符串转化为长整型函数atol" class="headerlink" title="字符串转化为长整型函数atol"></a>字符串转化为长整型函数<code>atol</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">long</span> <span class="title function_">aotl</span><span class="params">(<span class="type">char</span> *nptr)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串转化为无符号长整型strtoul"><a href="#字符串转化为无符号长整型strtoul" class="headerlink" title="字符串转化为无符号长整型strtoul"></a>字符串转化为无符号长整型<code>strtoul</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">long</span> <span class="type">int</span> <span class="title function_">strtoul</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *nptr, <span class="type">char</span> **endptr, <span class="type">int</span> base)</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="将浮点型转化为字符串函数ecvt"><a href="#将浮点型转化为字符串函数ecvt" class="headerlink" title="将浮点型转化为字符串函数ecvt"></a>将浮点型转化为字符串函数<code>ecvt</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">ecvt</span><span class="params">(<span class="type">double</span> number, <span class="type">int</span> ndigits, <span class="type">int</span> *decpt, <span class="type">int</span> *sign)</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>number</code>是一个<code>double</code>类型的浮点数</li>
+<li><code>ndigits</code>在浮点数中从左向右取的位数</li>
+<li><code>decpt</code>一个整型的指针，显示浮点数中小数点在第几位</li>
+<li><code>sign</code>一个整型的指针，代表数值的正负，正为0，否则1</li>
+</ul>
+<h5 id="字母大小写转化函数tolower和toupper"><a href="#字母大小写转化函数tolower和toupper" class="headerlink" title="字母大小写转化函数tolower和toupper"></a>字母大小写转化函数<code>tolower</code>和<code>toupper</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">tolower</span><span class="params">(<span class="type">int</span> c)</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">toupper</span><span class="params">(<span class="type">int</span> c)</span> </span><br></pre></td></tr></table></figure>
+
+<p><code>tolower</code>把大写字母转化为小写字母，<code>toupper</code>相反</p>
+<h5 id="将整数转成合法的ASCII码toascii"><a href="#将整数转成合法的ASCII码toascii" class="headerlink" title="将整数转成合法的ASCII码toascii"></a>将整数转成合法的ASCII码<code>toascii</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">toascii</span><span class="params">(<span class="type">int</span> c)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="字符串比较"><a href="#字符串比较" class="headerlink" title="字符串比较"></a>字符串比较</h1><p>头文件<code>&quot;string.h&quot;</code>中定义的</p>
+<h5 id="字符串比较函数bcmp"><a href="#字符串比较函数bcmp" class="headerlink" title="字符串比较函数bcmp"></a>字符串比较函数<code>bcmp</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">bcmp</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *s1, <span class="type">const</span> <span class="type">void</span> *s2, <span class="type">int</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>比较两个字符串的前n个字节是否相同，相同返回0，否则返回非0</p>
+<h5 id="字符串大小比较函数memcmp"><a href="#字符串大小比较函数memcmp" class="headerlink" title="字符串大小比较函数memcmp"></a>字符串大小比较函数<code>memcmp</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">memcmp</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *s1, <span class="type">const</span> <span class="type">void</span> *s2, <span class="type">size_t</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p>比较两个字符串的大小是否相同，并且返回第一个不相同字符串的差值，n表示比较前n个字符</p>
+<h5 id="忽略大小写比较字符串函数strncasecmp"><a href="#忽略大小写比较字符串函数strncasecmp" class="headerlink" title="忽略大小写比较字符串函数strncasecmp"></a>忽略大小写比较字符串函数<code>strncasecmp</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">strncasecmp</span><span class="params">(<span class="type">const</span> <span class="type">char</span> *s1, <span class="type">const</span> <span class="type">char</span> *s2, <span class="type">size_t</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p>忽略大小写比较两个字符串</p>
+<h1 id="字符串复制"><a href="#字符串复制" class="headerlink" title="字符串复制"></a>字符串复制</h1><h5 id="字符串复制函数bcopy"><a href="#字符串复制函数bcopy" class="headerlink" title="字符串复制函数bcopy"></a>字符串复制函数<code>bcopy</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">bcopy</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *src, <span class="type">void</span> *dest, <span class="type">int</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p><code>src</code>表示需要复制的字符串，<code>dest</code>表示复制到的字符串。n表示需要在字符串中复制的字符数目</p>
+<h5 id="字符串复制函数memccpy"><a href="#字符串复制函数memccpy" class="headerlink" title="字符串复制函数memccpy"></a>字符串复制函数<code>memccpy</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> *<span class="title function_">memccpy</span><span class="params">(<span class="type">void</span> *dest, <span class="type">const</span> <span class="type">void</span> *src, <span class="type">int</span> c, <span class="type">size_t</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p>将一个字符串中的前n个字节复制到另一个字符串中。与<code>bcopy</code>不同的是<code>memccpy</code>可以检查字符串里是不是有某一字符。<code>src</code>和<code>dest</code>分别表示源字符和目标字符，c表示需要在字符串<code>dest</code>中查找赋值为c的字符，如果找到这个字符，则返回下一个字符的指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> a[<span class="number">20</span>] = <span class="string">&quot;asdfagh&quot;</span>;</span><br><span class="line">	<span class="type">char</span> b[<span class="number">20</span>] = <span class="string">&quot;ijklmn&quot;</span>;</span><br><span class="line">	<span class="type">char</span> *s;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n%s\n&quot;</span>, a, b);</span><br><span class="line">	s = memccpy(a, b, <span class="string">&#x27;k&#x27;</span>, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>, *s);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n%s\n&quot;</span>, a, b);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/**结果</span></span><br><span class="line"><span class="comment">asdfagh</span></span><br><span class="line"><span class="comment">ijklmn</span></span><br><span class="line"><span class="comment">f</span></span><br><span class="line"><span class="comment">ijkfagh</span></span><br><span class="line"><span class="comment">ijklmn</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="字符串复制函数strcpy"><a href="#字符串复制函数strcpy" class="headerlink" title="字符串复制函数strcpy"></a>字符串复制函数<code>strcpy</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src)</span></span><br></pre></td></tr></table></figure>
+
+<p>函数返回字符串<code>dest</code>指针，<code>dest</code>必须有足够的空间，否则会发生溢出</p>
+<h5 id="字符串复制函数strncpy"><a href="#字符串复制函数strncpy" class="headerlink" title="字符串复制函数strncpy"></a>字符串复制函数<code>strncpy</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strncpy</span><span class="params">(<span class="type">char</span> *dest, <span class="type">const</span> <span class="type">char</span> *src, <span class="type">size_t</span> n)</span>;</span><br></pre></td></tr></table></figure>
+
+<p>将一个字符串中的若干字符复制到另一个字符串中哦你</p>
+<h1 id="字符串的清理与填充"><a href="#字符串的清理与填充" class="headerlink" title="字符串的清理与填充"></a>字符串的清理与填充</h1><h5 id="字符串清理函数bzero"><a href="#字符串清理函数bzero" class="headerlink" title="字符串清理函数bzero"></a>字符串清理函数<code>bzero</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">bzero</span><span class="params">(<span class="type">void</span> *s,<span class="type">int</span> n)</span> </span><br></pre></td></tr></table></figure>
+
+<p>将字符串中的前n个字符写入<code>NULL</code>值</p>
+<h5 id="字符串填充函数memset"><a href="#字符串填充函数memset" class="headerlink" title="字符串填充函数memset"></a>字符串填充函数<code>memset</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> * <span class="title function_">memset</span> <span class="params">(<span class="type">void</span> *s ,<span class="type">int</span> c, <span class="type">size_t</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p>将一个字符的前 n 个字符填充为某一个字符</p>
+<h1 id="字符串查找"><a href="#字符串查找" class="headerlink" title="字符串查找"></a>字符串查找</h1><h5 id="字符查找函数index与rindex"><a href="#字符查找函数index与rindex" class="headerlink" title="字符查找函数index与rindex"></a>字符查找函数<code>index</code>与<code>rindex</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">index</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *s, <span class="type">int</span> c)</span>;</span><br><span class="line"><span class="type">char</span> *<span class="title function_">rindex</span><span class="params">( <span class="type">const</span> <span class="type">char</span> *s, <span class="type">int</span> c)</span>; </span><br></pre></td></tr></table></figure>
+
+<p> 函数<code>index</code>用来在字符串中找出需要查找字符第一次的出现位置，然后将该字符地址返 回。<code>rindex</code>的使用方法与<code>index</code>相似，但作用是找出字符串中最后一次某字符出现的位置。、</p>
+<h5 id="字符查找函数memchr"><a href="#字符查找函数memchr" class="headerlink" title="字符查找函数memchr"></a>字符查找函数<code>memchr</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> * <span class="title function_">memchr</span><span class="params">(<span class="type">const</span> <span class="type">void</span> *s,<span class="type">int</span> c,<span class="type">size_t</span> n)</span></span><br></pre></td></tr></table></figure>
+
+<p>在一个字符串的前 n 个字符中查找某一个字符，返回这个字符的指针地址</p>
+<h5 id="字符查找函数strchr与strrchr"><a href="#字符查找函数strchr与strrchr" class="headerlink" title="字符查找函数strchr与strrchr"></a>字符查找函数<code>strchr</code>与<code>strrchr</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> * <span class="title function_">strchr</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *s,<span class="type">int</span> c)</span></span><br><span class="line"><span class="type">char</span> * <span class="title function_">strrchr</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *s,<span class="type">int</span> c)</span> </span><br></pre></td></tr></table></figure>
+
+<p><code>strchr</code>的作用是在一个字符串中查找某一个字符第一次出现的位置。<code>strrchr</code>的作用是在一个字符串中查找某一个字符最后一次出现的位置</p>
+<h1 id="字符串的连接与分割"><a href="#字符串的连接与分割" class="headerlink" title="字符串的连接与分割"></a>字符串的连接与分割</h1><h5 id="字符串连接函数strcat"><a href="#字符串连接函数strcat" class="headerlink" title="字符串连接函数strcat"></a>字符串连接函数<code>strcat</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> *<span class="title function_">strcat</span> <span class="params">(<span class="type">char</span> *dest,<span class="type">const</span> <span class="type">char</span> *src)</span> </span><br></pre></td></tr></table></figure>
+
+<p>将一个字符串连接到另一个字符串后面</p>
+<h5 id="字符串分割函数strtok"><a href="#字符串分割函数strtok" class="headerlink" title="字符串分割函数strtok"></a>字符串分割函数<code>strtok</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span> * <span class="title function_">strtok</span><span class="params">(<span class="type">char</span> *s,<span class="type">const</span> <span class="type">char</span> *delim)</span>; </span><br></pre></td></tr></table></figure>
+
+<p>将字符串分割成多个字符串，</p>
+<p> <code>strtok</code>在参数<code>s</code>字符串中发现参数<code>delim</code>的分割字符时，将该字符改为<code>NULL</code>字符，然后返回更改以后的字符串。再次调用时，将参数<code>s</code>设置成<code>NULL</code>。每次调用成功则返回下一个分割 后的字符串指针</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> *p;</span><br><span class="line">	<span class="type">char</span> a[<span class="number">20</span>] = <span class="string">&quot;qweaQQWEa^!@#aIOP&quot;</span>;</span><br><span class="line">	<span class="type">char</span> s[] = <span class="string">&quot;a&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, a);</span><br><span class="line">	p = strtok(a, s);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p);</span><br><span class="line">	<span class="keyword">while</span>(p = strtok(<span class="literal">NULL</span>, s)) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, p);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** 结果</span></span><br><span class="line"><span class="comment">qweaQQWEa^!@#aIOP</span></span><br><span class="line"><span class="comment">qwe</span></span><br><span class="line"><span class="comment">QQWE</span></span><br><span class="line"><span class="comment">^!@#</span></span><br><span class="line"><span class="comment">IOP</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="其他字符串函数"><a href="#其他字符串函数" class="headerlink" title="其他字符串函数"></a>其他字符串函数</h1><h5 id="字符串长度函数strlen"><a href="#字符串长度函数strlen" class="headerlink" title="字符串长度函数strlen"></a>字符串长度函数<code>strlen</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strlen</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *s)</span>; </span><br></pre></td></tr></table></figure>
+
+<p>返回字符串的长度，也就是字符串里一共有多少个字符。函数的使用</p>
+<h5 id="允许出现字符查找函数strspn"><a href="#允许出现字符查找函数strspn" class="headerlink" title="允许出现字符查找函数strspn"></a>允许出现字符查找函数<code>strspn</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strspn</span> <span class="params">(<span class="type">const</span> <span class="type">char</span> *s,<span class="type">const</span> <span class="type">char</span> * accept)</span>; </span><br></pre></td></tr></table></figure>
+
+<p>返回一个字符串中首次不包含在指定字符串内容中的字符的位置。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span> *argv[])</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> a[] = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">	<span class="type">char</span> b[] = <span class="string">&quot;aaabbb.ccc&quot;</span>;</span><br><span class="line">	<span class="type">int</span> i = <span class="built_in">strspn</span>(b, a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, i);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/** 结果</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="不允许出现字符查找函数strcspn"><a href="#不允许出现字符查找函数strcspn" class="headerlink" title="不允许出现字符查找函数strcspn"></a>不允许出现字符查找函数<code>strcspn</code></h5><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">size_t</span> <span class="title function_">strcspn</span> <span class="params">( <span class="type">const</span> <span class="type">char</span> *s,<span class="type">const</span> <span class="type">char</span> * reject)</span> </span><br></pre></td></tr></table></figure>
+
+<p>查找出一个字符串中不允许出现的某个字符的位置</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Ansore</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://blog.ansore.top/posts/750880bf.html">https://blog.ansore.top/posts/750880bf.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.ansore.top" target="_blank">Ansore</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/c/">c</a></div><div class="post_share"><div class="social-share" data-image="https://img.ansore.de/2022/05/04/627266bb421cf.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/posts/2f375fe4.html"><img class="prev-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/62692f1609241.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">1.算法基础</div></div></a></div><div class="next-post pull-right"><a href="/posts/ec8a5210.html"><img class="next-cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/27/6269316bdefa1.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">悲观锁和乐观锁</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/posts/1d6a3c99.html" title="C之attribute的作用"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/627266bb421cf.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-10-02</div><div class="title">C之attribute的作用</div></div></a></div><div><a href="/posts/c447bbf4.html" title="字节对齐详解"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/05/04/62726e24621a5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-04-01</div><div class="title">字节对齐详解</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/images/logo.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Ansore</div><div class="author-info__description">纵然时光倒流<br>我还是想象不出一切最开始的模样</div></div><div class="card-info-data is-center"><div class="card-info-data-item"><a href="/archives/"><div class="headline">文章</div><div class="length-num">176</div></a></div><div class="card-info-data-item"><a href="/tags/"><div class="headline">标签</div><div class="length-num">52</div></a></div><div class="card-info-data-item"><a href="/categories/"><div class="headline">分类</div><div class="length-num">21</div></a></div></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Ansore"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Ansore" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:aansore@gmail.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">一枕邯郸，一生荒唐</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0"><span class="toc-number">1.</span> <span class="toc-text">字符测试函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E6%88%96%E5%AD%97%E6%AF%8D%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0isalnum"><span class="toc-number">1.0.0.0.1.</span> <span class="toc-text">数字或字母测试函数isalnum</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E6%AF%8D%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0isalpha"><span class="toc-number">1.0.0.0.2.</span> <span class="toc-text">字母测试函数isalpha</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%8F%AF%E6%89%93%E5%8D%B0%E5%AD%97%E7%AC%A6%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0isgraph"><span class="toc-number">1.0.0.0.3.</span> <span class="toc-text">可打印字符测试函数isgraph</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%A4%A7%E5%B0%8F%E5%86%99%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0islower%E5%92%8Cisupper"><span class="toc-number">1.0.0.0.4.</span> <span class="toc-text">大小写测试函数islower和isupper</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0isxdigit"><span class="toc-number">1.0.0.0.5.</span> <span class="toc-text">数字测试函数isxdigit</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E6%B5%8B%E8%AF%95%E5%87%BD%E6%95%B0ispunct"><span class="toc-number">1.0.0.0.6.</span> <span class="toc-text">符号测试函数ispunct</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">字符串转换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%B5%AE%E7%82%B9%E5%9E%8B%E5%87%BD%E6%95%B0atof"><span class="toc-number">2.0.0.0.1.</span> <span class="toc-text">字符串转化为浮点型函数atof</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%B5%AE%E7%82%B9%E6%95%B0strtod"><span class="toc-number">2.0.0.0.2.</span> <span class="toc-text">字符串转化为浮点数strtod</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%95%B4%E5%9E%8B%E5%87%BD%E6%95%B0atoi"><span class="toc-number">2.0.0.0.3.</span> <span class="toc-text">字符串转化为整型函数atoi</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E9%95%BF%E6%95%B4%E5%9E%8B%E5%87%BD%E6%95%B0atol"><span class="toc-number">2.0.0.0.4.</span> <span class="toc-text">字符串转化为长整型函数atol</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%97%A0%E7%AC%A6%E5%8F%B7%E9%95%BF%E6%95%B4%E5%9E%8Bstrtoul"><span class="toc-number">2.0.0.0.5.</span> <span class="toc-text">字符串转化为无符号长整型strtoul</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%86%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BD%AC%E5%8C%96%E4%B8%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0ecvt"><span class="toc-number">2.0.0.0.6.</span> <span class="toc-text">将浮点型转化为字符串函数ecvt</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E6%AF%8D%E5%A4%A7%E5%B0%8F%E5%86%99%E8%BD%AC%E5%8C%96%E5%87%BD%E6%95%B0tolower%E5%92%8Ctoupper"><span class="toc-number">2.0.0.0.7.</span> <span class="toc-text">字母大小写转化函数tolower和toupper</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%B0%86%E6%95%B4%E6%95%B0%E8%BD%AC%E6%88%90%E5%90%88%E6%B3%95%E7%9A%84ASCII%E7%A0%81toascii"><span class="toc-number">2.0.0.0.8.</span> <span class="toc-text">将整数转成合法的ASCII码toascii</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83"><span class="toc-number">3.</span> <span class="toc-text">字符串比较</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0bcmp"><span class="toc-number">3.0.0.0.1.</span> <span class="toc-text">字符串比较函数bcmp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%A7%E5%B0%8F%E6%AF%94%E8%BE%83%E5%87%BD%E6%95%B0memcmp"><span class="toc-number">3.0.0.0.2.</span> <span class="toc-text">字符串大小比较函数memcmp</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%BF%BD%E7%95%A5%E5%A4%A7%E5%B0%8F%E5%86%99%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0strncasecmp"><span class="toc-number">3.0.0.0.3.</span> <span class="toc-text">忽略大小写比较字符串函数strncasecmp</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6"><span class="toc-number">4.</span> <span class="toc-text">字符串复制</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6%E5%87%BD%E6%95%B0bcopy"><span class="toc-number">4.0.0.0.1.</span> <span class="toc-text">字符串复制函数bcopy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6%E5%87%BD%E6%95%B0memccpy"><span class="toc-number">4.0.0.0.2.</span> <span class="toc-text">字符串复制函数memccpy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6%E5%87%BD%E6%95%B0strcpy"><span class="toc-number">4.0.0.0.3.</span> <span class="toc-text">字符串复制函数strcpy</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%8D%E5%88%B6%E5%87%BD%E6%95%B0strncpy"><span class="toc-number">4.0.0.0.4.</span> <span class="toc-text">字符串复制函数strncpy</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%B8%85%E7%90%86%E4%B8%8E%E5%A1%AB%E5%85%85"><span class="toc-number">5.</span> <span class="toc-text">字符串的清理与填充</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%B8%85%E7%90%86%E5%87%BD%E6%95%B0bzero"><span class="toc-number">5.0.0.0.1.</span> <span class="toc-text">字符串清理函数bzero</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A1%AB%E5%85%85%E5%87%BD%E6%95%B0memset"><span class="toc-number">5.0.0.0.2.</span> <span class="toc-text">字符串填充函数memset</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE"><span class="toc-number">6.</span> <span class="toc-text">字符串查找</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0index%E4%B8%8Erindex"><span class="toc-number">6.0.0.0.1.</span> <span class="toc-text">字符查找函数index与rindex</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0memchr"><span class="toc-number">6.0.0.0.2.</span> <span class="toc-text">字符查找函数memchr</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0strchr%E4%B8%8Estrrchr"><span class="toc-number">6.0.0.0.3.</span> <span class="toc-text">字符查找函数strchr与strrchr</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%88%86%E5%89%B2"><span class="toc-number">7.</span> <span class="toc-text">字符串的连接与分割</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9E%E6%8E%A5%E5%87%BD%E6%95%B0strcat"><span class="toc-number">7.0.0.0.1.</span> <span class="toc-text">字符串连接函数strcat</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%86%E5%89%B2%E5%87%BD%E6%95%B0strtok"><span class="toc-number">7.0.0.0.2.</span> <span class="toc-text">字符串分割函数strtok</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%87%BD%E6%95%B0"><span class="toc-number">8.</span> <span class="toc-text">其他字符串函数</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6%E5%87%BD%E6%95%B0strlen"><span class="toc-number">8.0.0.0.1.</span> <span class="toc-text">字符串长度函数strlen</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%85%81%E8%AE%B8%E5%87%BA%E7%8E%B0%E5%AD%97%E7%AC%A6%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0strspn"><span class="toc-number">8.0.0.0.2.</span> <span class="toc-text">允许出现字符查找函数strspn</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%8D%E5%85%81%E8%AE%B8%E5%87%BA%E7%8E%B0%E5%AD%97%E7%AC%A6%E6%9F%A5%E6%89%BE%E5%87%BD%E6%95%B0strcspn"><span class="toc-number">8.0.0.0.3.</span> <span class="toc-text">不允许出现字符查找函数strcspn</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Archlinux安装btrfs文件系统"/></a><div class="content"><a class="title" href="/posts/e060854e.html" title="Archlinux安装btrfs文件系统">Archlinux安装btrfs文件系统</a><time datetime="2023-12-03T14:42:08.000Z" title="发表于 2023-12-03 22:42:08">2023-12-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="KVM与实体机共享目录"/></a><div class="content"><a class="title" href="/posts/18aaf2d9.html" title="KVM与实体机共享目录">KVM与实体机共享目录</a><time datetime="2023-05-06T14:43:03.000Z" title="发表于 2023-05-06 22:43:03">2023-05-06</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Linux中找到并删除重复文件的工具"/></a><div class="content"><a class="title" href="/posts/4cb3e1a1.html" title="Linux中找到并删除重复文件的工具">Linux中找到并删除重复文件的工具</a><time datetime="2023-02-11T12:44:11.000Z" title="发表于 2023-02-11 20:44:11">2023-02-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/28e97253.html" title="QEMU搭建ARM32环境"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/04/25/6266bea760d6c.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QEMU搭建ARM32环境"/></a><div class="content"><a class="title" href="/posts/28e97253.html" title="QEMU搭建ARM32环境">QEMU搭建ARM32环境</a><time datetime="2023-01-03T14:40:02.000Z" title="发表于 2023-01-03 22:40:02">2023-01-03</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/posts/330229db.html" title="64位操作系统-地址空间"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="https://img.ansore.de/2022/09/11/f01cf15d850f0ce8f2c97c93a206411c8d3bf927.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="64位操作系统-地址空间"/></a><div class="content"><a class="title" href="/posts/330229db.html" title="64位操作系统-地址空间">64位操作系统-地址空间</a><time datetime="2022-09-18T02:31:20.000Z" title="发表于 2022-09-18 10:31:20">2022-09-18</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('https://img.ansore.de/2022/05/04/627266bb421cf.jpg')"><div id="footer-wrap"><div class="copyright">&copy;2016 - 2024 By Ansore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">本地搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://cdn.jsdelivr.net/npm/pangu/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><script src="/js/search/local-search.js"></script><script>var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())</script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script></div><script defer="defer" id="fluttering_ribbon" mobile="true" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/canvas-fluttering-ribbon.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
